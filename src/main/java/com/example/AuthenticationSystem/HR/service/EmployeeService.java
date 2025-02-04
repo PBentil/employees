@@ -147,4 +147,9 @@ public List<Tasks> findTasks(String uniqueId){
     public List<Attendance> findAttendances(String uniqueId){
         return employeeAttendance.findAllByUniqueId(uniqueId);
     }
+
+    public Employee getEmployeeProfile(String firstName){
+       Employee  employee= employeeRepository.findByfirstName(firstName);
+       return employee;
+    }
 }

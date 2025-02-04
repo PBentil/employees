@@ -145,6 +145,20 @@
         if (name) {
             document.getElementById('employee-name').textContent = name;
         }
+        let username;
+
+        fetch('/profileManagement', {
+    method: "GET",
+    headers: {
+        'Content-Type': 'application/json'
+    }
+})
+.then(response => response.json())
+.then(data => {
+    document.getElementById('employee-name').textContent = data.firstName || 'Employee';
+})
+.catch(error => console.error('Error fetching profile:', error));
+
     });</script>
 </body>
 

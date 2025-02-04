@@ -319,4 +319,9 @@ public ResponseEntity<List<Attendance>> getAttendances( String uniqueId) {
         List<Tasks> tasks = employeeService.findTasks(uniqueId);
         return ResponseEntity.ok(tasks);
     }
+    @GetMapping ("/profileManagement")
+    public Employee getEmployeeProfile(){
+       Employee employee=employeeService.getEmployeeProfile(UniqueId);
+       return employee;
+    }
 }
