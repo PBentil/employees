@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+          integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Sign Up</title>
+</head>
+
+<style>
+    .container {
+        width: 100%;
+        display: flex;
+        background-color: whitesmoke;
+        height: 100vh;
+    }
+
+    .side-1, .side-2 {
+        flex-grow: 1;
+        width: 50%;
+    }
+
+    .side-1 {
+        background: whitesmoke;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: gray;
+        position: relative;
+    }
+
+    .side-2 {
+        background: white;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+        color: gray;
+        position: relative;
+    }
+
+    form {
+        margin-top: 150px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+        background: whitesmoke;
+        width: 400px;
+        border-radius: 10px;
+    }
+
+    h2 {
+        margin: 0;
+        color: steelblue;
+        margin-bottom: 10px;
+    }
+
+    .top-bar {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 50px;
+        position: absolute;
+        border-bottom: 1px solid #D1D5DB;
+        top: 0;
+    }
+
+    .info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-right: 10px;
+    }
+
+    .info p {
+        color: black;
+    }
+
+    .info button {
+        height: 29px;
+        width: 70px;
+        background: whitesmoke;
+        border: 1px solid #D1D5DB;
+        border-radius: 6px;
+    }
+
+    button {
+        background: steelblue;
+        color: white;
+        height: 40px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+</style>
+
+<body>
+<!--container-->
+<div class="container">
+    <!--first half-->
+    <div class="side-1">
+        <div class="top-bar">
+            <h2>HR DIVE</h2>
+            <div class="info">
+                <i class="fa-regular fa-circle-question fa-lg"></i>
+                <p>Already have an account?</p>
+                <button onclick="window.location.href='login.html'">Login</button>
+            </div>
+        </div>
+        <form id="signup-form" action="/api/employee/signup" method="POST">
+            <h2>Sign Up</h2>
+            <p>Create your account</p>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" style="padding: 10px;" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" style="padding: 10px;" required>
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" style="padding: 10px;" required>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+
+    <!--second half-->
+    <div class="side-2">
+        <div class="images" id="images"></div>
+        <h2>Manage Your Employees</h2>
+        <p>Sign up today and discover a smarter way to manage your workforce.</p>
+    </div>
+</div>
+
+<script>
+    // Image carousel logic
+    let image = document.getElementById('images');
+    let images = [
+        'images/emp-payroll.png',
+        'images/erp.png',
+        'images/ems.webp'
+    ];
+    let currentIndex = 0;
+
+    function updateImage() {
+        image.style.backgroundImage = `url('${images[currentIndex]}')`;
+        currentIndex = (currentIndex + 1) % images.length;
+    }
+
+    setInterval(updateImage, 3000);
+    updateImage();
+
+    // Sign Up Form Submission
+    document.getElementById('signup-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        if (password !== confirmPassword) {
+            alert('Passwords do not match!');
+            return;
+        }
+
+        // Send POST request to the backend API
+        fetch('http://localhost:8080/api/employee/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        })
+
+            .then(response => response.json())
+            .then(data => {
+                alert('Account created successfully!');
+                window.location.href = 'login.html';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error creating your account.');
+            });
+    });
+</script>
+
+</body>
+</html>
