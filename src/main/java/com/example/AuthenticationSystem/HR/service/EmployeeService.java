@@ -43,9 +43,9 @@ private FeedbacksAndComplaintsRepo feedbacksRepository;
     private EmployeeAttendance employeeAttendance;
 
     @Transactional
-    public ResponseEntity<Object> addEmployee(Employee employee) {
-       Employee savedEmployee= employeeRepository.save(employee);
-        return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);
+    public Employee addEmployee(Employee employee) {
+       return employeeRepository.save(employee);
+
     }
 
     @Transactional
@@ -149,7 +149,7 @@ public List<Tasks> findTasks(String uniqueId){
     }
 
     public Employee getEmployeeProfile(String firstName){
-       Employee  employee= employeeRepository.findByfirstName(firstName);
+       Employee  employee= employeeRepository.findByUniqueId(firstName);
        return employee;
     }
 }

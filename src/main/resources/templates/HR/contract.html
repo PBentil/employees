@@ -15,7 +15,7 @@
             rel="stylesheet">
 
 
-    <title>Converted Tailwind CSS Layout</title>
+    <title>Add Employee</title>
 </head>
 
 <style>
@@ -324,9 +324,7 @@
         <div class="icons">
             <i class="fa-solid fa-layer-group fa-lg "></i> <a href="/payroll">Payroll</a>
         </div>
-        <div class="icons">
-            <i class="fa-regular fa-folder-open fa-lg "></i><a href="/document">Documents</a> <!-- Fixed the closing tag -->
-        </div>
+
         <div class="icons">
 
             <svg width="22px" height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -715,15 +713,16 @@
 
         if (formId === "personal") {
             employeeData = {
-                employee: {
+
                     uniqueId: uniqueId,
                     firstName: jsonObject["firstName"],
                     lastName: jsonObject["lastName"],
                     email: jsonObject["email"],
                     phone: jsonObject["phone"],
                     address: jsonObject["address"],
-                    password:"password"
-                }
+                    password:"password",
+                    role:"Employee"
+
             };
         } else if (formId === "jobDetails") {
             employeeData = {

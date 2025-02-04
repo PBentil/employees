@@ -11,5 +11,5 @@ import org.springframework.data.domain.Pageable;
 public interface EmployeeRepo extends JpaRepository<Employee, Long> {
     Page<Employee> findAll(Pageable pageable);
     Employee findByEmail(String email);
-    Employee findByfirstName(String firstName);
+    Employee findByUniqueId(String uniqueId);
 }
