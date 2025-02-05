@@ -130,6 +130,7 @@ public String document(){
         return "Employee/payroll";
     }
 
+
     @GetMapping("/getEmployeeCount")
     public ResponseEntity<Long> getEmployeeCount(Model model) {
         Long count = employeeService.getEmployeeCount();
