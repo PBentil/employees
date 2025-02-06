@@ -1127,6 +1127,76 @@ svg {
 
 }
 
+sidebar a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+}
+
+/* Collapsed state for larger screens */
+.sidebar.collapsed {
+    width: 50px;
+    align-items: center;
+    /* Centers icons */
+    padding: 15px 8px;
+    /* Reduces padding */
+}
+
+.sidebar.collapsed a {
+    display: flex;
+    justify-content: center;
+    /* Centers icons */
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+    /* Adds spacing */
+}
+
+/* Hide text and keep icons */
+.sidebar.collapsed a span {
+    display: none;
+}
+
+.sidebar.collapsed .icons {
+    justify-content: center;
+}
+
+/* Text inside links */
+.sidebar a .text {
+    white-space: nowrap;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Hide text when collapsed */
+.sidebar.collapsed a .text {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+}
+
+/* Ensure icons are always visible */
+.sidebar.collapsed a {
+    justify-content: center;
+    gap: 0;
+}
+
+/* Mobile behavior - Hide sidebar when inactive */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        z-index: 1000;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+}
+
+
 .sidebar-2 {
     width: 190px;
     font-size: 15px;
