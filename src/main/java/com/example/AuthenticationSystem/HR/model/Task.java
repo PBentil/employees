@@ -1,22 +1,23 @@
 package com.example.AuthenticationSystem.HR.model;
+
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-public class Tasks {
+public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private  String uniqueId;
+    private String uniqueId;
     private String taskTitle;
     private String taskDescription;
     private String priority;
     private String dueDate;
-    private  LocalTime assignedAt;
-    private  String status;
+    private LocalTime assignedAt;
+    private String status;
 
     public String getUniquedId() {
         return uniqueId;
@@ -74,8 +75,6 @@ public class Tasks {
         this.status = status;
     }
 
-
-
     public String getPriority() {
         return priority;
     }
@@ -84,7 +83,4 @@ public class Tasks {
         this.priority = priority;
     }
 
-
-
 }
-

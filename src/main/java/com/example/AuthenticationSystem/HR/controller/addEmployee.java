@@ -32,7 +32,7 @@ public class addEmployee {
     @Autowired
     private EmployeeAttendance employeeAttendance;
     // Temporary storage for employee and job details
-    private EmployeeDetails temporaryEmployeeDetails = null;
+    private Employee temporaryEmployeeDetails = null;
     private JobDetails temporaryJobDetails = null;
     private final  LocalTime allowedCheckTime=LocalTime.of(9,0);
     private String UniqueId;
@@ -130,7 +130,6 @@ public String document(){
         return "Employee/payroll";
     }
 
-
     @GetMapping("/getEmployeeCount")
     public ResponseEntity<Long> getEmployeeCount(Model model) {
         Long count = employeeService.getEmployeeCount();
@@ -141,7 +140,7 @@ public String document(){
 
 
     @PostMapping("/personal")
-    public ResponseEntity<Map<String, Object>> submitAllData(@RequestBody EmployeeDetails employeeDetails) {
+    public ResponseEntity<Map<String, Object>> submitAllData(@RequestBody Employee employeeDetails) {
         Map<String, Object> response = new HashMap<>();
         this.temporaryEmployeeDetails = employeeDetails;
         response.put("status", "success");
@@ -170,8 +169,8 @@ public String document(){
             }
 
 
-            Employee employee = temporaryEmployeeDetails.toEntity();
-            employeeService.addEmployee(employee);
+
+            employeeService.addEmployee(temporaryEmployeeDetails);
             employeeService.saveJobDetails(temporaryJobDetails);
             employeeService.saveCompensationDetails(compensation);
 
@@ -200,28 +199,33 @@ public String document(){
             model.addAttribute("employee", employee);
             Attendance attendance = new Attendance();
             attendance.setUniqueId(employee.getUniqueId());
-            UniqueId=employee.getUniqueId();
-            LocalDate today=LocalDate.now();
-            Optional<Attendance> existingAttendance=employeeAttendance.findByUniqueIdAndDate(employee.getUniqueId(), today);
+            UniqueId = employee.getUniqueId();
+            LocalDate today = LocalDate.now();
+            Optional<Attendance> existingAttendance = employeeAttendance.findByUniqueIdAndDate(employee.getUniqueId(), today);
 
-                if (existingAttendance.isPresent()) {
-              model.addAttribute("error","Already Logged in today");
-                    return "HR/EmployeeForm";
-                }
+            if (existingAttendance.isPresent()) {
+                model.addAttribute("error", "Already Logged in today");
+                return "HR/EmployeeForm";
+            }
 
             attendance.setDate(LocalDate.now());
             LocalTime checkInTime = LocalTime.now();
             attendance.setCheckInTime(checkInTime);
-            if(checkInTime.isAfter(allowedCheckTime)){
+            if (checkInTime.isAfter(allowedCheckTime)) {
                 attendance.setTimeliness("Late");
-            }
-            else{
+            } else {
                 attendance.setTimeliness("Early");
             }
             attendance.setStatus("Present");
             employeeService.markAttendance(attendance);
-          model.addAttribute("employee",employee);
-            return "Employee/task";
+            model.addAttribute("employee", employee);
+            String role = employee.getRole();
+            if ("Employee".equals(role)) {
+                return "Employee/task";
+            } else {
+                return "HR/dashboard";
+            }
+
         } else {
             model.addAttribute("error", "Invalid login credentials.");
             return "loginForm";
@@ -319,5 +323,11 @@ public ResponseEntity<List<Attendance>> getAttendances( String uniqueId) {
         uniqueId=UniqueId;
         List<Tasks> tasks = employeeService.findTasks(uniqueId);
         return ResponseEntity.ok(tasks);
+    }
+    @GetMapping ("/profileManagement")
+    public ResponseEntity<Employee> getEmployeeProfile(String uniqueId){
+        uniqueId=UniqueId;
+       Employee employee=employeeService.getEmployeeProfile(uniqueId);
+       return ResponseEntity.ok(employee);
     }
 }

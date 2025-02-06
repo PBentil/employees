@@ -307,7 +307,7 @@ body span {
 
 .leave-list {
     border: 1px solid steelblue;
-    width: 45%;
+    width: 100%;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -451,7 +451,7 @@ body span {
 }
 
 .sidebar h3 {
-    padding-left: 23px;
+    padding-left: 10px;
     color: white;
     margin: 0;
     padding-top: 10px;
@@ -465,8 +465,8 @@ body span {
     background-color: white;
     display: flex;
     flex-direction: column;
-    margin-right: 20px;
-    height: 130vh;
+    margin-right: 10px;
+    height: 100vh;
     box-shadow: 4px 4px 8px rgba(70, 130, 180, 0.2);
 }
 

@@ -18,14 +18,14 @@
 </head>
 
 <body>
-<div class="container">
+
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="heading">
             <h2>HR DIVE</h2>
    
         </div>
-       
+       <h3>Menu</h3>
         <div class="icons">
             <i class="fa-solid fa-house fa-lg "></i> <a href="/dash">Dashboard</a>
         </div>
@@ -70,7 +70,7 @@
                         d="M8.4 14H4.6C4.03995 14 3.75992 14 3.54601 14.109C3.35785 14.2049 3.20487 14.3578 3.10899 14.546C3 14.7599 3 15.0399 3 15.6V19.4C3 19.9601 3 20.2401 3.10899 20.454C3.20487 20.6422 3.35785 20.7951 3.54601 20.891C3.75992 21 4.03995 21 4.6 21H8.4C8.96005 21 9.24008 21 9.45399 20.891C9.64215 20.7951 9.79513 20.6422 9.89101 20.454C10 20.2401 10 19.9601 10 19.4V15.6C10 15.0399 10 14.7599 9.89101 14.546C9.79513 14.3578 9.64215 14.2049 9.45399 14.109C9.24008 14 8.96005 14 8.4 14Z"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-            <a class="hover:text-[#4682B4]    hover:cursor-pointer text-wrap" href="/etasks">Tasks</a>
+            <a class="hover:text-[#4682B4]    hover:cursor-pointer text-wrap" href="/etask">Task</a>
 
         </div>
 
@@ -81,6 +81,7 @@
     <div class="navigation">
         <div class="navbar">
             <div class="links">
+                <button class="menu-toggle">☰</button>
                 <div class="prof">
                     <h3>Welcome back,<span id="employee-name" style="color:steelblue">HR</span></h3>
 
@@ -139,7 +140,7 @@
             </div>
         </div>
     </div>
-</div>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
       const name = localStorage.getItem('employeeFirstName');
@@ -147,6 +148,21 @@
           document.getElementById('employee-name').textContent = name;
       }
   });
+</script>
+
+
+<script>
+    const toggleButton = document.querySelector(".menu-toggle");
+    const sidebar = document.querySelector(".sidebar");
+
+    toggleButton.addEventListener("click", function () {
+        if (window.innerWidth <= 768) {
+            sidebar.classList.toggle("active"); // Mobile toggle
+        } else {
+            sidebar.classList.toggle("collapsed"); // Desktop collapse
+    }
+});
+
 </script>
 </body>
 

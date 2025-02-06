@@ -40,10 +40,7 @@
     <div class="icons">
         <i class="fa-solid fa-layer-group fa-lg "></i> <a href="/payroll">Payroll</a>
     </div>
-    <div class="icons">
-        <i class="fa-regular fa-folder-open fa-lg "></i><a href="/document">Documents</a>
-        <!-- Fixed the closing tag -->
-    </div>
+
     <div class="icons">
 
         <svg width="22px" height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -255,13 +252,7 @@
             </div> <br><br>
 
             <div class="attendance-list">
-                <div class="employeeOn-leave">
-                    <h1>Employees on <span>Leave</span></h1>
-                    <div>
-                        <!--employees on leave -->
-                        Leave Here
-                    </div>
-                </div>
+      
                 <div class="leave-list" style="display: flex;flex-direction: column; align-items: center">
                     <div class="employee-performance-head">
 
@@ -295,9 +286,7 @@
         </div>
     </div>
 
-</body>
 
-</html>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         let currentPage = 0;
@@ -344,3 +333,20 @@
     });
 
 </script>
+
+<script>
+    const toggleButton = document.querySelector(".menu-toggle");
+    const sidebar = document.querySelector(".sidebar");
+
+    toggleButton.addEventListener("click", function () {
+        if (window.innerWidth <= 768) {
+            sidebar.classList.toggle("active"); // Mobile toggle
+        } else {
+            sidebar.classList.toggle("collapsed"); // Desktop collapse
+        }
+    });
+
+</script>
+
+</body>
+</html>
