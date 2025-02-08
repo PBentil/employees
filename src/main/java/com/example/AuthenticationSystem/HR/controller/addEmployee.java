@@ -319,9 +319,9 @@ public ResponseEntity<List<Attendance>> getAttendances( String uniqueId) {
     return ResponseEntity.ok(attendances);
 }
     @GetMapping("/taskData")
-    public ResponseEntity<List<Tasks>> getTasks( String uniqueId) {
+    public ResponseEntity<List<Task>> getTasks( String uniqueId) {
         uniqueId=UniqueId;
-        List<Tasks> tasks = employeeService.findTasks(uniqueId);
+        List<Task> tasks = employeeService.findTask(uniqueId);
         return ResponseEntity.ok(tasks);
     }
     @GetMapping ("/profileManagement")

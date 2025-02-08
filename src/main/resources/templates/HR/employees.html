@@ -73,7 +73,7 @@
     <div class="sidebar">
         <div class="heading">
             <h2>HR DIVE</h2>
-           
+
         </div>
         <h3>Menu</h3>
         <div class="icons">
@@ -146,7 +146,7 @@
             <!---Put Your Code for the body HERE-->
             <div class="main-content">
 
-                <div class="employee-graphs">
+                <!-- <div class="employee-graphs">
                     <div class="employee-first">
                         <canvas id="employee-graph"></canvas>
                         <script>
@@ -255,8 +255,8 @@
                             const topEmployeesCtx = document.getElementById('top-employees').getContext('2d');
                             new Chart(topEmployeesCtx, topEmployeesConfig);
                         </script>
-                    </div>
-                </div><br><br>
+                    </div> -->
+
                 <h2 style="margin-left: 30px;color: steelblue;">Employees</h2>
                 <div class="employee-list"
                     style="border: none; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.129); display: flex;flex-direction: column; gap: 18px;position:relative">
@@ -304,7 +304,9 @@ top:30px;border-radius:8px;border:2px solid steelblue;">
                             <textarea name="taskDescription" style="height:130px;position:relative;top:-5px;"
                                 required></textarea>
                             <button type="submit"
-                                style="position:absolute;bottom:0;width:100px;height:26px;background:steelblue;margin-top:20px;">Assign</button>
+                                style="position:absolute;bottom:0;width:100px;height:26px;background:steelblue;margin-top:20px; color: white; border-radius: 6px;">Assign</button>
+                            <button style="width: 100px;" type="button" class="cancel-btn" onclick="closeForm()">Cancel</button>
+
                         </form>
                     </div>
                     <table style="width: 100%;padding: 20px">
@@ -336,20 +338,18 @@ top:30px;border-radius:8px;border:2px solid steelblue;">
             </div>
         </div>
     </div>
-    </div>
 
-</body>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        let currentPage = 0;
-        const pageSize = 5;
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let currentPage = 0;
+            const pageSize = 5;
 
-        const fetchData = (currentPage) => {
-            fetch(`/EmployeeData?page=${currentPage}&size=${pageSize}`)
-                .then((response) => response.json())
-                .then((data) => {
-                    const container = document.getElementById('employee-table');
-                    container.innerHTML = data.content.map((employee) => `
+            const fetchData = (currentPage) => {
+                fetch(`/EmployeeData?page=${currentPage}&size=${pageSize}`)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        const container = document.getElementById('employee-table');
+                        container.innerHTML = data.content.map((employee) => `
 
                 <tr>
                     <td style="padding: 15px;">${employee.uniqueId}</td>
@@ -366,50 +366,56 @@ top:30px;border-radius:8px;border:2px solid steelblue;">
                 </tr>
 
             `).join('');
-                    const assignBtn = document.querySelectorAll(".assign-btn");
+                        const assignBtn = document.querySelectorAll(".assign-btn");
 
-                    assignBtn.forEach(btn => {
-                        btn.addEventListener('click', function () {
-                            const employeeId = this.value;
-                            console.log(employeeId);
-                            document.querySelector(".form-container").style.display = "block";
-                            document.getElementById("unique").value = this.value;
-                            console.log(employeeId);
-                        });
+                        assignBtn.forEach(btn => {
+                            btn.addEventListener('click', function () {
+                                const employeeId = this.value;
+                                console.log(employeeId);
+                                document.querySelector(".form-container").style.display = "block";
+                                document.getElementById("unique").value = this.value;
+                                console.log(employeeId);
+                            });
+                        })
                     })
-                })
-                .catch((error) => console.error('Error fetching data:', error));
-        };
+                    .catch((error) => console.error('Error fetching data:', error));
+            };
 
-        document.getElementById('prev-btn').addEventListener('click', () => {
-            if (currentPage > 0) {
-                currentPage--;
+            document.getElementById('prev-btn').addEventListener('click', () => {
+                if (currentPage > 0) {
+                    currentPage--;
+                    fetchData(currentPage);
+                }
+            });
+
+            document.getElementById('next-btn').addEventListener('click', () => {
+                currentPage++;
                 fetchData(currentPage);
-            }
-        });
+            });
 
-        document.getElementById('next-btn').addEventListener('click', () => {
-            currentPage++;
+            // Initial load
             fetchData(currentPage);
         });
 
-        // Initial load
-        fetchData(currentPage);
-    });
-
-</script>
-<script>
-    const toggleButton = document.querySelector(".menu-toggle");
-    const sidebar = document.querySelector(".sidebar");
-
-    toggleButton.addEventListener("click", function () {
-        if (window.innerWidth <= 768) {
-            sidebar.classList.toggle("active"); // Mobile toggle
-        } else {
-            sidebar.classList.toggle("collapsed"); // Desktop collapse
+        function closeForm() {
+            document.querySelector(".form-container").style.display = "none";
         }
-    });
 
-</script>
+
+    </script>
+    <script>
+        const toggleButton = document.querySelector(".menu-toggle");
+        const sidebar = document.querySelector(".sidebar");
+
+        toggleButton.addEventListener("click", function () {
+            if (window.innerWidth <= 768) {
+                sidebar.classList.toggle("active"); // Mobile toggle
+            } else {
+                sidebar.classList.toggle("collapsed"); // Desktop collapse
+            }
+        });
+
+    </script>
+</body>
 
 </html>

@@ -92,23 +92,23 @@
             </div>
             <!---Put Your Code for the body HERE-->
             <div class="main-content">
-                <div class="payroll-graphs">
+                <!-- <div class="payroll-graphs"> -->
 
-                    <div class="payment-status">
+                    <!-- <div class="payment-status">
 
                         <canvas id="payment-status"></canvas>
                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                         <script>
-                            // Data for the graph
+                         
                             const data = {
                                 labels: ['Paid', 'Pending', 'Unpaid'],
                                 datasets: [
                                     {
-                                        data: [60, 25, 15], // Replace with your percentages
+                                        data: [60, 25, 15],
                                         backgroundColor: [
-                                            'rgba(75, 192, 192, 0.8)', // Paid
-                                            'rgba(255, 206, 86, 0.8)', // Pending
-                                            'rgba(255, 99, 132, 0.8)'  // Unpaid
+                                            'rgba(75, 192, 192, 0.8)', 
+                                            'rgba(255, 206, 86, 0.8)', 
+                                            'rgba(255, 99, 132, 0.8)'  
                                         ],
                                         borderColor: [
                                             'rgba(75, 192, 192, 1)',
@@ -120,7 +120,7 @@
                                 ]
                             };
 
-                            // Configuration for the doughnut chart
+                         
                             const config = {
                                 type: 'doughnut',
                                 data: data,
@@ -128,7 +128,7 @@
                                     responsive: true,
                                     plugins: {
                                         legend: {
-                                            position: 'right', // Legend placed on the side
+                                            position: 'right', 
                                         },
                                         title: {
                                             display: true,
@@ -138,7 +138,7 @@
                                 }
                             };
 
-                            // Render the chart
+                           
                             const ctx = document.getElementById('payment-status').getContext('2d');
                             new Chart(ctx, config);
                         </script>
@@ -151,28 +151,28 @@
                         <canvas id="cash-flow"></canvas>
                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                         <script>
-                            // Data for the graph
+                  
                             const cashFlowGraphData = {
-                                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], // Months
+                                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], 
                                 datasets: [
                                     {
                                         label: 'Inflow',
-                                        data: [5000, 7000, 8000, 7500, 9000, 9500, 11000, 10500, 12000, 12500, 13000, 14000], // Inflow values
+                                        data: [5000, 7000, 8000, 7500, 9000, 9500, 11000, 10500, 12000, 12500, 13000, 14000], 
                                         borderColor: 'rgba(75, 192, 192, 1)',
                                         backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                                        tension: 0.3, // Smooth line
+                                        tension: 0.3, 
                                     },
                                     {
                                         label: 'Outflow',
-                                        data: [4500, 6000, 7000, 6800, 7500, 8000, 9500, 9000, 10000, 10500, 11000, 11500], // Outflow values
+                                        data: [4500, 6000, 7000, 6800, 7500, 8000, 9500, 9000, 10000, 10500, 11000, 11500], 
                                         borderColor: 'rgba(255, 99, 132, 1)',
                                         backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                                        tension: 0.3, // Smooth line
+                                        tension: 0.3, 
                                     }
                                 ]
                             };
 
-                            // Configuration for the line graph
+                        
                             const cashFlowGraphConfig = {
                                 type: 'line',
                                 data: cashFlowGraphData,
@@ -180,7 +180,7 @@
                                     responsive: true,
                                     plugins: {
                                         legend: {
-                                            position: 'top', // Legend position
+                                            position: 'top',
                                         },
                                         title: {
                                             display: true,
@@ -189,32 +189,31 @@
                                     },
                                     scales: {
                                         y: {
-                                            beginAtZero: true, // Start at 0
+                                            beginAtZero: true, 
                                             title: {
                                                 display: true,
-                                                text: 'Amount ($)' // Y-axis label
+                                                text: 'Amount ($)'
                                             }
                                         },
                                         x: {
                                             title: {
                                                 display: true,
-                                                text: 'Months' // X-axis label
+                                                text: 'Months'
                                             }
                                         }
                                     }
                                 }
                             };
 
-                            // Render the chart
                             const ct = document.getElementById('cash-flow').getContext('2d');
                             new Chart(ct, cashFlowGraphConfig);
                         </script>
                     </div>
-                </div>
+                </div> -->
                 <br><br>
                 <div class="employee-payroll">
                     <div class="flex">
-                        <h2>Employee Payroll</h2>
+                        <h2>Employee <span>Payroll</span></h2>
                         <input type="search" placeholder="search here.....">
                     </div>
                     <!--list of employee payroll-->
