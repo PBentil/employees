@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+          integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&display=swap"
+            rel="stylesheet">
+    <title>HR Assist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+       .attendance-container thead tr {
+    background-color: steelblue; /* Dark background color */
+    color: white; /* White text */
+}
+
+.attendance-container thead tr th {
+    padding: 12px;
+    text-align: center;
+    font-weight:450;
+}
+
+.attendance-container tbody tr td {
+    padding: 18px;
+    text-align: center;
+    border-bottom: 1px solid #ccc; /* Adds separation */
+}
+
+
+.attendance-container thead  th:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.attendance-container thead  th:last-child {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+      .attendance-container  button:hover {
+            background: #0056b3;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .attendance-container{
+            width: 80%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+height: 680px;
+background: white;
+margin-top: 40px;
+border-radius: 8px;
+box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.229);
+align-self: center;
+position:relative;
+        }
+        .page-btns{
+        position:absolute;
+        right:0;
+        bottom:0;
+        margin-bottom:20px;
+        }
+        .page-btns button{
+        padding:10px;
+       margin-right: 70px;
+        }
+
+        td:nth-child(6) {
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+       tbody tr:hover{
+        cursor:pointer;
+        background:whitesmoke !important;
+        }
+.popup{
+    width: 600px;
+    height:550px;
+    background: white;
+    border: 2px solid steelblue;
+    border-radius: 8px;
+    align-self: center;
+       z-index: 1100;
+    margin: auto;
+    position: absolute;
+    padding:20px;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    display: none;
+}
+td:nth-child(7) {
+    max-width: 100px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+.fa-xmark{
+color:lightgrey;
+cursor: pointer;
+}
+.fa-xmark:hover{
+color: rgb(251, 75, 75);
+}
+.popup-top{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.request-info{
+    min-height:82%;
+    padding:10px;
+    margin: auto;
+    background:hsl(0, 0,85%);
+    border: 1.2px solid lightgrey;
+    border-radius: 8px;
+    width: 100%;
+}
+        .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: none;
+}
+
+    </style>
+</head>
+
+<body>
+<div class="container"> <div class="sidebar" style="width:240px !important;font-size:16px;">
+    <div class="heading">
+        <h2>HR DIVE</h2>
+        <button id="chevron" onclick="toggleMenu()" style="background: transparent; border: none;"><i
+                class="fa-solid fa-chevron-left"></i></button>
+    </div>
+    <h3>Menu</h3>
+    <div class="icons">
+        <i class="fa-solid fa-house fa-lg "></i> <a href="/dashboard">Dashboard</a>
+    </div>
+    <div class="icons">
+        <i class="fa-solid fa-people-group fa-lg"></i><a href="/employees">Employees</a>
+    </div>
+    <div class="icons">
+        <i class="fa-solid fa-plus fa-lg"></i> <a href="/contract">New Hire</a>
+    </div>
+    <div class="icons">
+        <i class="fa-solid fa-clipboard-list"></i> <a href="/assignedTasks">Tasks</a>
+    </div>
+
+    <div class="icons">
+        <i class="fa-regular fa-square-check fa-lg "></i> <a href="/Attendances">Attendances</a>
+    </div>
+    <div class="icons">
+        <i class="fa-solid fa-arrow-right-from-bracket fa-lg "></i> <a href="/Leaves">Leaves</a>
+    </div>
+    <div class="icons">
+        <i class="fa-solid fa-layer-group fa-lg "></i> <a href="/payroll">Payroll</a>
+    </div>
+    <div class="icons">
+        <i class="fa-solid fa-bullhorn"></i> <a href="/HRannouncements">Announcements</a>
+    </div>
+    <div class="icons">
+        <i class="fa-solid fa-headset fa-lg"></i> <a href="/support">Support Requests</a>
+    </div>
+    <div class="icons">
+        <i class="fa-solid fa-gear fa-lg"></i> <a href="/security">Settings</a>
+    </div>
+
+</div>
+    <!-- Navbar -->
+    <div class="navigation" >
+        <div class="navbar" style="background:whitesmoke" >
+            <div class="links">
+                <div class="prof">
+
+                    <h3>Welcome back,<span id="employee-name" style="color:steelblue">HR</span></h3>
+                </div>
+                <div class="links-buttons" style="position:relative;right: 60px;">
+                    <form action="/logout" method="POST" style="display: inline;background: transparent;border: none;box-shadow: none;position: relative;top: 14px;">
+                        <button type="submit" class="logout-btn">
+                            <i class="fa-solid fa-sign-out-alt"></i> Logout
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+            <div class="attendance-container">
+
+                <div class="popup">
+                    <div class="popup-top">
+                        <h2 id="response-title">Response</h2>
+                        <i class="fa-solid fa-xmark fa-lg" id="close"></i>
+                    </div>
+                    <div class="request-info" id="message">
+
+                    </div>
+                    <div style="display: flex;gap:8px;">
+                        <label>Response:</label><input type="text" id="response"><button id="response-btn" >Send</button>
+                    </div>
+                </div>
+                <h2> Help Requests</h2>
+                <table style="width: 90%; border-collapse: collapse;align-self: center;margin-top: 30px;">
+                    <thead>
+                    <tr>
+
+                        <thead>
+                    <tr>
+
+                        <th>Unique ID</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Priority</th>
+                        <th>Category</th>
+                        <th>Message</th>
+
+                    </tr>
+                    </thead>
+
+
+                    </tr>
+                    </thead>
+                    <tbody id="table">
+
+                </table>
+                <div class="page-btns">
+                    <button id="prev-btn" style="width: 90px;height:40px;background: steelblue;color: white;border:none;border-radius: 6px;">Previous</button>
+                    <button id="next-btn" style="width: 90px;height:40px;background: steelblue;color: white;border:none;border-radius: 6px;">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+     let currentPage = 0;
+     const pageSize = 8;
+     let requestId;
+     let title=document.getElementById("response-title");
+     let message=document.getElementById("message");
+
+
+     const popup = document.querySelector(".popup");
+     const overlay = document.createElement("div");
+     overlay.classList.add("overlay");
+     document.body.appendChild(overlay);
+
+     const fetchData = (currentPage) => {
+         fetch(`/helpRequests?page=${currentPage}&size=${pageSize}`)
+             .then((response) => response.json())
+             .then((data) => {
+                 const container = document.getElementById('table');
+                 container.innerHTML = ''; // Clear previous content
+
+                 if (data.content.length === 0) {
+                     container.innerHTML = `<tr><td colspan="6" style="text-align: center; padding: 15px; color: gray;">No employee payroll found</td></tr>`;
+                     return;
+                 }
+
+                 container.innerHTML = data.content.map((request) => `
+                     <tr class="table-row">
+                         <td style="display:none">${request.id}</td>
+                         <td style="padding: 15px;">${request.uniqueId}</td>
+                         <td>${request.email}</td>
+                         <td>${request.phone}</td>
+                         <td>${request.priority}</td>
+                         <td>${request.category}</td>
+                         <td>${request.message}</td>
+                     </tr>
+                 `).join('');
+
+                 document.querySelectorAll(".table-row").forEach(row => {
+                     row.addEventListener('click', function () {
+                         requestId = this.cells[0].innerText;
+                         message.innerText=this.cells[6].innerText;
+                         popup.style.display = "flex";
+                         overlay.style.display = "block";
+                         console.log(requestId);  // Confirm the requestId
+                     });
+                 });
+             })
+             .catch((error) => console.error('Error fetching data:', error));
+     };
+
+     document.getElementById('prev-btn').addEventListener('click', function () {
+         if (currentPage > 0) {
+             currentPage--;
+             fetchData(currentPage);
+         }
+     });
+
+     document.getElementById('next-btn').addEventListener('click', function () {
+         currentPage++;
+         fetchData(currentPage);
+     });
+
+     fetchData(currentPage);
+
+     document.getElementById("close").addEventListener('click', function () {
+         popup.style.display = "none";
+         overlay.style.display = "none";
+     });
+
+     const responseButton = document.getElementById("response-btn");
+     responseButton.addEventListener('click', function () {
+         const responseText = document.getElementById("response").value; // Get response value
+         if (requestId) {
+              fetch(`/submitResponse?id=${requestId}&response=${encodeURIComponent(responseText)}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        })
+                 .then(response => response.ok)
+                 .then(data => {
+                     alert('Response submitted:', data);
+
+                 })
+                 .catch(error => console.error('Error submitting response:', error));
+         } else {
+             console.error('Request ID is not defined');
+         }
+     });
+ });
+
+
+</script>
+</body>
+</html>

@@ -663,7 +663,17 @@ p {
 
 }
 
+form button {
+    background: #4682B4;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
 
+form button:hover {
+    background: #366090;
+}
 .buttons button:first-child {
     height: 30px;
     border-radius: 6px;
