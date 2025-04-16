@@ -28,6 +28,15 @@ body span {
     height: calc(100vh - 60px);
     /* Adjusted for header height */
 }
+@media (max-width: 768px) {
+    .main-content {
+        margin-top: 0px; /* Ensure it starts at the top */
+        margin-left: 0px; /* Remove sidebar margin */
+        padding: 15px; /* Reduce padding for smaller screens */
+        height: calc(100vh - 50px); /* Adjust based on mobile header height */
+    }
+}
+
 
 /* dashboard */
 
@@ -145,10 +154,94 @@ body span {
 }
 
 .employee-list {
-    border: 1px solid steelblue;
-    border-radius: 15px;
-    margin-left: 10px;
-    height: 480px;
+    width: 100%;
+    overflow-x: auto; /* Prevent horizontal overflow */
+    padding: 15px;
+}
+
+.employee-list-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.employee-list-buttons input {
+    width: 100%; /* Full width for mobile */
+    max-width: 220px;
+}
+
+.employee-list-buttons button {
+    width: 100%;
+    max-width: 100px;
+}
+
+.form-container {
+    width: 90%;
+    max-width: 600px;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+/* Responsive Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-x: auto;
+}
+
+thead th {
+    text-align: left;
+    padding: 5px;
+    background-color: steelblue;
+    color: white;
+}
+
+tbody td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Pagination Buttons */
+.page-btns {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .employee-list-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .employee-list-buttons input,
+    .employee-list-buttons button {
+        width: 90%; /* Make full width on small screens */
+    }
+
+    .form-container {
+        width: 95%;
+        max-width: 95%;
+        height: auto;
+        padding: 15px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .page-btns {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .input-space {
@@ -293,7 +386,7 @@ body span {
 .attendance-list {
     display: flex;
     justify-content: space-between;
-
+    height: 500px;
 }
 
 .employeeOn-leave {
@@ -307,7 +400,7 @@ body span {
 
 .leave-list {
     border: 1px solid steelblue;
-    width: 45%;
+    width: 100%;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -451,7 +544,7 @@ body span {
 }
 
 .sidebar h3 {
-    padding-left: 23px;
+    padding-left: 10px;
     color: white;
     margin: 0;
     padding-top: 10px;
@@ -465,8 +558,8 @@ body span {
     background-color: white;
     display: flex;
     flex-direction: column;
-    margin-right: 20px;
-    height: 130vh;
+    margin-right: 10px;
+    height: 100vh;
     box-shadow: 4px 4px 8px rgba(70, 130, 180, 0.2);
 }
 
@@ -586,8 +679,14 @@ body span {
     border-radius: 8px;
     color: white;
     background: steelblue;
+    text-decoration: none;
 }
 
+.button2 a{
+    text-decoration: none;
+    color: white;
+
+}
 .icons {
     padding-left: 12px;
     display: flex;
@@ -1136,6 +1235,76 @@ svg {
     flex-direction: column;
 
 }
+
+sidebar a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+}
+
+/* Collapsed state for larger screens */
+.sidebar.collapsed {
+    width: 50px;
+    align-items: center;
+    /* Centers icons */
+    padding: 15px 8px;
+    /* Reduces padding */
+}
+
+.sidebar.collapsed a {
+    display: flex;
+    justify-content: center;
+    /* Centers icons */
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+    /* Adds spacing */
+}
+
+/* Hide text and keep icons */
+.sidebar.collapsed a span {
+    display: none;
+}
+
+.sidebar.collapsed .icons {
+    justify-content: center;
+}
+
+/* Text inside links */
+.sidebar a .text {
+    white-space: nowrap;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Hide text when collapsed */
+.sidebar.collapsed a .text {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+}
+
+/* Ensure icons are always visible */
+.sidebar.collapsed a {
+    justify-content: center;
+    gap: 0;
+}
+
+/* Mobile behavior - Hide sidebar when inactive */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        z-index: 1000;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+}
+
 
 .sidebar-2 {
     width: 190px;
