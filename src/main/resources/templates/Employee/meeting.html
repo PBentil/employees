@@ -14,17 +14,18 @@
     <link
             href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&display=swap"
             rel="stylesheet">
-    <title>Meeting</title>
+    <title>index</title>
 </head>
 
 <body>
-<div class="container">
+
+    <!-- Sidebar -->
     <div class="sidebar">
         <div class="heading">
             <h2>HR DIVE</h2>
-
+   
         </div>
-        <h3>Menu</h3>
+       <h3>Menu</h3>
         <div class="icons">
             <i class="fa-solid fa-house fa-lg "></i> <a href="/dash">Dashboard</a>
         </div>
@@ -36,12 +37,16 @@
         <div class="icons">
             <i class="fa-solid fa-layer-group fa-lg "></i> <a href="/profile">Profile Management</a>
         </div>
-
         <div class="icons">
-            <i class="fa-solid fa-calendar fa-lg"></i><a href="/meeting">Meetings</a>
+            <i class="fa-solid fa-money-bill fa-lg"></i><a href="/epayroll">Payroll</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-calendar fa-lg"></i><a href="/meetings">Meetings</a>
         </div>
 
-
+        <div class="icons">
+            <i class="fa-solid fa-comments fa-lg"></i><a href="/feedbacks">Feedbacks and Complaints</a>
+        </div>
         <div class="icons">
             <i class="fa-solid fa-bullhorn fa-lg"></i><a href="/announcements">Announcements</a>
         </div>
@@ -65,33 +70,30 @@
                         d="M8.4 14H4.6C4.03995 14 3.75992 14 3.54601 14.109C3.35785 14.2049 3.20487 14.3578 3.10899 14.546C3 14.7599 3 15.0399 3 15.6V19.4C3 19.9601 3 20.2401 3.10899 20.454C3.20487 20.6422 3.35785 20.7951 3.54601 20.891C3.75992 21 4.03995 21 4.6 21H8.4C8.96005 21 9.24008 21 9.45399 20.891C9.64215 20.7951 9.79513 20.6422 9.89101 20.454C10 20.2401 10 19.9601 10 19.4V15.6C10 15.0399 10 14.7599 9.89101 14.546C9.79513 14.3578 9.64215 14.2049 9.45399 14.109C9.24008 14 8.96005 14 8.4 14Z"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-            <a class="hover:text-[#4682B4]    hover:cursor-pointer text-wrap" href="/etask">Tasks</a>
+            <a class="hover:text-[#4682B4]    hover:cursor-pointer text-wrap" href="/etask">Task</a>
 
         </div>
-        <div class="icons">
-            <i class="fa-solid fa-comments fa-lg"></i><a href="/help&support">Help & Support</a>
-        </div>
-        <div class="icons">
-            <i class="fa-solid fa-gear fa-lg"></i> <a href="/security">Settings</a>
-        </div>
+
+    
 
     </div>
-
     <!-- Navbar -->
     <div class="navigation">
         <div class="navbar">
             <div class="links">
+                <button class="menu-toggle">☰</button>
                 <div class="prof">
                     <h3>Welcome back,<span id="employee-name" style="color:steelblue">HR</span></h3>
 
                 </div>
                 <div class="links-buttons" style="position:relative;right: 60px;">
-                    <form action="/logout" method="POST" style="display: inline;background: transparent;border: none;box-shadow: none;position: relative;top: 14px;">
+                    <form action="/logout" method="POST"
+                        style="display: inline;background: transparent;border: none;box-shadow: none;position: relative;top: 14px;">
                         <button type="submit" class="logout-btn">
                             <i class="fa-solid fa-sign-out-alt"></i> Logout
                         </button>
                     </form>
-                    </div>
+                </div>
             </div>
 
             <div class="meeting-content">
@@ -138,7 +140,7 @@
             </div>
         </div>
     </div>
-</div>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
       const name = localStorage.getItem('employeeFirstName');
@@ -146,6 +148,21 @@
           document.getElementById('employee-name').textContent = name;
       }
   });
+</script>
+
+
+<script>
+    const toggleButton = document.querySelector(".menu-toggle");
+    const sidebar = document.querySelector(".sidebar");
+
+    toggleButton.addEventListener("click", function () {
+        if (window.innerWidth <= 768) {
+            sidebar.classList.toggle("active"); // Mobile toggle
+        } else {
+            sidebar.classList.toggle("collapsed"); // Desktop collapse
+    }
+});
+
 </script>
 </body>
 

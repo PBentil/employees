@@ -12,7 +12,7 @@
         rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <title>Dashboard</title>
+    <title>Document</title>
 </head>
 
 <body>
@@ -41,7 +41,10 @@
         <div class="icons">
             <i class="fa-solid fa-layer-group fa-lg "></i> <a href="/payroll">Payroll</a>
         </div>
-    
+        <div class="icons">
+            <i class="fa-regular fa-folder-open fa-lg "></i><a href="/document">Documents</a>
+            <!-- Fixed the closing tag -->
+        </div>
         <div class="icons">
 
             <svg width="22px" height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -91,131 +94,101 @@
                 </div>
             </div>
             <!---Put Your Code for the body HERE-->
+
             <div class="main-content">
-
                 <div class="grid">
-                    <div>
-                        <i class="fa-solid fa-user"></i>
-                        <p id="count"></p>
-                        <p>Total Employees</p>
-
+                    <div class="product-design-team">
+                        <h2>Product Design <span> Team</span></h2>
+                        <h4>7.5MB</h4>
                     </div>
-                    <div>
-                        <i class="fa-solid fa-users"></i>
-                        <p>0</p>
-                        <p>Resign Employees</p>
+                    <div class="develop-design-team">
+                        <h2>Developer <span> Team</span></h2>
+                        <h4>480MB</h4>
                     </div>
-                    <div>
-                        <i class="fa-solid fa-calendar-days"></i>
-                        <p>23</p>
-                        <p>Employee on Leave</p>
+                    <div class="finance-design-team">
+                        <h2>Finance <span> Team</span></h2>
+                        <h4>2.5GB</h4>
                     </div>
-                    <div>
-                        <i class="fa-solid fa-file"></i>
-                        <p>200</p>
-                        <p>New Applications</p>
+                    <div class="HR-design-team">
+                        <h2>HR <span> Team</span></h2>
+                        <h4>5.6GB</h4>
                     </div>
-                </div><br> <br>
-                <div class="bar">
-
-                    <canvas id="attendanceChart" width="400" height="100"></canvas>
-
-                    <script>
-                        const ctx = document.getElementById('attendanceChart').getContext('2d');
-                        const attendanceChart = new Chart(ctx, {
-                            type: 'bar', // Bar chart type
-                            data: {
-                                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], // Days of the week
-                                datasets: [{
-                                    label: 'Number of Attendees',
-                                    data: [45, 50, 38, 55, 60,], // Example attendance data
-                                    backgroundColor: [
-                                        'rgba(75, 192, 192, 0.2)', // Colors for the bars
-                                        'rgba(153, 102, 255, 0.2)',
-                                        'rgba(255, 159, 64, 0.2)',
-                                        'rgba(255, 99, 132, 0.2)',
-                                        'rgba(54, 162, 235, 0.2)',
-                                        'rgba(255, 206, 86, 0.2)',
-                                        'rgba(99, 255, 132, 0.2)'
-                                    ],
-                                    borderColor: [
-                                        'rgba(75, 192, 192, 1)',
-                                        'rgba(153, 102, 255, 1)',
-                                        'rgba(255, 159, 64, 1)',
-                                        'rgba(255, 99, 132, 1)',
-                                        'rgba(54, 162, 235, 1)',
-                                        'rgba(255, 206, 86, 1)',
-                                        'rgba(99, 255, 132, 1)'
-                                    ],
-                                    borderWidth: 1 // Thickness of bar borders
-                                }]
-                            },
-                            options: {
-                                scales: {
-                                    y: {
-                                        beginAtZero: true // Start Y-axis at 0
-                                    }
-                                },
-                                plugins: {
-                                    legend: {
-                                        display: true // Show legend
-                                    }
-                                }
-                            }
-                        });
-                    </script>
-                </div><br><br>
-                <div class="dashboard-flex">
-
-                    <div class="EmployeeStatus">
-                        <div class="Status">
-                            <h2>Employee <span>Status</span></h2>
-                            <div class="input-space">
-                                <input type="search" placeholder="search Employee......">
+                </div><br>
+                <div class="doc">
+                    <div class="document-files">
+                        <div class="flex">
+                            <h1>Employee Documents</h1>
+                            <input type="search" placeholder="search here......">
+                        </div>
+                        <!--company files will be displayed here-->
+                    </div>
+                    <div class="document-upload">
+                        <h2>Upload Documents</h2>
+                        <div id="upload-container">
+                            <input type="file" id="file-input" hidden multiple>
+                            <div id="drop-zone">
+                                <p>Drag & Drop your files here or <span id="upload-btn">browse</span></p>
                             </div>
+                            <div id="file-list"></div>
+
+
+                            <script>
+                                const dropZone = document.getElementById('drop-zone');
+                                const fileInput = document.getElementById('file-input');
+                                const fileList = document.getElementById('file-list');
+
+                                // Click to open file dialog
+                                document.getElementById('upload-btn').addEventListener('click', () => fileInput.click());
+
+                                // File input change handler
+                                fileInput.addEventListener('change', handleFiles);
+
+                                // Drag-and-drop handlers
+                                dropZone.addEventListener('dragover', (e) => {
+                                    e.preventDefault();
+                                    dropZone.style.backgroundColor = '#e3e3e3';
+                                });
+
+                                dropZone.addEventListener('dragleave', () => {
+                                    dropZone.style.backgroundColor = '#f9f9f9';
+                                });
+
+                                dropZone.addEventListener('drop', (e) => {
+                                    e.preventDefault();
+                                    dropZone.style.backgroundColor = '#f9f9f9';
+                                    handleFiles(e.dataTransfer.files);
+                                });
+
+                                function handleFiles(files) {
+                                    fileList.innerHTML = ''; // Clear existing list
+                                    Array.from(files).forEach(file => {
+                                        const fileItem = document.createElement('div');
+                                        fileItem.className = 'file-item';
+                                        fileItem.textContent = `${file.name} (${(file.size / 1024).toFixed(2)} KB)`;
+                                        fileList.appendChild(fileItem);
+                                    });
+                                }
+
+                            </script>
+                            <script>
+                                const toggleButton = document.querySelector(".menu-toggle");
+                                const sidebar = document.querySelector(".sidebar");
+
+                                toggleButton.addEventListener("click", function () {
+                                    if (window.innerWidth <= 768) {
+                                        sidebar.classList.toggle("active"); // Mobile toggle
+                                    } else {
+                                        sidebar.classList.toggle("collapsed"); // Desktop collapse
+                                    }
+                                });
+
+                            </script>
                         </div>
                     </div>
-
-                    <div class="todolist">
-                        <h2>Upcoming <span>Schedule</span> <i class="fa-solid fa-calendar-days"></i></h2>
-                    </div>
-
-
-
                 </div>
             </div>
-
         </div>
-
+    </div>
 </body>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        fetch('getEmployeeCount')
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                document.getElementById("count").innerHTML = data;  // Assign the fetched data to the innerHTML
-            })
-            .catch((error) => {
-                console.error('Error fetching employee count:', error);
-            });
-    });
-
-</script>
-
-<script>
-    const toggleButton = document.querySelector(".menu-toggle");
-    const sidebar = document.querySelector(".sidebar");
-
-    toggleButton.addEventListener("click", function () {
-        if (window.innerWidth <= 768) {
-            sidebar.classList.toggle("active"); // Mobile toggle
-        } else {
-            sidebar.classList.toggle("collapsed"); // Desktop collapse
-        }
-    });
-
-</script>
 
 </html>
