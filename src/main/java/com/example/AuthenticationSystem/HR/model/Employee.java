@@ -20,17 +20,6 @@ public class Employee {
     private String phone;
     private String address;
     private String password;
-    private String role ;
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-
 
 
     public String getPassword() {

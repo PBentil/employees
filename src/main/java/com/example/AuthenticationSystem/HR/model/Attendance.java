@@ -1,6 +1,5 @@
 package com.example.AuthenticationSystem.HR.model;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import jakarta.persistence.*;
@@ -16,25 +15,19 @@ public class Attendance {
     private LocalTime checkInTime;
     private LocalTime checkOutTime;
     private String status;
-    private String timeliness; // ✅ Fixed variable name
 
-    @Enumerated(EnumType.STRING)
-    private DayOfWeek dayOfWeek;
-
-
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-        this.dayOfWeek = date.getDayOfWeek();
+    public String getTimeliness() {
+        return Timeliness;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public void setTimeliness(String timeliness) {
+        Timeliness = timeliness;
     }
 
-    public DayOfWeek getDayOfWeek() {
-        return dayOfWeek;
-    }
+    private String Timeliness;
+
+
+
 
     public long getId() {
         return id;
@@ -45,27 +38,33 @@ public class Attendance {
     }
 
     public String getUniqueId() {
-        return uniqueId;
-    }
+        return uniqueId; }
 
     public void setUniqueId(String uniqueId) {
-        this.uniqueId = uniqueId;
+        this.uniqueId = uniqueId;}
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public LocalTime getCheckInTime() {
         return checkInTime;
     }
-    public void setCheckInTime(LocalTime checkInTime) {
-        this.checkInTime = checkInTime.truncatedTo(java.time.temporal.ChronoUnit.MINUTES);
-    }
 
+    public void setCheckInTime(LocalTime checkInTime) {
+        this.checkInTime = checkInTime;
+    }
 
     public LocalTime getCheckOutTime() {
         return checkOutTime;
     }
 
     public void setCheckOutTime(LocalTime checkOutTime) {
-        this.checkOutTime = checkOutTime.truncatedTo(java.time.temporal.ChronoUnit.MINUTES);
+        this.checkOutTime = checkOutTime;
     }
 
     public String getStatus() {
@@ -74,13 +73,5 @@ public class Attendance {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getTimeliness() {
-        return timeliness;
-    }
-
-    public void setTimeliness(String timeliness) {
-        this.timeliness = timeliness;
     }
 }

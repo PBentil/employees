@@ -1,64 +1,25 @@
 package com.example.AuthenticationSystem.HR.model;
+
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-public class Tasks {
+public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private  String uniqueId;
+    private String uniqueId;
     private String taskTitle;
     private String taskDescription;
     private String priority;
     private String dueDate;
+    private LocalTime assignedAt;
+    private String status;
 
-    public String getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    private String startDate;
-    private  LocalTime assignedAt;
-
-    public String getApproval() {
-        return approval;
-    }
-
-    public void setApproval(String approval) {
-        this.approval = approval;
-    }
-
-    private String approval;
-    public byte[] getAttachment() {
-        return attachment;
-    }
-
-    public void setAttachment(byte[] attachment) {
-        this.attachment = attachment;
-    }
-
-    private byte[] attachment;
-    private  String status;
-    private byte[] proof;
-
-    public String getReport() {
-        return Report;
-    }
-
-    public void setReport(String report) {
-        Report = report;
-    }
-
-    private String Report;
-
-    public String getUniqueId() {
+    public String getUniquedId() {
         return uniqueId;
     }
 
@@ -114,8 +75,6 @@ public class Tasks {
         this.status = status;
     }
 
-
-
     public String getPriority() {
         return priority;
     }
@@ -124,13 +83,4 @@ public class Tasks {
         this.priority = priority;
     }
 
-    public byte[] getProof() {
-        return proof;
-    }
-
-    public void setProof(byte[] proof) {
-        this.proof = proof;
-    }
-
 }
-

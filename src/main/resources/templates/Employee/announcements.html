@@ -6,350 +6,148 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="profile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-          integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-            href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&display=swap"
-            rel="stylesheet">
-    <title>Leave</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&display=swap"
+        rel="stylesheet">
 
 
-
-
-
-        .page-btns {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            margin-bottom: 20px;
-        }
-
-        .page-btns button {
-            padding: 10px;
-            margin-right: 70px;
-        }
-        .announcement p{
-          font-size:18px;
-              display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
-    max-height: 4.5em;
-          }
-          .create-announcement
-          {
-            font-size:18px;
-            width: 1100px;
-            height: 250px;
-            padding: 20px;
-          border:1px solid lightgrey;
-          align-self:center;
-          background:white;
-          border-radius: 8px;
-          margin-top: 20px;
-            gap: 0;
-            position:relative;
-          }
-        .announcements-container{
-        font-size:18px;
-            width: 1100px;
-            height: 850px;
-            margin-top:10px;
-            align-self: center;
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            position:relative;
-        }
-        .announcements-container h3{
-margin: 0;
-        }
-        .announcement-info {
-    width: 100%;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp:3;
-    -webkit-box-orient: vertical;
-    text-overflow: ellipsis;
-    padding-left: 15px;
-
-}
-.date{
-width: 12%;
-    border-right: 1px solid lightgray;
-}
-.announcement{
-    display: flex;
-    padding: 15px;
-    height: 115px;
-    background: white;
-    margin: 0;
-    border-radius: 0;
-position:relative;
-
-}
-.announcement h3{
-        color:steelblue;
-        margin-bottom:8px;
-        }
-        .search-filter{
-            font-size:18px;
-            width: 1100px;
-            height: 90px;
-            padding: 20px;
-          display: flex;
-          justify-content: space-between;
-          align-self:center;
-            margin-top:32px;
-        }
-        .searchbox{
-            width: 250px;
-            background:white;
-            border: 1px solid lightgrey;
-            border-radius: 6px;
-            padding-left: 10px;
-            display: flex;
-            align-items: center;
-            gap:6px;
-        }
-        .search-input{
-            padding: 6px;
-            border: none;
-        }
-        .search-input:focus{
-            border: none;
-            outline: none;
-        }
-        .announcement-popup{
-
-            display: none;
-            width:550px;
-            height: 480px;
-            align-self: center;
-            z-index:100;
-            position: absolute;
-            margin-top:45px;
-        }
-        .fa-xmark:hover{
-            color: rgb(241, 57, 57) !important;
-        }
-                   .submenu{
-    display: flex;
-    flex-direction: column;
-width:10%;
-height:100%;
-background: transparent;
-position:absolute;
-right:0;
-top:0;
-margin-top:20px;
-margin-right:20px;
-}
-.overflow-menu{
-    display:none;
-    flex-direction: column;
-    background: plum;
-    width: 135px;
-    height:auto;
-    background:white;
-    margin-top:40px;
-    margin-right:20px;
-    box-shadow: 4px 4px 20px rgba(0,0,0,0.225);
-    position: absolute;
-    right: 0;
-    z-index: 100;
-}
-.overflow-menu a,button{
-    text-decoration: none;
-    padding: 14px;
-    color: black;
-
-}
-.overflow-menu button{
-border:none;
-background:white;
- padding: 14px;
- font-size:16px;
- font-weight:500;
-}
-.overflow-menu a:hover{
-    background:whitesmoke;
-}
-.overflow-menu button:hover{
-    background:whitesmoke !important;
-}
-    </style>
+    <title>Employee</title>
 </head>
 
 <body>
-<div class="container">
-    <div class="sidebar" style="width:240px;font-size:16px">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
         <div class="heading">
             <h2>HR DIVE</h2>
-            <button id="chevron" onclick="toggleMenu()" style="background: transparent; border: none;"><i
-                    class="fa-solid fa-chevron-left"></i></button>
         </div>
         <h3>Menu</h3>
         <div class="icons">
             <i class="fa-solid fa-house fa-lg "></i> <a href="/dash">Dashboard</a>
         </div>
 
-
-
-
         <div class="icons">
-            <i class="fas fa-calendar-check fa-lg"></i>  <a href="/attendance">Attendances</a>
-        </div>
-        <div class="icons">
-            <i class="fas fa-plane-departure fa-lg"></i> <a href="/leave">Leave Request</a>
-        </div>
-        <div class="icons">
-            <i class="fas fa-tasks fa-lg"></i> <a href="/etask">Tasks</a>
+            <i class="fa-regular fa-square-check fa-lg "></i> <a href="/attendance">Attendances</a>
         </div>
 
         <div class="icons">
-            <i class="fas fa-bullhorn fa-lg"></i> <a href="/announcements">Announcements</a>
+            <i class="fa-solid fa-layer-group fa-lg "></i> <a href="/profile">Profile Management</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-money-bill fa-lg"></i><a href="/epayroll">Payroll</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-calendar fa-lg"></i><a href="/meetings">Meetings</a>
         </div>
 
         <div class="icons">
-            <i class="fas fa-headset fa-lg"></i> <a href="/help&support">Help & Support</a>
+            <i class="fa-solid fa-comments fa-lg"></i><a href="/feedbacks">Feedbacks and Complaints</a>
         </div>
+        <div class="icons">
+            <i class="fa-solid fa-bullhorn fa-lg"></i><a href="/announcements">Announcements</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-calendar-check fa-lg"></i><a href="/leave">Leave Request</a>
+        </div>
+        <div class="icons">
 
-        <div class="icons">
-            <i class="fa-solid fa-ticket"></i><a href="/mySupportRequests">Request History</a>
-        </div>
-        <div class="icons">
-            <i class="fa-solid fa-gear fa-lg"></i> <a href="/security">Settings</a>
-        </div>
-        <div class="icons">
-            <form action="/logout" method="POST" style="padding: 0;margin: 0;background: steelblue;box-shadow: none;position: relative;right:10px">
-                <button type="submit" class="logout-btn" style="background: transparent;">
-                    <i class="fa-solid fa-sign-out-alt"></i> Logout
-                </button>
-            </form>
+            <svg width="22px" height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                class="hover:text-[#4682B4] hover:cursor-pointer mr-2 pr-1">
+                <path
+                    d="M8.4 3H4.6C4.03995 3 3.75992 3 3.54601 3.10899C3.35785 3.20487 3.20487 3.35785 3.10899 3.54601C3 3.75992 3 4.03995 3 4.6V8.4C3 8.96005 3 9.24008 3.10899 9.45399C3.20487 9.64215 3.35785 9.79513 3.54601 9.89101C3.75992 10 4.03995 10 4.6 10H8.4C8.96005 10 9.24008 10 9.45399 9.89101C9.64215 9.79513 9.79513 9.64215 9.89101 9.45399C10 9.24008 10 8.96005 10 8.4V4.6C10 4.03995 10 3.75992 9.89101 3.54601C9.79513 3.35785 9.64215 3.20487 9.45399 3.10899C9.24008 3 8.96005 3 8.4 3Z"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M19.4 3H15.6C15.0399 3 14.7599 3 14.546 3.10899C14.3578 3.20487 14.2049 3.35785 14.109 3.54601C14 3.75992 14 4.03995 14 4.6V8.4C14 8.96005 14 9.24008 14.109 9.45399C14.2049 9.64215 14.3578 9.79513 14.546 9.89101C14.7599 10 15.0399 10 15.6 10H19.4C19.9601 10 20.2401 10 20.454 9.89101C20.6422 9.79513 20.7951 9.64215 20.891 9.45399C21 9.24008 21 8.96005 21 8.4V4.6C21 4.03995 21 3.75992 20.891 3.54601C20.7951 3.35785 20.6422 3.20487 20.454 3.10899C20.2401 3 19.9601 3 19.4 3Z"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M19.4 14H15.6C15.0399 14 14.7599 14 14.546 14.109C14.3578 14.2049 14.2049 14.3578 14.109 14.546C14 14.7599 14 15.0399 14 15.6V19.4C14 19.9601 14 20.2401 14.109 20.454C14.2049 20.6422 14.3578 20.7951 14.546 20.891C14.7599 21 15.0399 21 15.6 21H19.4C19.9601 21 20.2401 21 20.454 20.891C20.6422 20.7951 20.7951 20.6422 20.891 20.454C21 20.2401 21 19.9601 21 19.4V15.6C21 15.0399 21 14.7599 20.891 14.546C20.7951 14.3578 20.6422 14.2049 20.454 14.109C20.2401 14 19.9601 14 19.4 14Z"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M8.4 14H4.6C4.03995 14 3.75992 14 3.54601 14.109C3.35785 14.2049 3.20487 14.3578 3.10899 14.546C3 14.7599 3 15.0399 3 15.6V19.4C3 19.9601 3 20.2401 3.10899 20.454C3.20487 20.6422 3.35785 20.7951 3.54601 20.891C3.75992 21 4.03995 21 4.6 21H8.4C8.96005 21 9.24008 21 9.45399 20.891C9.64215 20.7951 9.79513 20.6422 9.89101 20.454C10 20.2401 10 19.9601 10 19.4V15.6C10 15.0399 10 14.7599 9.89101 14.546C9.79513 14.3578 9.64215 14.2049 9.45399 14.109C9.24008 14 8.96005 14 8.4 14Z"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <a class="hover:text-[#4682B4]    hover:cursor-pointer text-wrap" href="/etask">Task</a>
+
         </div>
     </div>
+
     <!-- Navbar -->
     <div class="navigation">
-        <div class="navbar" style="background:whitesmoke">
+        <div class="navbar">
             <div class="links">
+                <button class="menu-toggle">☰</button>
                 <div class="prof">
-
                     <h3>Welcome back,<span id="employee-name" style="color:steelblue">HR</span></h3>
+
                 </div>
                 <div class="links-buttons" style="position:relative;right: 60px;">
-                    <form action="/checkout" method="POST" style="display: inline;background: transparent;border: none;box-shadow: none;position: relative;top: 14px;">
-                        <button type="submit" class="checkout-btn">
-                            <i class="fa-solid fa-clock"></i>Check Out
+                    <form action="/logout" method="POST"
+                        style="display: inline;background: transparent;border: none;box-shadow: none;position: relative;top: 14px;">
+                        <button type="submit" class="logout-btn">
+                            <i class="fa-solid fa-sign-out-alt"></i> Logout
                         </button>
                     </form>
-
                 </div>
             </div>
+            <div class="main-content">
+                <h1>Announcements & Notices</h1>
 
+                <!-- Notice Board Section -->
+                <section class="notice-board">
+                    <h2>Notice Board</h2>
+                    <div class="announcement">
+                        <h3>Company Retreat 2024</h3>
+                        <p>Join us for our annual company retreat on January 15th, 2024. Check your email for
+                            details.</p>
+                        <button class="mark-read" onclick="markAsRead(this)">Mark as Read</button>
+                    </div>
 
+                    <div class="announcement">
+                        <h3>Policy Update: Remote Work</h3>
+                        <p>Updated remote work policy effective from February 1st, 2024. Review the policy document
+                            for
+                            details.</p>
+                        <button class="mark-read" onclick="markAsRead(this)">Mark as Read</button>
+                    </div>
 
-            <div class="search-filter">
-                <div class="searchbox">
-                    <i class="fa-solid fa-magnifying-glass fa-ms" style="color: grey;"></i>
-                    <input type="text" placeholder="Search title" class="search-input">
-                </div>
-                <div class="filter">
-                    <label style="color: steelblue;">Filter By:</label>
-                    <select style="padding: 4px;">
-                        <option>All</option>
-                        <option>Priority</option>
-                        <option>Date</option>
-                    </select>
-                </div>
-            </div>
-            <div class="announcements-container" id="announcements-container">
-
-
-
-
-
-
-            </div>
-            <div class="page-btns" style="margin-bottom:200px;margin-right:45px;">
-                <button id="prev-btn" style="width: 90px;height:40px;background: steelblue;color: white;border:none;border-radius: 6px;">Previous</button>
-                <button id="next-btn" style="width: 90px;height:40px;background: steelblue;color: white;border:none;border-radius: 6px;">Next</button>
+                    <div class="announcement">
+                        <h3>Holiday Schedule</h3>
+                        <p>The office will remain closed on December 25th and January 1st for the holidays. Happy
+                            Holidays!</p>
+                        <button class="mark-read" onclick="markAsRead(this)">Mark as Read</button>
+                    </div>
+                </section>
             </div>
         </div>
     </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const name = localStorage.getItem('employeeFirstName');
+            if (name) {
+                document.getElementById('employee-name').textContent = name;
+            }
+        });
+    </script>
+
+    <script>
+        const toggleButton = document.querySelector(".menu-toggle");
+        const sidebar = document.querySelector(".sidebar");
+
+        toggleButton.addEventListener("click", function () {
+            if (window.innerWidth <= 768) {
+                sidebar.classList.toggle("active"); // Mobile toggle
+            } else {
+                sidebar.classList.toggle("collapsed"); // Desktop collapse
+            }
+        });
+
+    </script>
 </body>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-       let currentPage = 0;
-       const pageSize = 4;
-    const name = localStorage.getItem('employeeFirstName');
-       if (name) {
-           document.getElementById('employee-name').textContent = name;
-       }
-       function fetchPage(currentPage) {
-           const container = document.getElementById("announcements-container");
-           fetch(`/eAnnouncements?page=${currentPage}&size=${pageSize}`)
-               .then(response => response.json())
-               .then(data => {
-                   container.innerHTML = data.content.map((announcement) => `
-                       <div class="announcement">
-                           <div class="date">
-                               ${announcement.date}
-                           </div>
-                           <div class="announcement-info">
-                               <h3>${announcement.title}</h3>
-                               <p>${announcement.content}</p>
-                           </div>
-                           <div class="submenu">
-                               <button class="overflow-btn" style="background:white;border: none;cursor: pointer;">
-                                   <i class="fa-solid fa-ellipsis-vertical fa-lg" style="margin-right: 20px;color:gray;"></i>
-                               </button>
-                           </div>
-                           <div class="overflow-menu">
-                               <button value="${announcement.id}" style="text-align:left">Update</a>
-                               <button value="${announcement.id}" class="assign-btn" style="text-align:left">
-                                   Delete
-                               </button>
-                           </div>
-                       </div>
-                   `).join('');
-
-                   // Add event listeners to submenu buttons after content is loaded
-                   const submenuButtons = document.querySelectorAll('.submenu');
-                   submenuButtons.forEach(button => {
-                       button.addEventListener('click', function() {
-                           const announcement = this.closest(".announcement");
-                           const menu = announcement.querySelector(".overflow-menu");
-                           menu.style.display = "flex";
-                       });
-                   });
-               })
-               .catch(error => console.error('Error fetching announcements:', error));
-       }
-          document.getElementById('prev-btn').addEventListener('click', function () {
-           if (currentPage > 0) {
-               currentPage--;
-               fetchPage(currentPage);
-           }
-       });
-
-       document.getElementById('next-btn').addEventListener('click', function () {
-           currentPage++;
-           fetchPage(currentPage);
-       });
-       fetchPage(currentPage);
-   });
-</script>
 </html>

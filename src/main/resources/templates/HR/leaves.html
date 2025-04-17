@@ -1,123 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="profile.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-          integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-            href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&display=swap"
-            rel="stylesheet">
-    <title>Leave</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-       .attendance-container thead tr {
-    background-color: steelblue; /* Dark background color */
-    color: white; /* White text */
-}
-
-.attendance-container thead tr th {
-    padding: 12px;
-    text-align: center;
-    font-weight:450;
-}
-
-.attendance-container tbody tr td {
-    padding: 10px;
-    text-align: center;
-    border-bottom: 1px solid #ccc;
-}
-
-
-.attendance-container thead  th:first-child {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-}
-
-.attendance-container thead  th:last-child {
-    border-top-right-radius: 12px;
-    border-bottom-right-radius: 12px;
-}
-
-      .attendance-container  button:hover {
-            background: #0056b3;
-        }
-
-        .back-link {
-            display: block;
-            margin-top: 15px;
-            font-size: 14px;
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .attendance-container{
-            width: 80%;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-height: 680px;
-background: white;
-margin-top: 40px;
-border-radius: 8px;
-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.229);
-align-self: center;
-position:relative;
-        }
-            .attendance-container tbody tr:nth-child(odd) {
-    background-color:transparent; /* Light gray for odd rows */
-}
-        .page-btns{
-        position:absolute;
-        right:0;
-        bottom:0;
-        margin-bottom:20px;
-        }
-        .page-btns button{
-        padding:10px;
-       margin-right: 70px;
-        }
-span{
-        color:steelblue;
-
-        }
-    </style>
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Leaves</title>
 </head>
 
 <body>
-<div class="container">
-    <div class="sidebar" style="width:240px !important;font-size:16px;">
+    <!-- Sidebar -->
+    <div class="sidebar">
         <div class="heading">
             <h2>HR DIVE</h2>
-            <button id="chevron" onclick="toggleMenu()" style="background: transparent; border: none;"><i
-                    class="fa-solid fa-chevron-left"></i></button>
+
         </div>
         <h3>Menu</h3>
         <div class="icons">
             <i class="fa-solid fa-house fa-lg "></i> <a href="/dashboard">Dashboard</a>
         </div>
         <div class="icons">
-            <i class="fa-solid fa-people-group fa-lg"></i><a href="/employees">Employees</a>
+            <i class="fa-regular fa-user fa-lg"></i><a href="/employees">Employees</a>
         </div>
         <div class="icons">
-            <i class="fa-solid fa-plus fa-lg"></i> <a href="/contract">New Hire</a>
+            <i class="fa-solid fa-plus fa-lg"></i> <a href="/contract">Contract</a>
         </div>
-        <div class="icons">
-            <i class="fa-solid fa-clipboard-list"></i> <a href="/assignedTasks">Tasks</a>
-        </div>
-
         <div class="icons">
             <i class="fa-regular fa-square-check fa-lg "></i> <a href="/Attendances">Attendances</a>
         </div>
@@ -127,175 +41,258 @@ span{
         <div class="icons">
             <i class="fa-solid fa-layer-group fa-lg "></i> <a href="/payroll">Payroll</a>
         </div>
+
         <div class="icons">
-            <i class="fa-solid fa-bullhorn"></i> <a href="/HRannouncements">Announcements</a>
-        </div>
-        <div class="icons">
-            <i class="fa-solid fa-headset fa-lg"></i> <a href="/support">Support Requests</a>
+
+            <svg width="22px" height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                class="hover:text-[#4682B4] hover:cursor-pointer mr-2 pr-1">
+                <path
+                    d="M8.4 3H4.6C4.03995 3 3.75992 3 3.54601 3.10899C3.35785 3.20487 3.20487 3.35785 3.10899 3.54601C3 3.75992 3 4.03995 3 4.6V8.4C3 8.96005 3 9.24008 3.10899 9.45399C3.20487 9.64215 3.35785 9.79513 3.54601 9.89101C3.75992 10 4.03995 10 4.6 10H8.4C8.96005 10 9.24008 10 9.45399 9.89101C9.64215 9.79513 9.79513 9.64215 9.89101 9.45399C10 9.24008 10 8.96005 10 8.4V4.6C10 4.03995 10 3.75992 9.89101 3.54601C9.79513 3.35785 9.64215 3.20487 9.45399 3.10899C9.24008 3 8.96005 3 8.4 3Z"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M19.4 3H15.6C15.0399 3 14.7599 3 14.546 3.10899C14.3578 3.20487 14.2049 3.35785 14.109 3.54601C14 3.75992 14 4.03995 14 4.6V8.4C14 8.96005 14 9.24008 14.109 9.45399C14.2049 9.64215 14.3578 9.79513 14.546 9.89101C14.7599 10 15.0399 10 15.6 10H19.4C19.9601 10 20.2401 10 20.454 9.89101C20.6422 9.79513 20.7951 9.64215 20.891 9.45399C21 9.24008 21 8.96005 21 8.4V4.6C21 4.03995 21 3.75992 20.891 3.54601C20.7951 3.35785 20.6422 3.20487 20.454 3.10899C20.2401 3 19.9601 3 19.4 3Z"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M19.4 14H15.6C15.0399 14 14.7599 14 14.546 14.109C14.3578 14.2049 14.2049 14.3578 14.109 14.546C14 14.7599 14 15.0399 14 15.6V19.4C14 19.9601 14 20.2401 14.109 20.454C14.2049 20.6422 14.3578 20.7951 14.546 20.891C14.7599 21 15.0399 21 15.6 21H19.4C19.9601 21 20.2401 21 20.454 20.891C20.6422 20.7951 20.7951 20.6422 20.891 20.454C21 20.2401 21 19.9601 21 19.4V15.6C21 15.0399 21 14.7599 20.891 14.546C20.7951 14.3578 20.6422 14.2049 20.454 14.109C20.2401 14 19.9601 14 19.4 14Z"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M8.4 14H4.6C4.03995 14 3.75992 14 3.54601 14.109C3.35785 14.2049 3.20487 14.3578 3.10899 14.546C3 14.7599 3 15.0399 3 15.6V19.4C3 19.9601 3 20.2401 3.10899 20.454C3.20487 20.6422 3.35785 20.7951 3.54601 20.891C3.75992 21 4.03995 21 4.6 21H8.4C8.96005 21 9.24008 21 9.45399 20.891C9.64215 20.7951 9.79513 20.6422 9.89101 20.454C10 20.2401 10 19.9601 10 19.4V15.6C10 15.0399 10 14.7599 9.89101 14.546C9.79513 14.3578 9.64215 14.2049 9.45399 14.109C9.24008 14 8.96005 14 8.4 14Z"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <p class="hover:text-[#4682B4]    hover:cursor-pointer text-wrap">Meeting </p>
+
         </div>
         <div class="icons">
             <i class="fa-solid fa-gear fa-lg"></i> <a href="/security">Settings</a>
         </div>
 
     </div>
+
+
+
     <!-- Navbar -->
-    <div class="navigation" >
-        <div class="navbar" style="background:whitesmoke" >
+    <div class="navigation">
+        <div class="navbar">
             <div class="links">
+                <button class="menu-toggle">☰</button>
                 <div class="prof">
+                    <h3>Welcome back,<span>HR</span></h3>
 
-                    <h3>Welcome back,<span id="employee-name" style="color:steelblue">HR</span></h3>
                 </div>
-                <div class="links-buttons" style="position:relative;right: 60px;">
-                    <form action="/logout" method="POST" style="display: inline;background: transparent;border: none;box-shadow: none;position: relative;top: 14px;">
-                        <button type="submit" class="logout-btn">
-                            <i class="fa-solid fa-sign-out-alt"></i> Logout
-                        </button>
-                    </form>
-
+                <div class="links-buttons">
+                    <i class="fa-solid fa-magnifying-glass fa-lg relative right-5"
+                        style="color: gray;padding-right: 8px;"></i>
+                    <i class="fa-regular fa-bell  fa-lg" style="color: gray;"></i>
+                    <button class="button1"><i class="fa-regular fa-calendar"
+                            style="color: gray;padding-right:8px;"></i>Attendance</button>
+                    <button class="button2"><i class="fa-solid fa-plus" style="color:white;padding-right:8px;"></i><a
+                            href="/contract">Add
+                            Employee</a></button>
                 </div>
             </div>
-            <div class="attendance-container">
-                <div class="" style="flex">
-                    <h2>Leave Requests</h2>
+            <!---Put Your Code for the body HERE-->
+            <div class="main-content">
+                <div class="employee-graphs">
+                    <div class="employee-first">
+                        <canvas id="employee-graph"></canvas>
+                        <script>
+                            // Data for the graph
+                            const labels = [
+                                'January', 'February', 'March', 'April', 'May', 'June',
+                                'July', 'August', 'September', 'October', 'November', 'December'
+                            ]; // X-axis labels
 
-                </div>
-                <div style="display:flex;gap:8px;position:absolute;right:0;margin-right:80px;align-items:center;margin-top:20px;margin-bottom:30px;">
-                <label style="font-size:18px;color:steelblue;">Filter By:</label><select id="Filter" style="padding:6px;"><option>Pending</option><option>Approved</option><option>All</option><option>Denied</option></select>
+                            const data = {
+                                labels: labels,
+                                datasets: [
+                                    {
+                                        label: 'Employees',
+                                        data: [65, 59, 80, 81, 56, 55, 40, 70, 85, 90, 75, 50], // Replace with your data
+                                        borderColor: 'rgba(255, 99, 132, 1)',
+                                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                                        stack: 'combined',
+                                        type: 'bar'
+                                    },
+                                    {
+                                        label: 'Interns',
+                                        data: [28, 48, 40, 19, 86, 27, 90, 60, 50, 95, 80, 65], // Replace with your data
+                                        borderColor: 'rgba(54, 162, 235, 1)',
+                                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                                        stack: 'combined'
+                                    }
+                                ]
+                            };
+
+                            // Graph configuration
+                            const config = {
+                                type: 'line', // Base type
+                                data: data,
+                                options: {
+                                    plugins: {
+                                        title: {
+                                            display: true,
+                                            text: 'Employee Performance Over the Year' // Graph title
+                                        }
+                                    },
+                                    scales: {
+                                        y: {
+                                            stacked: true,
+                                            beginAtZero: true // Ensures the graph starts at 0
+                                        }
+                                    }
+                                }
+                            };
+
+                            // Render the graph
+                            const ctx = document.getElementById('employee-graph').getContext('2d');
+                            new Chart(ctx, config);
+                        </script>
                     </div>
-                <table style="width: 95%; border-collapse: collapse;align-self: center;margin-top: 30px;">
-                    <thead>
-                    <tr>
-
-                        <th>Employee ID</th>
-                        <th>Leave Type</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Reason</th>
-                        <th>Status</th>
-                        <th>Approval</th>
 
 
-                    </tr>
-                    </thead>
-                    <tbody id="table">
 
-                    </tbody>
-                </table>
-                <div class="page-btns">
-                    <button id="prev-btn" style="width: 90px;height:40px;background: steelblue;color: white;border:none;border-radius: 6px;">Previous</button>
-                    <button id="next-btn" style="width: 90px;height:40px;background: steelblue;color: white;border:none;border-radius: 6px;">Next</button>
+                    <div class="top-employees" style=" margin: 0 auto;">
+                        <canvas id="top-employees"></canvas>
+                        <script>
+                            // Data for the graph
+                            const topEmployeesData = {
+                                labels: ['John Doe', 'Jane Smith', 'Michael Brown'], // Employee names
+                                datasets: [{
+                                    label: 'Performance Score',
+                                    data: [95, 89, 82], // Scores for the top employees
+                                    backgroundColor: [
+                                        'rgba(75, 192, 192, 0.8)', // Color for John Doe
+                                        'rgba(255, 159, 64, 0.8)', // Color for Jane Smith
+                                        'rgba(153, 102, 255, 0.8)'  // Color for Michael Brown
+                                    ],
+                                    borderColor: [
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(255, 159, 64, 1)',
+                                        'rgba(153, 102, 255, 1)'
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            };
+
+                            // Configuration for the horizontal bar chart
+                            const topEmployeesConfig = {
+                                type: 'bar', // Chart type
+                                data: topEmployeesData,
+                                options: {
+                                    indexAxis: 'y', // Horizontal bar chart
+                                    scales: {
+                                        x: {
+                                            beginAtZero: true // Ensures scores start at 0
+                                        }
+                                    },
+                                    plugins: {
+                                        legend: {
+                                            display: false // Hides the legend
+                                        },
+                                        title: {
+                                            display: true,
+                                            text: 'Top 3 Employees of the Month' // Chart title
+                                        }
+                                    }
+                                }
+                            };
+
+                            // Render the graph
+                            const topEmployeesCtx = document.getElementById('top-employees').getContext('2d');
+                            new Chart(topEmployeesCtx, topEmployeesConfig);
+                        </script>
+                    </div>
+                </div><br><br>
+
+                <div class="employee-list">
+                    <div class="input-space">
+                        <h2>Leave <span>Request</span></h2>
+
+                    </div>
+                    <!--the list of employee will be here-->
+                    <table style="width: 100%;padding-left: 25px;padding-right: 25px;">
+                        <thead style="text-align: left; background:whitesmoke;border-radius: 8px;font-weight: normal">
+                            <th style="padding: 15px;">Employee ID</th>
+                            <th>Leave Type</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Reason</th>
+                            <th>Approval</th>
+                        </thead>
+                        <tbody id="table">
+
+                        </tbody>
+                    </table>
+                    <div class="page-btns" style="justify-self: center;position:static;margin-top: 30px;">
+                        <button id="prev-btn"
+                            style="width: 90px;height:30px;background: steelblue;color: white;border:none;border-radius: 6px;">Previous</button>
+                        <button id="next-btn"
+                            style="width: 90px;height:30px;background: steelblue;color: white;border:none;border-radius: 6px;">Next</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-
-       let currentPage = 0;
-       const pageSize = 8;
-       let leaves=[];
-       let SelectFilter=document.getElementById("Filter");
-
-     let filters="Pending";
-       const fetchData = (currentPage,filters) => {
-           fetch(`/filteredLeaveRecords?filter=${filters}&page=${currentPage}&size=${pageSize}`)
-               .then((response) => response.json())
-               .then((data) => {
-                   const container = document.getElementById('table');
-                   container.innerHTML = '';
-                    leaves=data.content;
-                   if (data.content.length === 0) {
-                       container.innerHTML = `<tr><td colspan="6" style="text-align: center;border:none; padding: 15px; color: gray;">No leave requests found</td></tr>`;
-                       return;
-                   }
-
-                   container.innerHTML = data.content.map((leave) => `
-                       <tr>
-                           <td style="padding: 15px;">${leave.uniqueId}</td>
-                           <td>${leave.leaveType}</td>
-                           <td>${leave.startDate}</td>
-                           <td>${leave.endDate}</td>
-                           <td>${leave.reason}</td>
-                           <td>${leave.status}</td>
- <td>
-   ${leave.status !== "Approved" && leave.status !== "Denied"
-       ? `<div style="display:flex;gap:8px;">
-            <button style="width: 90px; border: none; border-radius: 6px; color: steelblue; padding: 10px; background: whitesmoke; margin-right: 10px"
-                onclick="approveRequest('${leave.id}')">Approve</button>
-            <button style="width: 90px; border: none; border-radius: 6px; color: white; padding: 10px; background: gray"
-                onclick="RejectRequest('${leave.id}')">Reject</button>
-          </div>`
-       : `<span>${leave.status === "Approved" ? "Already Approved" : "Already Denied"}</span>`}
-</td>
 
 
-                       </tr>
-                   `).join('');
-                   for(i=0;i<leaves.length;i++){
-               console.log(leaves[i]);
-               }
-               })
-               .catch((error) => console.error('Error fetching data:', error));
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let currentPage = 0;
+            const pageSize = 5;
 
-       };
+            const fetchData = (currentPage) => {
+                fetch(`/leaveData?page=${currentPage}&size=${pageSize}`)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        const container = document.getElementById('table');
+                        container.innerHTML = data.content.map((leave) => `
 
-SelectFilter.addEventListener('change', function () {
-    filters = SelectFilter.value;
-    console.log("Filter changed to:", filters);
-    fetchData(currentPage, filters);
-});
+                <tr>
+                    <td style="padding: 15px;">${leave.uniqueId}</td>
+                    <td>${leave.leaveType}</td>
+<td>${leave.startDate}</td>
+                    <td>${leave.endDate}</td>
 
+                    <td>${leave.reason}</td>   <td><button style=" width:90px; border:none;border-radius:6px;color:steelblue;padding: 10px;background:whitesmoke;margin-right: 10px">Approve</button>
+                    <button style="width:90px; border:none;border-radius:6px;color:white;padding: 10px;background:gray">Reject</button></td>
 
-       // Pagination buttons
-       document.getElementById('prev-btn').addEventListener('click', function () {
-           if (currentPage > 0) {
-               currentPage--;
-               fetchData(currentPage,filters);
-           }
-       });
+                </tr>
 
-       document.getElementById('next-btn').addEventListener('click', function () {
-           currentPage++;
-           fetchData(currentPage,filters);
-       });
+            `).join('');
+                    })
+                    .catch((error) => console.error('Error fetching data:', error));
+            };
 
-       fetchData(currentPage,filters);
-   });
+            document.getElementById('prev-btn').addEventListener('click', () => {
+                if (currentPage > 0) {
+                    currentPage--;
+                    fetchData(currentPage);
+                }
+            });
 
-   function approveRequest(leaveId) {
-       fetch(`http://localhost:8080/approveLeave/${leaveId}`, {
-           method: "POST",
-           headers: {
-               "Content-Type": "application/json"
-           },
-           body: JSON.stringify({ status: "denied" })
-       })
-       .then(response => response.json())
-       .then(data => {
-           alert("Leave approved successfully");
-           fetchData(currentPage,filters);
-       })
-       .catch(error => console.error("Error:", error));
-   }
-     function RejectRequest(leaveId) {
-       fetch(`http://localhost:8080/rejectLeave/${leaveId}`, {
-           method: "POST",
-           headers: {
-               "Content-Type": "application/json"
-           },
-           body: JSON.stringify({ status: "approved" })
-       })
-       .then(response => response.json())
-       .then(data => {
-           alert("Leave rejected successfully");
-           fetchData(currentPage,filters); // Refresh data after approval
-       })
-       .catch(error => console.error("Error:", error));
-   }
+            document.getElementById('next-btn').addEventListener('click', () => {
+                currentPage++;
+                fetchData(currentPage);
+            });
 
-</script>
+            // Initial load
+            fetchData(currentPage);
+        });
+
+    </script>
+    <script>
+        const toggleButton = document.querySelector(".menu-toggle");
+        const sidebar = document.querySelector(".sidebar");
+
+        toggleButton.addEventListener("click", function () {
+            if (window.innerWidth <= 768) {
+                sidebar.classList.toggle("active"); // Mobile toggle
+            } else {
+                sidebar.classList.toggle("collapsed"); // Desktop collapse
+            }
+        });
+
+    </script>
 </body>
+
 </html>

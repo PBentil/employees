@@ -6,84 +6,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="profile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-          integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-            href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&display=swap"
-            rel="stylesheet">
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&display=swap"
+        rel="stylesheet">
 
 
-    <title>Dashboard</title>
+    <title>Employee dashboard</title>
 </head>
 
 <body>
-<div class="container">
+
     <!-- Sidebar -->
-    <div class="sidebar" style="width:240px;font-size:16px">
+
+    <div class="sidebar">
+
         <div class="heading">
             <h2>HR DIVE</h2>
-            <button id="chevron" onclick="toggleMenu()" style="background: transparent; border: none;"><i
-                    class="fa-solid fa-chevron-left"></i></button>
+
         </div>
         <h3>Menu</h3>
         <div class="icons">
             <i class="fa-solid fa-house fa-lg "></i> <a href="/dash">Dashboard</a>
         </div>
 
-
-
-
         <div class="icons">
-            <i class="fas fa-calendar-check fa-lg"></i>  <a href="/attendance">Attendances</a>
-        </div>
-        <div class="icons">
-            <i class="fas fa-plane-departure fa-lg"></i> <a href="/leave">Leave Request</a>
-        </div>
-        <div class="icons">
-            <i class="fas fa-tasks fa-lg"></i> <a href="/etask">Tasks</a>
+            <i class="fa-regular fa-square-check fa-lg "></i> <a href="/attendance">Attendances</a>
         </div>
 
         <div class="icons">
-            <i class="fas fa-bullhorn fa-lg"></i> <a href="/announcements">Announcements</a>
+            <i class="fa-solid fa-layer-group fa-lg "></i> <a href="/profile">Profile Management</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-money-bill fa-lg"></i><a href="/epayroll">Payroll</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-calendar fa-lg"></i><a href="/meetings">Meetings</a>
         </div>
 
         <div class="icons">
-            <i class="fas fa-headset fa-lg"></i> <a href="/help&support">Help & Support</a>
+            <i class="fa-solid fa-comments fa-lg"></i><a href="/feedbacks">Feedbacks and Complaints</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-bullhorn fa-lg"></i><a href="/announcements">Announcements</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-calendar-check fa-lg"></i><a href="/leave">Leave Request</a>
+        </div>
+        <div class="icons">
+
+            <svg width="22px" height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                class="hover:text-[#4682B4] hover:cursor-pointer mr-2 pr-1">
+                <path
+                    d="M8.4 3H4.6C4.03995 3 3.75992 3 3.54601 3.10899C3.35785 3.20487 3.20487 3.35785 3.10899 3.54601C3 3.75992 3 4.03995 3 4.6V8.4C3 8.96005 3 9.24008 3.10899 9.45399C3.20487 9.64215 3.35785 9.79513 3.54601 9.89101C3.75992 10 4.03995 10 4.6 10H8.4C8.96005 10 9.24008 10 9.45399 9.89101C9.64215 9.79513 9.79513 9.64215 9.89101 9.45399C10 9.24008 10 8.96005 10 8.4V4.6C10 4.03995 10 3.75992 9.89101 3.54601C9.79513 3.35785 9.64215 3.20487 9.45399 3.10899C9.24008 3 8.96005 3 8.4 3Z"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M19.4 3H15.6C15.0399 3 14.7599 3 14.546 3.10899C14.3578 3.20487 14.2049 3.35785 14.109 3.54601C14 3.75992 14 4.03995 14 4.6V8.4C14 8.96005 14 9.24008 14.109 9.45399C14.2049 9.64215 14.3578 9.79513 14.546 9.89101C14.7599 10 15.0399 10 15.6 10H19.4C19.9601 10 20.2401 10 20.454 9.89101C20.6422 9.79513 20.7951 9.64215 20.891 9.45399C21 9.24008 21 8.96005 21 8.4V4.6C21 4.03995 21 3.75992 20.891 3.54601C20.7951 3.35785 20.6422 3.20487 20.454 3.10899C20.2401 3 19.9601 3 19.4 3Z"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M19.4 14H15.6C15.0399 14 14.7599 14 14.546 14.109C14.3578 14.2049 14.2049 14.3578 14.109 14.546C14 14.7599 14 15.0399 14 15.6V19.4C14 19.9601 14 20.2401 14.109 20.454C14.2049 20.6422 14.3578 20.7951 14.546 20.891C14.7599 21 15.0399 21 15.6 21H19.4C19.9601 21 20.2401 21 20.454 20.891C20.6422 20.7951 20.7951 20.6422 20.891 20.454C21 20.2401 21 19.9601 21 19.4V15.6C21 15.0399 21 14.7599 20.891 14.546C20.7951 14.3578 20.6422 14.2049 20.454 14.109C20.2401 14 19.9601 14 19.4 14Z"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M8.4 14H4.6C4.03995 14 3.75992 14 3.54601 14.109C3.35785 14.2049 3.20487 14.3578 3.10899 14.546C3 14.7599 3 15.0399 3 15.6V19.4C3 19.9601 3 20.2401 3.10899 20.454C3.20487 20.6422 3.35785 20.7951 3.54601 20.891C3.75992 21 4.03995 21 4.6 21H8.4C8.96005 21 9.24008 21 9.45399 20.891C9.64215 20.7951 9.79513 20.6422 9.89101 20.454C10 20.2401 10 19.9601 10 19.4V15.6C10 15.0399 10 14.7599 9.89101 14.546C9.79513 14.3578 9.64215 14.2049 9.45399 14.109C9.24008 14 8.96005 14 8.4 14Z"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <a class="hover:text-[#4682B4]    hover:cursor-pointer text-wrap" href="/etask">Task</a>
+
         </div>
 
-        <div class="icons">
-            <i class="fa-solid fa-ticket"></i><a href="/mySupportRequests">Request History</a>
-        </div>
-        <div class="icons">
-            <i class="fa-solid fa-gear fa-lg"></i> <a href="/security">Settings</a>
-        </div>
-        <div class="icons">
-            <form action="/logout" method="POST" style="padding: 0;margin: 0;background: steelblue;box-shadow: none;position: relative;right:10px">
-                <button type="submit" class="logout-btn" style="background: transparent;">
-                    <i class="fa-solid fa-sign-out-alt"></i> Logout
-                </button>
-            </form>
-        </div>
+
     </div>
+
 
     <!-- Navbar -->
     <div class="navigation">
         <div class="navbar">
             <div class="links">
+                <button class="menu-toggle">☰</button>
                 <div class="prof">
+
                     <h3>Welcome back,<span id="employee-name" style="color:steelblue">HR</span></h3>
 
                 </div>
                 <div class="links-buttons" style="position:relative;right: 60px;">
-                    <form action="/checkout" method="POST" style="display: inline;background: transparent;border: none;box-shadow: none;position: relative;top: 14px;">
-                        <button type="submit" class="checkout-btn">
-                            <i class="fa-solid fa-clock"></i>Check Out
+                    <form action="/logout" method="POST"
+                        style="display: inline;background: transparent;border: none;box-shadow: none;position: relative;top: 14px;">
+                        <button type="submit" class="logout-btn">
+                            <i class="fa-solid fa-sign-out-alt"></i> Logout
                         </button>
                     </form>
-            </div>
                 </div>
+            </div>
             <div class="main-content">
                 <div class="dashboard">
                     <div class="dashboard-header">
@@ -96,18 +112,17 @@
                             <p>You are marked <span class="status">present</span> today.</p>
                         </div>
                         <div class="card">
-                            <h2>Pending Tasks</h2>
-                            <p id="pending">0 pending tasks. <a href="/etask">View tasks</a></p>
+                            <h2>Task</h2>
+                            <p>3 pending Task. <a href="/etask">View Task</a></p>
                         </div>
                         <div class="card">
-                            <h2> Approved Tasks</h2>
-                            <p id="approved">0 pending tasks. <a href="/etask">View tasks</a></p>
+                            <h2>Payroll</h2>
+                            <p>Status: <span class="status">Processed</span></p>
                         </div>
                         <div class="card">
-                            <h2>Leave Request</h2>
-                            <p><span class="requests">You have 0 approved leave requests</span></p>
+                            <h2>Meetings</h2>
+                            <p>Upcoming: Project Sync at 3 PM.</p>
                         </div>
-
                     </div>
                     <div class="announcements">
                         <h2>Announcements</h2>
@@ -117,24 +132,24 @@
                         <h3>Attendance History</h3>
                         <table class="attendance-table">
                             <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Time</th>
-                            </tr>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>2024-12-08</td>
-                                <td>08:30 AM</td>
-                            </tr>
-                            <tr>
-                                <td>2024-12-07</td>
-                                <td>08:45 AM</td>
-                            </tr>
-                            <tr>
-                                <td>2024-12-06</td>
-                                <td>09:00 AM</td>
-                            </tr>
+                                <tr>
+                                    <td>2024-12-08</td>
+                                    <td>08:30 AM</td>
+                                </tr>
+                                <tr>
+                                    <td>2024-12-07</td>
+                                    <td>08:45 AM</td>
+                                </tr>
+                                <tr>
+                                    <td>2024-12-06</td>
+                                    <td>09:00 AM</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -146,188 +161,134 @@
         </div>
 
     </div>
-</div>
 
-<style>
-    .dashboard {
-        padding: 20px;
-        flex-grow: 1;
-        background-color: #f9f9f9;
-    }
 
-    .dashboard-header {
-        margin-bottom: 20px;
-    }
-
-    .dashboard-header h1 {
-        font-size: 24px;
-        margin-bottom: 5px;
-        color: #4682B4;
-    }
-
-    .dashboard-header p {
-        color: gray;
-        font-size: 16px;
-    }
-
-    .dashboard-cards {
-        display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
-    }
-
-    .card {
-        flex: 1;
-        min-width: 200px;
-        padding: 15px;
-        background: white;
-        border: 1px solid #D1D5DB;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .card h2 {
-        margin-bottom: 10px;
-        font-size: 18px;
-        color: #4682B4;
-    }
-
-    .card p {
-        margin: 0;
-        color: gray;
-    }
-
-    .card .status {
-        font-weight: bold;
-        color: green;
-    }
-
-    .announcements {
-        margin-top: 20px;
-        padding: 15px;
-        background: white;
-        border: 1px solid #D1D5DB;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .announcements h2 {
-        color: #4682B4;
-        margin-bottom: 10px;
-    }
-
-    .attendance-history-section {
-        margin-top: 20px;
-        padding: 15px;
-        background: #f9f9f9;
-        border: 1px solid #d1d5db;
-        border-radius: 8px;
-    }
-
-    .attendance-history-section h3 {
-        margin-bottom: 15px;
-        color: #4682b4;
-    }
-
-    .attendance-table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .attendance-table th,
-    .attendance-table td {
-        border: 1px solid #d1d5db;
-        padding: 10px;
-        text-align: left;
-        font-size: 14px;
-        color: #333;
-    }
-
-    .attendance-table th {
-        background-color: #4682b4;
-        color: white;
-    }
-
-    .attendance-table tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-</style>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-       const name = localStorage.getItem('employeeFirstName');
-       if (name) {
-           document.getElementById('employee-name').textContent = name;
-       }
-
-   fetch("latest")
-    .then(response => response.json())
-    .then(data => {
-        const count = data["Latest:"];
-        if(count && count > 0) {
-            console.log(`You have ${count} new announcement(s) today`);
-
-          document.querySelector('.announcements p').innerHTML =
-    `You have <span style="color:steelblue">${count}</span> new announcement(s) today.`;
-        } else {
-            console.log("No new announcements today");
+    <style>
+        .dashboard {
+            padding: 20px;
+            flex-grow: 1;
+            background-color: #f9f9f9;
         }
-    })
-    .catch(error => {
-        console.error("Error fetching announcements:", error);
-    });
 
-       fetch(`PendingTasks?status=Pending`)
-    .then(response => response.json())
-    .then(data => {
-        const count = data["Task:"];
-        if(count && count > 0) {
-            console.log(`You have ${count} pending tasks`);
-
-          document.getElementById("pending").innerHTML =
-    `You have <span style="color:steelblue">${count}</span> pending tasks.`;
-        } else {
-            console.log("No new announcements today");
+        .dashboard-header {
+            margin-bottom: 20px;
         }
-    })
-    .catch(error => {
-        console.error("Error fetching announcements:", error);
-    });
-       fetch(`PendingTasks?status=Approved`)
-    .then(response => response.json())
-    .then(data => {
-        const count = data["Task:"];
-        if(count && count > 0) {
-            console.log(`You have ${count} approved tasks`);
 
-           document.getElementById("approved").innerHTML =
-    `You have <span style="color:steelblue">${count}</span>  approved tasks.`;
-        } else {
-            console.log("No new announcements today");
+        .dashboard-header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+            color: #4682B4;
         }
-    })
-    .catch(error => {
-        console.error("Error fetching announcements:", error);
-    });
 
-
-      fetch(`ApprovedRequests?status=Approved`)
-    .then(response => response.json())
-    .then(data => {
-        const count = data["Approved:"];
-        if(count && count > 0) {
-            console.log(`You have ${count} approved leave requests`);
-
-           document.getElementById("requests").innerHTML =
-    `You have <span style="color:steelblue">${count}</span>  approved leave requests.`;
-        } else {
-            console.log("No approved requests");
+        .dashboard-header p {
+            color: gray;
+            font-size: 16px;
         }
-    })
-    .catch(error => {
-        console.error("Error fetching announcements:", error);
-    });
-   });
-</script>
+
+        .dashboard-cards {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            flex: 1;
+            min-width: 200px;
+            padding: 15px;
+            background: white;
+            border: 1px solid #D1D5DB;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #4682B4;
+        }
+
+        .card p {
+            margin: 0;
+            color: gray;
+        }
+
+        .card .status {
+            font-weight: bold;
+            color: green;
+        }
+
+        .announcements {
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border: 1px solid #D1D5DB;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .announcements h2 {
+            color: #4682B4;
+            margin-bottom: 10px;
+        }
+
+        .attendance-history-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+        }
+
+        .attendance-history-section h3 {
+            margin-bottom: 15px;
+            color: #4682b4;
+        }
+
+        .attendance-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .attendance-table th,
+        .attendance-table td {
+            border: 1px solid #d1d5db;
+            padding: 10px;
+            text-align: left;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .attendance-table th {
+            background-color: #4682b4;
+            color: white;
+        }
+
+        .attendance-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const name = localStorage.getItem('employeeFirstName');
+            if (name) {
+                document.getElementById('employee-name').textContent = name;
+            }
+        });
+    </script>
+
+    <script>
+        const toggleButton = document.querySelector(".menu-toggle");
+        const sidebar = document.querySelector(".sidebar");
+
+        toggleButton.addEventListener("click", function () {
+            if (window.innerWidth <= 768) {
+                sidebar.classList.toggle("active"); // Mobile toggle
+            } else {
+                sidebar.classList.toggle("collapsed"); // Desktop collapse
+            }
+        });
+
+    </script>
 </body>
 
 </html>
