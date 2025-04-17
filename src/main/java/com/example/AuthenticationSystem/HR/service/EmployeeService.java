@@ -1,6 +1,7 @@
 package com.example.AuthenticationSystem.HR.service;
 import com.example.AuthenticationSystem.HR.model.*;
 import com.example.AuthenticationSystem.HR.repository.*;
+import org.springframework.boot.SpringApplication;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -101,6 +102,29 @@ private FeedbacksAndComplaintsRepo feedbacksRepository;
         attendance.setCheckInTime(attendance.getCheckInTime().truncatedTo(ChronoUnit.MINUTES));
 
         return employeeAttendance.save(attendance);
+<<<<<<< HEAD
+=======
+    }
+
+    public Attendance checkOutEmployee(Attendance attendance) {
+        String uniqueId = attendance.getUniqueId();
+        LocalDate today = LocalDate.now();
+        Optional<Attendance> foundAttendance = employeeAttendance.findByUniqueIdAndDate(uniqueId, today);
+        if (foundAttendance.isPresent()) {
+            Attendance checkout = foundAttendance.get();
+            if (checkout.getCheckOutTime() != null) {
+
+                return checkout;
+            } else {
+
+                checkout.setCheckOutTime(LocalTime.now());
+                return employeeAttendance.save(checkout);
+            }
+        }
+
+        // No attendance record found for today
+        return null;
+>>>>>>> origin/main
     }
 
 
@@ -166,6 +190,10 @@ public Page<Tasks> findTasks(String uniqueId, int page, int size){
         Pageable pageable=PageRequest.of(page,size);
         return taskRepo.findAllByUniqueId(uniqueId,pageable);
 }
+    public Page<Tasks> findAllTasks(int page, int size){
+        Pageable pageable=PageRequest.of(page,size);
+        return taskRepo.findAll(pageable);
+    }
     public List<Attendance> findAttendances(String uniqueId){
         return employeeAttendance.findAllByUniqueId(uniqueId);
     }
@@ -285,8 +313,71 @@ public SupportRequest submitRequest(SupportRequest supportRequest){
         Pageable pageable=PageRequest.of( page,size);
         return supportRequestRepository.filterPriorityRequests(filter,pageable);
     }
+<<<<<<< HEAD
     public Optional<SupportRequest> findRequest(Long Id){
         return  supportRequestRepository.findById(Id);
     }
 
+=======
+    public Announcement createAnnouncement(Announcement announcement){
+        return  announcementRepo.save(announcement);
+    }
+    public Tasks findTask(long id){
+        return  taskRepo.findById(id);
+    }
+    public Tasks findSpecificTask(String uniqueId,Long id){
+        return taskRepo.findByUniqueIdAndId(uniqueId,id);
+    }
+    public Optional<Tasks> findReportData(long id,String status){
+        return taskRepo.findByReportStatus(id,status);
+    }
+
+
+public Tasks assignTask(Tasks tasks){
+        return  taskRepo.save(tasks);
+}
+public Optional<Compensation> Payroll(String uniqueId){
+        return  compensationRepository.findByUniqueId(uniqueId);
+}
+    public Optional<JobDetails> Employment(String uniqueId){
+        return  jobRepository.findByUniqueId(uniqueId);
+    }
+    public Optional<SupportRequest> findRequest(Long Id){
+        return  supportRequestRepository.findById(Id);
+    }
+public Optional<Announcement> findAnnouncement(long id){
+        return  announcementRepo.findById(id);
+}
+public void deleteAnnouncement(Long id){
+        announcementRepo.deleteAnnouncement(id);
+}
+public Long getLatestAnnouncement(){
+    return announcementRepo.countTodayAnnouncements(LocalDate.now());
+
+}
+public Long findTaskStatus(String uniqueId,String status){
+        return taskRepo.findTaskStatus(uniqueId,status);
+}
+public Long findEmployeeApprovedRequest(String uniqueId,String status){
+        return  leaveRepository.findApprovedRecords(uniqueId,status);
+}
+public Page<Attendance> findEmployeeAttendance(String uniqueId,int page,int size){
+ Pageable pageable=PageRequest.of(page,size);
+ return employeeAttendance.findEmployeeAttendance(uniqueId,pageable);
+
+}
+public Long findApprovedTaskCount(String status){
+        return  taskRepo.findTaskStatusCount( status);
+}
+public long findUnapprovedLeaveRequests(String status){
+        return  leaveRepository.findTotalUnapprovedLeaveRequests(status);
+}
+public Long findTotalLogins(LocalDate today){
+        return employeeAttendance.totalLogin(today);
+}
+public Page<SupportRequest>findMyRequest(String  uniqueId,int page,int size){
+        Pageable pageable=PageRequest.of(page,size);
+        return supportRequestRepository.findMyRequest(uniqueId,pageable);
+}
+>>>>>>> origin/main
 }

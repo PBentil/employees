@@ -5,26 +5,160 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+          integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&display=swap"
             rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Dashboard</title>
 </head>
 <style>
     canvas#attendanceChart {
+<<<<<<< HEAD
     width: 100% !important;
     height: 300px !important; /* Adjust as needed */
     display: block;
 }
 
+=======
+        width: 100% !important;
+        height: 300px !important; /* Adjust as needed */
+        display: block;
+    }
+.logout-btn{
+    background: #4682B4;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding:10px;
+    border-radius:4px;
+    margin-bottom:12px;
+}
+
+.logout-btn:hover {
+    background: #366090;
+}
+    .attendance-container {
+        width: 95%;
+        height:470px;
+        padding-left: 20px;
+         padding-right: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: white;
+        margin-top: 20px;
+        border-radius: 8px;
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.229);
+        align-self: center;
+        position: relative;
+    }
+
+    .attendance-container thead tr {
+        background-color: steelblue;
+        color: white;
+    }
+
+    .attendance-container thead tr th {
+        padding: 12px;
+        text-align: center;
+        font-weight: 450;
+    }
+
+    .attendance-container tbody tr td {
+        padding: 18px;
+        text-align: center;
+        border-bottom: 1px solid #ccc; /* Adds separation */
+    }
+
+    .attendance-container thead th:first-child {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    .attendance-container thead th:last-child {
+        border-top-right-radius: 12px;
+        border-bottom-right-radius: 12px;
+    }
+
+    .attendance-container button:hover {
+        background: #0056b3;
+    }
+
+    .page-btns {
+        position: absolute;
+        right: 0;
+        bottom:0;
+
+    }
+
+    .page-btns button {
+        padding: 10px;
+        margin-right: 80px;
+        margin-top:70px !important;
+        width: 90px;
+        height: 35px;
+        padding-bottom:20px;
+        background: steelblue;
+        color: white;
+        border: none;
+        border-radius: 6px;
+    }
+
+    .overflow-menu {
+        display: none;
+        flex-direction: column;
+        background: white;
+        width: 165px;
+        height: auto;
+        box-shadow: 4px 4px 20px rgba(0,0,0,0.225);
+        position: absolute;
+        right: 0;
+        z-index: 100;
+    }
+
+    .overflow-menu a, .overflow-menu button {
+        text-decoration: none;
+        padding: 14px;
+        color: black;
+    }
+
+    .overflow-menu button {
+        border: none;
+        background: white;
+        padding: 14px;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .overflow-menu a:hover, .overflow-menu button:hover {
+        background: whitesmoke;
+    }
+
+    .attendance-container tbody tr:nth-child(odd) {
+        background-color: transparent;
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        display: none;
+    }
+>>>>>>> origin/main
 </style>
 <body>
 <!-- Sidebar -->
-<div class="sidebar">
+<div class="sidebar" style="width:240px !important;font-size:16px;">
     <div class="heading">
         <h2>HR DIVE</h2>
 
@@ -37,8 +171,12 @@
         <i class="fa-solid fa-people-group fa-lg"></i><a href="/employees">Employees</a>
     </div>
     <div class="icons">
-        <i class="fa-solid fa-plus fa-lg"></i> <a href="/contract">Contract</a>
+        <i class="fa-solid fa-plus fa-lg"></i> <a href="/contract">New Hire</a>
     </div>
+    <div class="icons">
+        <i class="fa-solid fa-clipboard-list"></i> <a href="/assignedTasks">Tasks</a>
+    </div>
+
     <div class="icons">
         <i class="fa-regular fa-square-check fa-lg "></i> <a href="/Attendances">Attendances</a>
     </div>
@@ -48,8 +186,8 @@
     <div class="icons">
         <i class="fa-solid fa-layer-group fa-lg "></i> <a href="/payroll">Payroll</a>
     </div>
-
     <div class="icons">
+<<<<<<< HEAD
 
         <svg width="22px" height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
              class="hover:text-[#4682B4] hover:cursor-pointer mr-2 pr-1">
@@ -70,12 +208,18 @@
 
     </div>
     <div class="icons">
+=======
+        <i class="fa-solid fa-bullhorn"></i> <a href="/HRannouncements">Announcements</a>
+    </div>
+    <div class="icons">
+        <i class="fa-solid fa-headset fa-lg"></i> <a href="/support">Support Requests</a>
+    </div>
+    <div class="icons">
+>>>>>>> origin/main
         <i class="fa-solid fa-gear fa-lg"></i> <a href="/security">Settings</a>
     </div>
 
 </div>
-
-
 
 <!-- Navbar -->
 <div class="navigation">
@@ -84,8 +228,16 @@
             <button class="menu-toggle">☰</button>
             <div class="prof">
                 <h3>Welcome back,<span>HR</span></h3>
+            </div>
+            <div class="links-buttons" style="position:relative;right: 60px;">
+                <form action="/logout" method="POST" style="display: inline;background: transparent;border: none;box-shadow: none;position: relative;top: 14px;">
+                    <button type="submit" class="logout-btn">
+                        <i class="fa-solid fa-sign-out-alt"></i> Logout
+                    </button>
+                </form>
 
             </div>
+<<<<<<< HEAD
             <div class="links-buttons">
                 <i class="fa-solid fa-magnifying-glass fa-lg relative right-5"
                    style="color: gray;padding-right: 8px;"></i>
@@ -96,36 +248,43 @@
                         href="/contract">Add
                     Employee</a></button>
             </div>
+=======
+>>>>>>> origin/main
         </div>
         <!---Put Your Code for the body HERE-->
         <div class="main-content">
-
             <div class="grid">
                 <div>
                     <i class="fa-solid fa-user"></i>
                     <p id="count"></p>
                     <p>Total Employees</p>
-
                 </div>
                 <div>
                     <i class="fa-solid fa-users"></i>
-                    <p>0</p>
-                    <p>Resign Employees</p>
+                    <p></p>
+                    <p id="present"></p>
+                    <p>Present Employees</p>
                 </div>
                 <div>
-                    <i class="fa-solid fa-calendar-days"></i>
-                    <p>23</p>
-                    <p>Employee on Leave</p>
+                    <i class="fa-solid fa-clipboard-list"></i>
+                    <p id="unapprovedCount">23</p>
+                    <p>Unapproved Tasks</p>
                 </div>
                 <div>
                     <i class="fa-solid fa-file"></i>
+<<<<<<< HEAD
                     <p>200</p>
                     <p>Leave Applications</p>
+=======
+                    <p>Leave Requests</p>
+                    <p id="leaveRequests"></p>
+
+>>>>>>> origin/main
                 </div>
             </div><br> <br>
             <div class="bar">
-
                 <canvas id="attendanceChart" width="400" height="100"></canvas>
+<<<<<<< HEAD
 
                 <script>
                     document.addEventListener("DOMContentLoaded", async () => {
@@ -193,33 +352,82 @@
 });
 
                 </script>
+=======
+>>>>>>> origin/main
             </div><br><br>
-            <div class="dashboard-flex">
 
-                <div class="EmployeeStatus">
-                    <div class="Status">
-                        <h2>Employee <span>Status</span></h2>
-                        <div class="input-space">
-                            <input type="search" placeholder="search Employee......">
-                        </div>
+
+            <div class="attendance-container" style="margin-bottom:70px;">
+                <div class="overlay"></div>
+                <div class="" style="display: flex; justify-content: space-between; width: 100%;">
+                    <h2 style="color:steelblue;">Employee Records</h2>
+                    <div style="display:flex;gap:8px;align-items:center;">
+                        <label style="font-size:18px;color:steelblue;">Filter By:</label>
+                        <select id="Filter" style="padding:6px;">
+                            <option>All</option>
+                            <option>Approved</option>
+                            <option>Pending</option>
+                            <option>Denied</option>
+                        </select>
                     </div>
                 </div>
+                <table style="width: 92%; border-collapse: collapse; align-self: center;margin-bottom:40px;">
+                    <thead id="head">
 
-                <div class="todolist">
-                    <h2>Upcoming <span>Schedule</span> <i class="fa-solid fa-calendar-days"></i></h2>
+                    </thead>
+                    <tbody id="table">
+                    <!-- Table data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+                <div class="page-btns" style="margin-top:40px !important;padding-bottom:10px;">
+                    <button id="prev-btn">Previous</button>
+                    <button id="next-btn">Next</button>
                 </div>
-
-
-
             </div>
         </div>
-
     </div>
+</div>
 
-</body>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+<<<<<<< HEAD
         fetch('getEmployeeCount')
+=======
+
+        fetch(`findTotalUnapprovedTasks?status=Waiting for approval`)
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                document.getElementById("unapprovedCount").innerText = data["Unapproved:"];
+            })
+            .catch((error) => {
+                console.error('Error fetching employee count:', error);
+            });
+             fetch(`findTotalUnapprovedLeaveRequests?status=Pending`)
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                document.getElementById("leaveRequests").innerText = data["Count"];
+            })
+            .catch((error) => {
+                console.error('Error fetching employee count:', error);
+            });
+
+                  fetch("findTotalAttendances")
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                document.getElementById("present").innerText = data["Count"];
+            })
+            .catch((error) => {
+                console.error('Error fetching employee count:', error);
+            });
+
+            fetch('getEmployeeCount')
+>>>>>>> origin/main
             .then((response) => {
                 return response.json();
             })
@@ -229,9 +437,155 @@
             .catch((error) => {
                 console.error('Error fetching employee count:', error);
             });
-    });
 
+        // Sidebar toggle
+        const toggleButton = document.querySelector(".menu-toggle");
+        const sidebar = document.querySelector(".sidebar");
+
+
+        // Attendance chart
+        async function setupAttendanceChart() {
+            try {
+                const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+                const urls = days.map(day => `/count/${day.toUpperCase()}`);
+
+                const responses = await Promise.all(urls.map(url => fetch(url)));
+                const data = await Promise.all(responses.map(res => res.json()));
+
+                console.log("API Data:", data);
+
+                const attendanceMap = {};
+                data.forEach(entry => {
+                    if (entry && entry.day && entry.count !== undefined) {
+                        attendanceMap[entry.day.toUpperCase()] = entry.count;
+                    }
+                });
+
+                console.log("Mapped Attendance Data:", attendanceMap);
+
+                const attendanceCounts = days.map(day => attendanceMap[day.toUpperCase()] || 0);
+                console.log("Final Attendance Counts:", attendanceCounts);
+
+                const ctx = document.getElementById("attendanceChart").getContext("2d");
+                new Chart(ctx, {
+                    type: "bar",
+                    data: {
+                        labels: days,
+                        datasets: [{
+                            label: "Number of Attendees",
+                            data: attendanceCounts,
+                            backgroundColor: [
+                                "rgba(75, 192, 192, 0.2)",
+                                "rgba(153, 102, 255, 0.2)",
+                                "rgba(255, 159, 64, 0.2)",
+                                "rgba(255, 99, 132, 0.2)",
+                                "rgba(54, 162, 235, 0.2)"
+                            ],
+                            borderColor: [
+                                "rgba(75, 192, 192, 1)",
+                                "rgba(153, 102, 255, 1)",
+                                "rgba(255, 159, 64, 1)",
+                                "rgba(255, 99, 132, 1)",
+                                "rgba(54, 162, 235, 1)"
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        scales: { y: { beginAtZero: true } },
+                        plugins: { legend: { display: true } }
+                    }
+                });
+            } catch (error) {
+                console.error("Error fetching attendance data:", error);
+            }
+        }
+
+        setupAttendanceChart();
+
+        // Employee table functionality
+        let currentPage = 0;
+        const pageSize = 5;
+        let employeeId, firstName, lastName, email, phone, address;
+
+        const fetchData = (currentPage) => {
+          const container = document.getElementById('table');
+            fetch(`/EmployeeData?page=${currentPage}&size=${pageSize}`)
+                .then((response) => response.json())
+                .then((data) => {
+                    if(data.content.length>0){
+                       document.getElementById("head").innerHTML=`   <tr>
+                        <th style="padding: 15px;">Employee ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+
+                    </tr>`;
+                    container.innerHTML = data.content.map((employee) => `
+                        <tr>
+                            <td style="padding: 15px;">${employee.uniqueId}</td>
+                            <td>${employee.firstName}</td>
+                            <td>${employee.lastName}</td>
+                            <td>${employee.email}</td>
+                            <td>${employee.phone}</td>
+                            <td>${employee.address}</td>
+
+                        </tr>
+                    `).join('');
+                    }
+                    else{
+
+                    document.getElementById("head").innerHTML="";
+                    container.innerHTML="No more employees";
+                    }
+
+                    // Setup overflow menu toggles
+                    const overflowBtns = document.querySelectorAll('.overflow-btn');
+                    overflowBtns.forEach(btn => {
+                        btn.addEventListener('click', function(event) {
+                            document.querySelectorAll('.overflow-menu').forEach(menu => {
+                                menu.style.display = "none";
+                            });
+
+                            const menu = this.closest('td').querySelector('.overflow-menu');
+                            if (menu) {
+                                menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+                            }
+                            event.stopPropagation();
+                        });
+                    });
+
+                    // Close menus when clicking elsewhere
+                    document.addEventListener('click', function() {
+                        document.querySelectorAll('.overflow-menu').forEach(menu => {
+                            menu.style.display = "none";
+                        });
+                    });
+                })
+                .catch((error) => console.error('Error fetching data:', error));
+        };
+
+
+        document.getElementById('prev-btn').addEventListener('click', () => {
+            if (currentPage > 0) {
+                currentPage--;
+                fetchData(currentPage);
+            }
+        });
+
+        document.getElementById('next-btn').addEventListener('click', () => {
+            currentPage++;
+            fetchData(currentPage);
+        });
+
+
+        fetchData(currentPage);
+    });
 </script>
+<<<<<<< HEAD
 
 <script>
     const toggleButton = document.querySelector(".menu-toggle");
@@ -247,4 +601,7 @@
 
 </script>
 
+=======
+</body>
+>>>>>>> origin/main
 </html>

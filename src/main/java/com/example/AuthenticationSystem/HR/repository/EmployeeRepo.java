@@ -20,4 +20,9 @@ public interface EmployeeRepo extends JpaRepository<Employee, Long> {
     void deleteByUniqueId(String uniqueId);
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/main
 }

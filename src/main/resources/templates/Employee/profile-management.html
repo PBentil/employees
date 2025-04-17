@@ -19,7 +19,7 @@
 
 <body>
 <div class="container">
-    <div class="sidebar">
+    <div class="sidebar" style="width:240px;font-size:16px">
         <div class="heading">
             <h2>HR DIVE</h2>
             <button id="chevron" onclick="toggleMenu()" style="background: transparent; border: none;"><i
@@ -30,18 +30,30 @@
             <i class="fa-solid fa-house fa-lg "></i> <a href="/dash">Dashboard</a>
         </div>
 
+
+
         <div class="icons">
-            <i class="fa-regular fa-square-check fa-lg "></i> <a href="/attendance">Attendances</a>
+            <i class="fa-solid fa-user fa-lg"></i> <a href="/profile">Profile Management</a>
+        </div>
+        <div class="icons">
+            <i class="fas fa-calendar-check fa-lg"></i>  <a href="/attendance">Attendances</a>
+        </div>
+        <div class="icons">
+            <i class="fas fa-plane-departure fa-lg"></i> <a href="/leave">Leave Request</a>
+        </div>
+        <div class="icons">
+            <i class="fas fa-tasks fa-lg"></i> <a href="/etask">Tasks</a>
         </div>
 
         <div class="icons">
-            <i class="fa-solid fa-layer-group fa-lg "></i> <a href="/profile">Profile Management</a>
+            <i class="fas fa-bullhorn fa-lg"></i> <a href="/announcements">Announcements</a>
         </div>
 
         <div class="icons">
-            <i class="fa-solid fa-calendar fa-lg"></i><a href="/meetings">Meetings</a>
+            <i class="fas fa-headset fa-lg"></i> <a href="/help&support">Help & Support</a>
         </div>
 
+<<<<<<< HEAD
 
         <div class="icons">
             <i class="fa-solid fa-bullhorn fa-lg"></i><a href="/announcements">Announcements</a>
@@ -75,9 +87,13 @@
         <div class="icons">
             <i class="fa-solid fa-gear fa-lg"></i> <a href="/security">Settings</a>
         </div>
+=======
+        <div class="icons">
+            <i class="fa-solid fa-gear fa-lg"></i> <a href="/eSettings">Settings</a>
+        </div>
+>>>>>>> origin/main
 
     </div>
-
     <!-- Navbar -->
     <div class="navigation">
         <div class="navbar">
@@ -111,10 +127,18 @@
                         <label for="name" id="employee-fname">Name</label>
                         <input type="text" id="name" name="name" placeholder="Enter your name" value="Frank Doe">
 
+                        <div style="display:flex;gap:20px;width:100%;">
+                            <div style="display:flex;flex-direction:colum;width:50%">
                         <label for="email">Email</label>
                         <input type="email" id="email" name="email" placeholder="Enter your email"
                                value="frank.doe@example.com">
-
+                            </div>
+                            <div style="display:flex;flex-direction:colum;width:50%">
+                        <label for="email">Email</label>
+                        <input type="email" id="phone" name="email"
+                               value="frank.doe@example.com">
+                            </div>
+                        </div>
                         <label for="position">Position</label>
                         <input type="text" id="position" name="position" placeholder="Enter your position"
                                value="Software Engineer">

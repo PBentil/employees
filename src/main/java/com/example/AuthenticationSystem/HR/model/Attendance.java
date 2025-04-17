@@ -65,7 +65,7 @@ public class Attendance {
     }
 
     public void setCheckOutTime(LocalTime checkOutTime) {
-        this.checkOutTime = checkOutTime;
+        this.checkOutTime = checkOutTime.truncatedTo(java.time.temporal.ChronoUnit.MINUTES);
     }
 
     public String getStatus() {

@@ -21,7 +21,7 @@
 <body>
 <div class="container">
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar" style="width:240px;font-size:16px">
         <div class="heading">
             <h2>HR DIVE</h2>
 
@@ -31,18 +31,28 @@
             <i class="fa-solid fa-house fa-lg "></i> <a href="/dash">Dashboard</a>
         </div>
 
+
+
+
         <div class="icons">
-            <i class="fa-regular fa-square-check fa-lg "></i> <a href="/attendance">Attendances</a>
+            <i class="fas fa-calendar-check fa-lg"></i>  <a href="/attendance">Attendances</a>
+        </div>
+        <div class="icons">
+            <i class="fas fa-plane-departure fa-lg"></i> <a href="/leave">Leave Request</a>
+        </div>
+        <div class="icons">
+            <i class="fas fa-tasks fa-lg"></i> <a href="/etask">Tasks</a>
         </div>
 
         <div class="icons">
-            <i class="fa-solid fa-layer-group fa-lg "></i> <a href="/profile">Profile Management</a>
+            <i class="fas fa-bullhorn fa-lg"></i> <a href="/announcements">Announcements</a>
         </div>
 
         <div class="icons">
-            <i class="fa-solid fa-calendar fa-lg"></i><a href="/meetings">Meetings</a>
+            <i class="fas fa-headset fa-lg"></i> <a href="/help&support">Help & Support</a>
         </div>
 
+<<<<<<< HEAD
 
         <div class="icons">
             <i class="fa-solid fa-bullhorn fa-lg"></i><a href="/announcements">Announcements</a>
@@ -77,12 +87,22 @@
             <i class="fa-solid fa-comments fa-lg"></i><a href="/help&support">Help & Support</a>
         </div>
         <div class="icons">
-            <i class="fa-solid fa-gear fa-lg"></i> <a href="/security">Settings</a>
-
+=======
+        <div class="icons">
+            <i class="fa-solid fa-ticket"></i><a href="/mySupportRequests">Request History</a>
         </div>
-
+        <div class="icons">
+>>>>>>> origin/main
+            <i class="fa-solid fa-gear fa-lg"></i> <a href="/security">Settings</a>
+        </div>
+        <div class="icons">
+            <form action="/logout" method="POST" style="padding: 0;margin: 0;background: steelblue;box-shadow: none;position: relative;right:10px">
+                <button type="submit" class="logout-btn" style="background: transparent;">
+                    <i class="fa-solid fa-sign-out-alt"></i> Logout
+                </button>
+            </form>
+        </div>
     </div>
-
 
     <!-- Navbar -->
     <div class="navigation">
@@ -93,9 +113,9 @@
 
                 </div>
                 <div class="links-buttons" style="position:relative;right: 60px;">
-                    <form action="/logout" method="POST" style="display: inline;background: transparent;border: none;box-shadow: none;position: relative;top: 14px;">
-                        <button type="submit" class="logout-btn">
-                            <i class="fa-solid fa-sign-out-alt"></i> Logout
+                    <form action="/checkout" method="POST" style="display: inline;background: transparent;border: none;box-shadow: none;position: relative;top: 14px;">
+                        <button type="submit" class="checkout-btn">
+                            <i class="fa-solid fa-clock"></i>Check Out
                         </button>
                     </form>
             </div>
@@ -112,17 +132,18 @@
                             <p>You are marked <span class="status">present</span> today.</p>
                         </div>
                         <div class="card">
-                            <h2>Tasks</h2>
-                            <p>3 pending tasks. <a href="/etask">View tasks</a></p>
+                            <h2>Pending Tasks</h2>
+                            <p id="pending">0 pending tasks. <a href="/etask">View tasks</a></p>
                         </div>
                         <div class="card">
-                            <h2>Payroll</h2>
-                            <p>Status: <span class="status">Processed</span></p>
+                            <h2> Approved Tasks</h2>
+                            <p id="approved">0 pending tasks. <a href="/etask">View tasks</a></p>
                         </div>
                         <div class="card">
-                            <h2>Meetings</h2>
-                            <p>Upcoming: Project Sync at 3 PM.</p>
+                            <h2>Leave Request</h2>
+                            <p><span class="requests">You have 0 approved leave requests</span></p>
                         </div>
+
                     </div>
                     <div class="announcements">
                         <h2>Announcements</h2>
@@ -269,11 +290,79 @@
 </style>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const name = localStorage.getItem('employeeFirstName');
-      if (name) {
-          document.getElementById('employee-name').textContent = name;
-      }
-  });
+       const name = localStorage.getItem('employeeFirstName');
+       if (name) {
+           document.getElementById('employee-name').textContent = name;
+       }
+
+   fetch("latest")
+    .then(response => response.json())
+    .then(data => {
+        const count = data["Latest:"];
+        if(count && count > 0) {
+            console.log(`You have ${count} new announcement(s) today`);
+
+          document.querySelector('.announcements p').innerHTML =
+    `You have <span style="color:steelblue">${count}</span> new announcement(s) today.`;
+        } else {
+            console.log("No new announcements today");
+        }
+    })
+    .catch(error => {
+        console.error("Error fetching announcements:", error);
+    });
+
+       fetch(`PendingTasks?status=Pending`)
+    .then(response => response.json())
+    .then(data => {
+        const count = data["Task:"];
+        if(count && count > 0) {
+            console.log(`You have ${count} pending tasks`);
+
+          document.getElementById("pending").innerHTML =
+    `You have <span style="color:steelblue">${count}</span> pending tasks.`;
+        } else {
+            console.log("No new announcements today");
+        }
+    })
+    .catch(error => {
+        console.error("Error fetching announcements:", error);
+    });
+       fetch(`PendingTasks?status=Approved`)
+    .then(response => response.json())
+    .then(data => {
+        const count = data["Task:"];
+        if(count && count > 0) {
+            console.log(`You have ${count} approved tasks`);
+
+           document.getElementById("approved").innerHTML =
+    `You have <span style="color:steelblue">${count}</span>  approved tasks.`;
+        } else {
+            console.log("No new announcements today");
+        }
+    })
+    .catch(error => {
+        console.error("Error fetching announcements:", error);
+    });
+
+
+      fetch(`ApprovedRequests?status=Approved`)
+    .then(response => response.json())
+    .then(data => {
+        const count = data["Approved:"];
+        if(count && count > 0) {
+            console.log(`You have ${count} approved leave requests`);
+
+           document.getElementById("requests").innerHTML =
+    `You have <span style="color:steelblue">${count}</span>  approved leave requests.`;
+        } else {
+            console.log("No approved requests");
+        }
+    })
+    .catch(error => {
+        console.error("Error fetching announcements:", error);
+    });
+   });
 </script>
 </body>
 

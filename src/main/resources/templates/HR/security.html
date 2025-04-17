@@ -103,13 +103,18 @@
 
 <body>
 <div class="container">
+<<<<<<< HEAD
     <div class="sidebar">
+=======
+    <div class="sidebar" style="width:240px;font-size:16px">
+>>>>>>> origin/main
         <div class="heading">
             <h2>HR DIVE</h2>
 
         </div>
         <h3>Menu</h3>
         <div class="icons">
+<<<<<<< HEAD
             <i class="fa-solid fa-house fa-lg "></i> <a href="/dashboard">Dashboard</a>
         </div>
         <div class="icons">
@@ -226,6 +231,139 @@
                  body: JSON.stringify(data)
              });
 
+=======
+            <i class="fa-solid fa-house fa-lg "></i> <a href="/dash">Dashboard</a>
+        </div>
+
+
+
+
+        <div class="icons">
+            <i class="fas fa-calendar-check fa-lg"></i>  <a href="/attendance">Attendances</a>
+        </div>
+        <div class="icons">
+            <i class="fas fa-plane-departure fa-lg"></i> <a href="/leave">Leave Request</a>
+        </div>
+        <div class="icons">
+            <i class="fas fa-tasks fa-lg"></i> <a href="/etask">Tasks</a>
+        </div>
+
+        <div class="icons">
+            <i class="fas fa-bullhorn fa-lg"></i> <a href="/announcements">Announcements</a>
+        </div>
+
+        <div class="icons">
+            <i class="fas fa-headset fa-lg"></i> <a href="/help&support">Help & Support</a>
+        </div>
+
+        <div class="icons">
+            <i class="fa-solid fa-ticket"></i><a href="/mySupportRequests">Request History</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-gear fa-lg"></i> <a href="/eSettings">Settings</a>
+        </div>
+        <div class="icons">
+            <form action="/logout" method="POST" style="padding: 0;margin: 0;background: steelblue;box-shadow: none;position: relative;right:10px">
+                <button type="submit" class="logout-btn" style="background: transparent;">
+                    <i class="fa-solid fa-sign-out-alt"></i> Logout
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <div class="navigation" >
+        <div class="navbar" >
+            <div class="links">
+                <div class="prof">
+
+                    <h3>Welcome back,<span id="employee-name" style="color:steelblue">HR</span></h3>
+                </div>
+                <div class="links-buttons" style="position:relative;right: 60px;">
+                    <form action="/checkout" method="POST" style="display: inline;background: transparent;border: none;box-shadow: none;position: relative;top: 14px;">
+                    <button type="submit" class="checkout-btn">
+                        <i class="fa-solid fa-clock"></i>Check Out
+                    </button>
+                </form>
+
+                </div>
+            </div>
+
+            <div class="Settings" style="display:flex;">
+                <div class="Settings-bar">
+                    <div class="sidebar" style="width: 260px;background: white; box-shadow: 5px 5px 15px rgba(0,0,0,0.129);color: steelblue;">
+
+                        <h3 style="color: steelblue;">Settings</h3>
+
+
+
+                        <div class="icons">
+                            <i class="fa-solid fa-user fa-lg"></i><a href="/newprofile" style="color:hsl(0, 0%, 40%);">Profile Management</a>
+                        </div>
+                        <div class="icons">
+                            <i class="fa-solid fa-lock fa-lg"></i> <a href="/security" style="color:hsl(0, 0%, 40%);">Password Management</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="settings-body">
+                    <div class="change-container">
+                    <h2 style="color:steelblue">Change Password</h2>
+                    <p>Enter your current and new password to update.</p>
+                    <form>
+                        <label class="lab">Current Password</label>
+                        <input type="password" placeholder="Current Password"  style="padding:16px" id="currentPassword" name="currentPassword" required>
+                        <label class="lab">New Password</label>
+                        <input type="password" placeholder="New Password"  style="padding:16px"  id="newPassword" name="newPassword" required>
+                        <label class="lab">Confirm Password</label>
+                        <input type="password" placeholder="Confirm New Password" style="padding:16px"  id="confirmPassword"  name="confirmPassword" required>
+                        <button type="submit" style="margin-top:10px;"  id="updatePasswordBtn">Update Password</button>
+                    </form>
+
+                </div></div>
+
+            </div>
+
+        </div>
+
+
+        </div>
+
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const name = localStorage.getItem('employeeFirstName');
+       if (name) {
+           document.getElementById('employee-name').textContent = name;
+       }
+     document.getElementById("updatePasswordBtn").addEventListener("click", async function (event) {
+         event.preventDefault();
+
+         const currentPassword = document.getElementById("currentPassword").value;
+         const newPassword = document.getElementById("newPassword").value;
+         const confirmPassword = document.getElementById("confirmPassword").value;
+
+         if (newPassword !== confirmPassword) {
+             alert("New Password and Confirm Password do not match!");
+             return;
+         }
+
+         const data = {
+             currentPassword: currentPassword,
+             newPassword: newPassword
+         };
+
+         try {
+             const response = await fetch("/reset-password", {
+                 method: "POST",
+                 headers: {
+                     "Content-Type": "application/json"
+                 },
+                 body: JSON.stringify(data)
+             });
+
+>>>>>>> origin/main
              const result = await response.json();
 
              if (response.ok) {

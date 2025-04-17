@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!doctype html>
 <html lang="en">
 
@@ -249,4 +250,266 @@ form {
 });
 
 </script>
+=======
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+          integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&display=swap"
+            rel="stylesheet">
+
+
+    <title>Converted Tailwind CSS Layout</title>
+</head>
+<style>
+    .support-container{
+    margin-top:10px;
+      margin: auto;
+        padding: 40px;
+        font-size: 14px;
+        background:white;
+        box-shadow:3px 5px 15px rgba(0,0 , 0, 0.320);
+        width: 650px;
+        height:590px;
+        display: flex;
+        flex-direction: column;
+        gap:12px;
+        position: relative;
+        border-radius: 8px;
+    }
+    .support-container:hover{
+        border: 2px solid steelblue;
+    }
+    .support-container span{
+   color: steelblue;
+    }
+form {
+       width:100%;
+        height:100%;
+        display: flex;
+        flex-direction: column;
+        gap:12px;
+}
+.logout-btn{
+    background: #4682B4;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding:10px;
+    border-radius:4px;
+    margin-bottom:2px;
+}
+
+.logout-btn:hover {
+    background: #366090;
+}
+    .support-container input{
+    padding:10px;}
+
+</style>
+<body>
+<div class="sidebar" style="width:240px;font-size:16px">
+    <div class="heading">
+        <h2>HR DIVE</h2>
+        <button id="chevron" onclick="toggleMenu()" style="background: transparent; border: none;"><i
+                class="fa-solid fa-chevron-left"></i></button>
+    </div>
+    <h3>Menu</h3>
+    <div class="icons">
+        <i class="fa-solid fa-house fa-lg "></i> <a href="/dash">Dashboard</a>
+    </div>
+
+
+
+
+    <div class="icons">
+        <i class="fas fa-calendar-check fa-lg"></i>  <a href="/attendance">Attendances</a>
+    </div>
+    <div class="icons">
+        <i class="fas fa-plane-departure fa-lg"></i> <a href="/leave">Leave Request</a>
+    </div>
+    <div class="icons">
+        <i class="fas fa-tasks fa-lg"></i> <a href="/etask">Tasks</a>
+    </div>
+
+    <div class="icons">
+        <i class="fas fa-bullhorn fa-lg"></i> <a href="/announcements">Announcements</a>
+    </div>
+
+    <div class="icons">
+        <i class="fas fa-headset fa-lg"></i> <a href="/help&support">Help & Support</a>
+    </div>
+    <div class="icons">
+        <i class="fa-solid fa-ticket"></i><a href="/mySupportRequests">Request History</a>
+    </div>
+    <div class="icons">
+        <i class="fa-solid fa-gear fa-lg"></i> <a href="/security">Settings</a>
+    </div>
+    <div class="icons">
+        <form action="/logout" method="POST" style="padding: 0 !important;margin: 0 !important;background: steelblue;box-shadow: none;position: relative !important;right:80px !important;">
+            <button type="submit" class="logout-btn" style="background: transparent;">
+                <i class="fa-solid fa-sign-out-alt"></i> Logout
+            </button>
+        </form>
+    </div>
+</div>
+
+
+
+<!-- Navbar -->
+<div class="navigation">
+    <div class="navbar">
+        <div class="links">
+            <div class="prof">
+                <h3>Welcome back,<span id="employee-name" style="color:steelblue">HR</span></h3>
+
+            </div>
+            <div class="links-buttons" style="position:relative;right: 60px;">
+                <form action="/checkout" method="POST" >
+                    <button type="submit" class="logout-btn">
+                        <i class="fa-solid fa-clock"></i>Check Out
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="main-content">
+
+            <div class="support-container">
+                <form id="myForm">
+                <support-head>
+                    <h2 style="margin: 0;color: steelblue;border-bottom: 1px solid lightgray;padding-bottom: 20px;">Support Request Form</h2>
+                </support-head>
+                <p>If you are experiencing any work-related issues or need assistance from the HR department, please fill out this form. Our team will review your request and get back to you as soon as possible.</p>
+
+                <div class="" style="display: flex;gap:150px;align-items: center;">
+                    <div style="display: flex;flex-direction: column;">
+                        <label>First Name<span>*</span></label>
+                        <input type="text" id="firstName"  name="firstName" style="width:160%;"  readonly required>
+                    </div>
+                    <div style="display: flex;flex-direction: column;">
+                        <label>Last Name<span>*</span></label>
+                        <input type="text"    id="lastName" name="lastName" style="width:160%;" readonly required>
+                    </div>
+                </div>
+                <div class="" style="display: flex;gap:150px;align-items: center;">
+                    <div style="display: flex;flex-direction: column;">
+                        <label>Email<span>*</span></label>
+                        <input type="email"  name="email" id="email" style="width:160%;" readonly required>
+                    </div>
+                    <div style="display: flex;flex-direction: column;">
+                        <label>Phone<span>*</span></label>
+                        <input type="text" id="phone"  name="phone" style="width:160%;"  readonly required>
+                    </div>
+                </div>
+                    <div style="display:none">
+                    <label style="display: flex; align-items: center; gap: 5px;">
+                        <input type="text" id="uniqueId" name="uniqueId"> EmployeeId
+                    </label>
+                    </div>
+                    <div style="display: flex;flex-direction: column;">
+                        <label>Title<span>*</span></label>
+                        <input type="text" id="title"  name="title" style="width:98%;"  required>
+                    </div>
+                <p>Please tell us the priority Level <span>*</span></p>
+                <div class="priority-levels" style="display: flex; flex-wrap: wrap; gap: 20px;">
+                    <label style="display: flex; align-items: center; gap: 5px;">
+                        <input type="radio" name="priority" value="low"> Low
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 5px;">
+                        <input type="radio" name="priority" value="high" required> High
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 5px;">
+                        <input type="radio" name="priority" value="normal" required> Normal
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 5px;">
+                        <input type="radio" name="priority" value="critical" required> Critical
+                    </label>
+                </div>
+                    <input type="hidden" id="createdAt" name="createdAt">
+
+                <p>Problem Category<span>*</span></p>
+                <select style="padding: 10px;" name="category" required>
+                    <option value="Incident">Incident</option>
+                    <option value="Question">Question</option>
+                    <option value="Problem">Problem</option>
+                    <option value="Suggestion">Suggestion</option>
+                </select>
+                <p>Message<span>*</span></p>
+                <textarea style="position:relative;width: 100%;  margin: 0;border-radius: 0;  min-height: 90px;" name="message" id="message"></textarea>
+                <button type="submit" style="height: 70px;width: 90px;padding:10px; background: steelblue;border: 0;color: white;border-radius: 2px;">Send</button>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const name = localStorage.getItem('employeeFirstName');
+       if (name) {
+           document.getElementById('employee-name').textContent = name;
+       }
+
+    fetch("/getEmployeeInfo")
+        .then(response => response.json())
+        .then(data => {
+            const firstNameField = document.getElementById("firstName");
+            const lastNameField = document.getElementById("lastName");
+            const emailField = document.getElementById("email");
+            const phoneField = document.getElementById("phone");
+            const employeeIDField = document.getElementById("uniqueId");
+
+            if (data) {
+                employeeIDField.value = data.uniqueId;
+                firstNameField.value = data.firstName;
+                lastNameField.value = data.lastName;
+                emailField.value = data.email;
+                phoneField.value = data.phone;
+            }
+        })
+        .catch(error => console.error("Error fetching employee info:", error));
+
+    const form = document.getElementById("myForm");
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+      document.getElementById("createdAt").value = new Date().toISOString();
+
+        const formData = new FormData(form);
+        const jsonObject = Object.fromEntries(formData.entries());
+
+        console.log(jsonObject); // Debugging
+
+        fetch("/helpRequest", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(jsonObject),
+        })
+                .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+
+            .then(data =>alert(data))
+            .catch(error => console.error("Error submitting form:", error));
+    });
+});
+
+</script>
+>>>>>>> origin/main
 </html>

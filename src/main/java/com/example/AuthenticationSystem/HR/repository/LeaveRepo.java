@@ -26,5 +26,13 @@ public interface LeaveRepo extends JpaRepository<Leave, Long> {
     Page<Leave> findEmployeeFilteredRecords(@Param("status") String status,@Param("uniqueId") String uniqueId, Pageable pageable);
 
 
+<<<<<<< HEAD
+=======
+    @Query("SELECT COUNT(l)FROM Leave l WHERE  l.uniqueId=:uniqueId AND l.status = :status")
+    Long findApprovedRecords(@Param("uniqueId") String uniqueId,@Param("status") String status);
+
+    @Query("SELECT COUNT(l) FROM Leave l WHERE  l.status=:status")
+    Long findTotalUnapprovedLeaveRequests(@Param("status") String status);
+>>>>>>> origin/main
 
 }

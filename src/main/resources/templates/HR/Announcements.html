@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!doctype html>
 <html lang="en">
 
@@ -261,4 +262,578 @@ width: 12%;
     });
 
 </script>
+=======
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+          integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&display=swap"
+            rel="stylesheet">
+    <title>Leave</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+
+
+
+        .page-btns {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            margin-bottom: 20px;
+        }
+
+        .page-btns button {
+            padding: 10px;
+            margin-right: 70px;
+        }
+        .announcement p{
+          font-size:18px;
+              display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    max-height: 4.5em;
+          }
+          .create-announcement
+          {
+            font-size:18px;
+            width: 1100px;
+            height: 250px;
+            padding: 20px;
+          border:1px solid lightgrey;
+          align-self:center;
+          background:white;
+          border-radius: 8px;
+          margin-top: 20px;
+            gap: 0;
+            position:relative;
+          }
+        .announcements-container{
+        font-size:18px;
+            width: 1100px;
+            height: 850px;
+            margin-top:10px;
+            align-self: center;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position:relative;
+        }
+        .announcements-container h3{
+margin: 0;
+        }
+        .announcement-info {
+    width: 100%;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp:3;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    padding-left: 15px;
+
+}
+.date{
+width: 12%;
+    border-right: 1px solid lightgray;
+}
+.announcement{
+    display: flex;
+    padding: 15px;
+    height: 115px;
+    background: white;
+    margin: 0;
+    border-radius: 0;
+position:relative;
+
+}
+.announcement h3{
+        color:steelblue;
+        margin-bottom:8px;
+        }
+        .search-filter{
+            font-size:18px;
+            width: 1100px;
+            height: 90px;
+            padding: 20px;
+          display: flex;
+          justify-content: space-between;
+          align-self:center;
+            margin-top:32px;
+        }
+        .searchbox{
+            width: 250px;
+            background:white;
+            border: 1px solid lightgrey;
+            border-radius: 6px;
+            padding-left: 10px;
+            display: flex;
+            align-items: center;
+            gap:6px;
+        }
+        .search-input{
+            padding: 6px;
+            border: none;
+        }
+        .search-input:focus{
+            border: none;
+            outline: none;
+        }
+        .announcement-popup{
+
+            display: none;
+            width:550px;
+            height: 480px;
+            align-self: center;
+            z-index:100;
+            position: absolute;
+            margin-top:45px;
+        }
+        .fa-xmark:hover{
+            color: rgb(241, 57, 57) !important;
+        }
+                   .submenu{
+    display: flex;
+    flex-direction: column;
+width:10%;
+height:100%;
+background: transparent;
+position:absolute;
+right:0;
+top:0;
+margin-top:20px;
+margin-right:20px;
+}
+.overflow-menu{
+    display:none;
+    flex-direction: column;
+    background: plum;
+    width: 135px;
+    height:auto;
+    background:white;
+    margin-top:40px;
+    margin-right:20px;
+    box-shadow: 4px 4px 20px rgba(0,0,0,0.225);
+    position: absolute;
+    right: 0;
+    z-index: 100;
+}
+.overflow-menu a,button{
+    text-decoration: none;
+    padding: 14px;
+    color: black;
+
+}
+.overflow-menu button{
+border:none;
+background:white;
+ padding: 14px;
+ font-size:16px;
+ font-weight:500;
+}
+.overflow-menu a:hover{
+    background:whitesmoke;
+}
+.overflow-menu button:hover{
+    background:whitesmoke !important;
+}
+.updatePopup{
+    display: none;
+            width:550px;
+            height: 480px;
+            align-self: center;
+            z-index:100;
+            position: absolute;
+            margin-top:45px;
+}
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="sidebar" style="width:240px !important;font-size:16px;">
+        <div class="heading">
+            <h2>HR DIVE</h2>
+            <button id="chevron" onclick="toggleMenu()" style="background: transparent; border: none;"><i
+                    class="fa-solid fa-chevron-left"></i></button>
+        </div>
+        <h3>Menu</h3>
+        <div class="icons">
+            <i class="fa-solid fa-house fa-lg "></i> <a href="/dashboard">Dashboard</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-people-group fa-lg"></i><a href="/employees">Employees</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-plus fa-lg"></i> <a href="/contract">New Hire</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-clipboard-list"></i> <a href="/assignedTasks">Tasks</a>
+        </div>
+
+        <div class="icons">
+            <i class="fa-regular fa-square-check fa-lg "></i> <a href="/Attendances">Attendances</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-arrow-right-from-bracket fa-lg "></i> <a href="/Leaves">Leaves</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-layer-group fa-lg "></i> <a href="/payroll">Payroll</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-bullhorn"></i> <a href="/HRannouncements">Announcements</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-headset fa-lg"></i> <a href="/support">Support Requests</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-gear fa-lg"></i> <a href="/security">Settings</a>
+        </div>
+
+    </div>
+    <!-- Navbar -->
+    <div class="navigation">
+        <div class="navbar" style="background:whitesmoke">
+            <div class="links">
+                <div class="prof">
+
+                    <h3>Welcome back,<span id="employee-name" style="color:steelblue">HR</span></h3>
+                </div>
+                <div class="links-buttons" style="position:relative;right: 60px;">
+                    <form action="/logout" method="POST"
+                          style="display: inline;background: transparent;border: none;box-shadow: none;position: relative;top: 14px;">
+                        <button type="submit" class="logout-btn">
+                            <i class="fa-solid fa-sign-out-alt"></i> Logout
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="create-announcement">
+                <h2 style="color:steelblue;text-align:left;margin-bottom: 10px;">Announcements</h2>
+                <p>Use this section to share important updates and information with employees. HR can post announcements regarding company policies, events, deadlines, and other essential notifications to keep everyone informed.</p>
+                <button style="margin-top: 25px;width: 80px;height: 40px;background: steelblue;color: white;border: none;border-radius: 4px;" id="create-btn">Create</button>
+            </div>
+            <div class="updatePopup">
+
+                <form style="height: 100%;" id="announcementUpdateForm">
+                    <div style="display: flex;align-items: center;">
+                        <h2 style="margin-bottom: 10px;"> Update Announcement</h2>
+
+                    </div>
+                    <label>Title</label>
+                    <input type="text" name="title" id="updateTitle" required >
+                    <div style="display: flex;gap: 20px;">
+                        <div style="display: flex;flex-direction: column;width: 48%;">
+                            <label>Category</label>
+                            <select name="contentType" id="updateContent" required>
+                                <option>General Update</option>
+                                <option>HR Notice</option>
+                                <option>Event</option>
+                            </select>
+                        </div>
+
+                        <div style="display: flex;flex-direction: column;width: 48%;">
+                            <label>Priority</label>
+                            <select name="priority" id="updatePrioirity" required >
+
+                                <option>High</option>
+                                <option>Medium</option>
+                                <option>Low</option>
+                            </select>
+                        </div>
+                    </div>
+                    <label>Content</label>
+                    <textarea placeholder="Description...." style="width: 100%;height: 40%;padding: 10px;border-radius: 5px;border: 1px solid lightgrey;" name="content"  id="updateDescription" required></textarea>
+                    <br>
+                    <button style="width: 70px;height:35px;margin-top: 8px;" id="updateBtn" type="submit">Update</button>
+                </form>
+            </div>
+            <div class="announcement-popup">
+                <button style="background:white;cursor: pointer;width: 50px;" class="close-btn" id="close-btn"><i class="fa-solid fa-xmark fa-lg" style="position: absolute;top:0;right: 0;margin-top: 20px;margin-right: 30px;color:gray;"></i></button>
+                <form style="height: 100%;" id="announcementForm">
+                    <div style="display: flex;align-items: center;">
+                        <h2 style="margin-bottom: 10px;"> Create Announcement</h2>
+
+                    </div>
+                    <label>Title</label>
+                    <input type="text" name="title" required >
+                    <div style="display: flex;gap: 20px;">
+                        <div style="display: flex;flex-direction: column;width: 48%;">
+                            <label>Category</label>
+                            <select name="contentType" required>
+                                <option>General Update</option>
+                                <option>HR Notice</option>
+                                <option>Event</option>
+                            </select>
+                        </div>
+
+                        <div style="display: flex;flex-direction: column;width: 48%;">
+                            <label>Priority</label>
+                            <select name="priority" required >
+
+                                <option>High</option>
+                                <option>Medium</option>
+                                <option>Low</option>
+                            </select>
+                        </div>
+                    </div>
+                    <label>Content</label>
+                    <textarea placeholder="Description...." style="width: 100%;height: 40%;padding: 10px;border-radius: 5px;border: 1px solid lightgrey;" name="content" required></textarea>
+                    <br>
+                    <button style="width: 70px;height:35px;margin-top: 8px;" id="submit-btn" type="submit">Create</button>
+                </form>
+            </div>
+            <div class="search-filter">
+                <div class="searchbox">
+                    <i class="fa-solid fa-magnifying-glass fa-ms" style="color: grey;"></i>
+                    <input type="text" placeholder="Search title" class="search-input">
+                </div>
+                <div class="filter">
+                    <label style="color: steelblue;">Filter By:</label>
+                    <select style="padding: 4px;">
+                        <option>All</option>
+                        <option>Priority</option>
+                        <option>Date</option>
+                    </select>
+                </div>
+            </div>
+            <div class="announcements-container" id="announcements-container">
+
+
+
+
+
+            </div>
+            <div class="pagination-controls" style="display: flex; justify-content: center; margin-bottom: 40px; gap: 10px;">
+                <button id="prev-btn" style="width: 90px; height: 50px; background: steelblue; color: white; border: none; border-radius: 4px;">Previous</button>
+                <span id="page-indicator" style="display: flex; align-items: center; font-size: 16px; margin: 0 10px;">Page 1</span>
+                <button id="next-btn" style="width: 90px; height: 50px; background: steelblue; color: white; border: none; border-radius: 4px;">Next</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    let id;
+    let currentPage = 0;
+    let totalPages = 1;
+    const pageSize = 4;
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        fetchPage(currentPage);
+
+
+        document.getElementById("next-btn").addEventListener('click', function() {
+            if (currentPage < totalPages - 1) {
+                currentPage++;
+                fetchPage(currentPage);
+            }
+        });
+
+        document.getElementById("prev-btn").addEventListener('click', function() {
+            if (currentPage > 0) {
+                currentPage--;
+                fetchPage(currentPage);
+            }
+        });
+
+        function updatePaginationControls() {
+            document.getElementById("page-indicator").textContent = `Page ${currentPage + 1} of ${totalPages}`;
+
+            // Disable/enable buttons based on current page
+            document.getElementById("prev-btn").disabled = currentPage === 0;
+            document.getElementById("next-btn").disabled = currentPage === totalPages - 1;
+
+            // Visual feedback for disabled buttons
+            document.getElementById("prev-btn").style.opacity = currentPage === 0 ? '0.5' : '1';
+            document.getElementById("next-btn").style.opacity = currentPage === totalPages - 1 ? '0.5' : '1';
+        }
+
+        function fetchPage(page) {
+            const container = document.getElementById("announcements-container");
+            const announcementPopup = document.querySelector(".announcement-popup");
+
+            // Show loading indicator
+            container.innerHTML = '<div style="text-align: center; padding: 20px;">Loading announcements...</div>';
+
+            fetch(`/eAnnouncements?page=${page}&size=${pageSize}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Update total pages
+                    totalPages = data.totalPages || 1;
+
+                    // Update the container with announcements
+                    container.innerHTML = data.content.map((announcement) => `
+                        <div class="announcement">
+                            <div class="date">
+                                ${announcement.date}
+                            </div>
+
+                            <div class="announcement-info">
+                                <h3>${announcement.title}</h3>
+                                <p>${announcement.content}</p>
+                            </div>
+                            <div class="submenu">
+                                <button class="overflow-btn" style="background:white;border: none;cursor: pointer;">
+                                    <i class="fa-solid fa-ellipsis-vertical fa-lg" style="margin-right: 20px;color:gray;"></i>
+                                </button>
+                            </div>
+                            <div class="overflow-menu">
+                                <button value="${announcement.id}" style="text-align:left" id="updateAnnouncement" class="newUpdate">Update</button>
+                                <button value="${announcement.id}" class="assign-btn" style="text-align:left">Delete</button>
+                            </div>
+                        </div>
+                    `).join('');
+
+                    // Update pagination controls
+                    updatePaginationControls();
+
+                    // Setup menu listeners
+                    setupMenuListeners();
+                    setupUpdateListeners();
+                })
+                .catch(error => {
+                    console.error('Error fetching announcements:', error);
+                    container.innerHTML = '<div style="text-align: center; padding: 20px;">Error loading announcements. Please try again.</div>';
+                });
+        }
+
+        // The rest of your code for creating, updating, and deleting announcements remains the same
+        document.getElementById("create-btn").addEventListener('click', function() {
+            document.querySelector(".announcement-popup").style.display = "block";
+        });
+
+        document.getElementById("close-btn").addEventListener('click', function() {
+            document.querySelector(".announcement-popup").style.display = "none";
+        });
+
+        function setupUpdateListeners() {
+            const updateButtons = document.querySelectorAll('.newUpdate');
+            updateButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const announcement = this.closest(".announcement");
+                    const title = announcement.querySelector("h3").textContent;
+                    const content = announcement.querySelector("p").textContent;
+
+                    document.getElementById("updateTitle").value = title;
+                    document.getElementById("updateDescription").value = content;
+
+                    sessionStorage.setItem('updateAnnouncementId', this.value);
+
+                    document.querySelector(".updatePopup").style.display = "block";
+                    announcement.querySelector(".overflow-menu").style.display = "none";
+                });
+            });
+        }
+
+        function setupMenuListeners() {
+            const submenuButtons = document.querySelectorAll('.submenu');
+            submenuButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    document.querySelectorAll(".overflow-menu").forEach(menu => {
+                        menu.style.display = "none";
+                    });
+
+                    const announcement = this.closest(".announcement");
+                    const menu = announcement.querySelector(".overflow-menu");
+                    id = menu.querySelector('button').value;
+                    console.log(id);
+                    menu.style.display = "flex";
+                });
+            });
+        }
+
+        document.getElementById("updateBtn").addEventListener('click', function(event) {
+            event.preventDefault();
+            let updateForm = document.getElementById("announcementUpdateForm");
+            let updateFormData = new FormData(updateForm);
+            const updateJson = Object.fromEntries(updateFormData.entries());
+
+            fetch(`updateAnnouncement?id=${id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(updateJson)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data);
+                document.querySelector(".updatePopup").style.display = "none";
+                fetchPage(currentPage); // Refresh current page after update
+            });
+        });
+
+        document.getElementById("submit-btn").addEventListener("click", function(event) {
+            event.preventDefault();
+            let form = document.getElementById("announcementForm");
+            let formData = new FormData(form);
+            const jsonFormData = Object.fromEntries(formData.entries());
+
+
+
+
+
+fetch(`deleteAnnouncement?id=${id}`,{
+method:'DELETE'})
+.then(response=>response.json())
+.then(data=>console.log(data));
+            fetch("/createAnnouncement", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonFormData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("Announcement created successfully");
+                document.querySelector(".announcement-popup").style.display = "none";
+                form.reset();
+                // Refresh to first page after creating new announcement
+                currentPage = 0;
+                fetchPage(currentPage);
+            });
+        });
+
+        // Handle delete functionality
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('assign-btn')) {
+                const announcementId = e.target.value;
+                if (confirm('Are you sure you want to delete this announcement?')) {
+                    fetch(`/deleteAnnouncement?id=${announcementId}`, {
+                        method: 'DELETE'
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert('Announcement deleted successfully');
+                        fetchPage(currentPage); // Refresh current page after deletion
+                    })
+                    .catch(err => console.error('Error deleting announcement:', err));
+                }
+            }
+        });
+    });
+</script>
+>>>>>>> origin/main
 </html>

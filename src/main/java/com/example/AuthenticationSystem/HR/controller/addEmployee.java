@@ -10,7 +10,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+<<<<<<< HEAD
 
+=======
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+>>>>>>> origin/main
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -74,12 +83,27 @@ public String HelpSupportPage(){
         return "Employee/profile-management";
     }
 
+<<<<<<< HEAD
+=======
+
+    @GetMapping("/mySupportRequests")
+    public String myRequests(){
+        return "Employee/mySupportRequests";
+    }
+>>>>>>> origin/main
     @GetMapping("/taskEmployees")
     public ResponseEntity<List<Employee>> getAssignedEmployees(Model model) {
         List<Employee> employees = employeeService.getAssignableEmployees();
         return ResponseEntity.ok(employees);
     }
+<<<<<<< HEAD
 
+=======
+@GetMapping("/eSettings")
+public String eSettingsPage(){
+        return"Employee/eSettings";
+}
+>>>>>>> origin/main
     @GetMapping("/reset-password")
     public String ResetPage(){
         return "Employee/reset-password";
@@ -155,6 +179,13 @@ public String HelpSupportPage(){
 
         return "Employee/tasks";
     }
+<<<<<<< HEAD
+=======
+    @GetMapping("/taskDescription")
+    public String taskDescriptionPage(){
+        return "Employee/taskDescription";
+    }
+>>>>>>> origin/main
 
     @GetMapping("epayroll")
     public String Epayroll() {
@@ -167,8 +198,19 @@ public String HelpSupportPage(){
         model.addAttribute("count", count);
         return ResponseEntity.ok(count);
     }
+<<<<<<< HEAD
 
 
+=======
+@GetMapping("/assignedTaskData")
+public String getAssignedTaskData(){
+        return  "HR/assignedTaskData";
+}
+@GetMapping("/assignedTasks")
+public String assignedTasks(){
+        return "HR/assignedTasks";
+}
+>>>>>>> origin/main
     @PostMapping("/personal")
     public ResponseEntity<Map<String, Object>> submitAllData(@RequestBody Employee employeeDetails) {
         Map<String, Object> response = new HashMap<>();
@@ -350,6 +392,7 @@ public String HelpSupportPage(){
     }
 
     @PostMapping("/assignTask")
+<<<<<<< HEAD
     public ResponseEntity<Tasks> assignTask(@RequestParam String uniqueId, @RequestParam String taskTitle, @RequestParam String priority, @RequestParam String dueDate, @RequestParam String taskDescription) {
         Tasks newTask = new Tasks();
         newTask.setUniqueId(uniqueId);
@@ -362,6 +405,46 @@ public String HelpSupportPage(){
         newTask.setStatus("Pending");
         employeeService.saveTask(newTask);
         return ResponseEntity.ok(newTask);
+=======
+    public ResponseEntity<Tasks> assignTask(@RequestParam("uniqueId") String uniqueId,
+                                            @RequestParam("taskTitle") String taskTitle,
+                                            @RequestParam("taskDescription") String taskDescription,
+                                            @RequestParam("priority") String priority,
+                                            @RequestParam("startDate") String startDate,
+                                            @RequestParam("dueDate") String dueDate,
+                                            @RequestParam(value = "attachment", required = false) MultipartFile attachment) {
+
+        try {
+            Tasks newTask = new Tasks();
+            newTask.setUniqueId(uniqueId);
+            newTask.setTaskTitle(taskTitle);
+            newTask.setTaskDescription(taskDescription);
+            newTask.setPriority(priority);
+            newTask.setStartDate(startDate);
+            newTask.setDueDate(dueDate);
+
+            newTask.setReport("Not Done");
+            LocalTime today = LocalTime.now();
+            newTask.setAssignedAt(today);
+
+
+            newTask.setStatus("Pending");
+            newTask.setApproval("Not Approved");
+
+
+            if (attachment != null && !attachment.isEmpty()) {
+                newTask.setAttachment(attachment.getBytes());
+            }
+
+
+            employeeService.saveTask(newTask);
+
+            return ResponseEntity.ok(newTask);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+>>>>>>> origin/main
     }
 
     @GetMapping("/attendanceData")
@@ -377,6 +460,7 @@ public String HelpSupportPage(){
         Page<Tasks> tasks = employeeService.findTasks(uniqueId,page,size);
         return ResponseEntity.ok(tasks);
     }
+<<<<<<< HEAD
 
     @GetMapping("/profileManagement")
     public ResponseEntity<Employee> getEmployeeProfile(String uniqueId) {
@@ -385,6 +469,22 @@ public String HelpSupportPage(){
         return ResponseEntity.ok(employee);
     }
 
+=======
+    @GetMapping("/allTasks")
+    public ResponseEntity<Page<Tasks>> getTasks(@RequestParam int page,@RequestParam int size) {
+
+        Page<Tasks> tasks = employeeService.findAllTasks(page,size);
+        return ResponseEntity.ok(tasks);
+    }
+
+    @GetMapping("/profileManagement")
+    public ResponseEntity<Employee> getEmployeeProfile(String uniqueId) {
+        uniqueId = UniqueId;
+        Employee employee = employeeService.getEmployeeProfile(uniqueId);
+        return ResponseEntity.ok(employee);
+    }
+
+>>>>>>> origin/main
     @GetMapping("/attendanceChart")
     public ResponseEntity<Map<String, Integer>> getAttendanceChartData() {
         LocalDate today = LocalDate.now(); // Get today's date
@@ -591,5 +691,388 @@ public ResponseEntity<Page<SupportRequest>> helpRequest(@RequestParam  int page,
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Request not found.");
         }
     }
+<<<<<<< HEAD
 
+=======
+    @PostMapping("/createAnnouncement")
+    public ResponseEntity<Map<String,String>> createAnnouncement(@RequestBody Announcement announcementdata) {
+
+        if (announcementdata.getDate() == null) {
+            announcementdata.setDate(LocalDate.now());
+        }
+
+        Announcement announcement = employeeService.createAnnouncement(announcementdata);
+        Map<String,String> response=new HashMap<>();
+
+        response.put("Message","Announcement created successfully");
+        return ResponseEntity.ok(response);
+    }
+@GetMapping("/getTaskData")
+    public ResponseEntity<Tasks> findTaskData(@RequestParam long id){
+        Tasks task=employeeService.findTask(id);
+        return ResponseEntity.ok(task);
+        
+}
+    @PostMapping("/submitTaskReport")
+    public ResponseEntity<Map<String, String>> submitReport(
+            @RequestParam("taskId") Long taskId,
+            @RequestParam("reportSummary") String reportSummary,
+            @RequestParam("files") MultipartFile[] files) {
+
+
+        Tasks task = employeeService.findSpecificTask(UniqueId, taskId);
+
+        if (task == null) {
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("message", "Task not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+        }
+
+
+        task.setReport(reportSummary);
+
+
+        if (files != null && files.length > 0) {
+            try {
+
+                byte[] fileBytes = files[0].getBytes();
+                task.setProof(fileBytes);
+
+
+
+            } catch (IOException e) {
+                Map<String, String> errorResponse = new HashMap<>();
+                errorResponse.put("message", "Failed to process file upload");
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+            }
+        }
+task.setStatus("Waiting for approval");
+
+        employeeService.saveTask(task);
+
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Task report submitted successfully");
+        return ResponseEntity.ok(response);
+    }
+    @GetMapping("/report")
+    public ResponseEntity<Map<String, Object>> findReportData(@RequestParam long id) {
+        Map<String, Object> response = new HashMap<>();
+
+        Optional<Tasks> report = employeeService.findReportData(id, "Waiting for approval");
+
+        if (report.isPresent()) {
+            Tasks reportData = report.get();
+            response.put("message", "Report found");
+            response.put("data", reportData); // Send the entire task object
+            return ResponseEntity.ok(response);
+        } else {
+            response.put("message", "No report found for the given ID with status 'Waiting for approval'");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        }
+    }
+
+    @GetMapping("/findPay")
+    public ResponseEntity<?> findPayroll(@RequestParam String uniqueId) {
+        Optional<Compensation> payroll = employeeService.Payroll(uniqueId);
+
+        if (payroll.isPresent()) {
+            Compensation pay = payroll.get();
+            // Return the object directly without nesting under "Payroll"
+            return ResponseEntity.ok(pay);
+        } else {
+            // Return a more descriptive error with status 404
+            Map<String, String> error = new HashMap<>();
+            error.put("error", "Payment details not found for employee ID: " + uniqueId);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+        }
+    }
+    @GetMapping("/findEmployment")
+    public ResponseEntity<?> findEmployment(@RequestParam String uniqueId) {
+        Optional<JobDetails> jobDetails = employeeService.Employment(uniqueId);
+
+        if (jobDetails.isPresent()) {
+            JobDetails job = jobDetails.get();
+            // Return the object directly without nesting under "Payroll"
+            return ResponseEntity.ok(job);
+        } else {
+            // Return a more descriptive error with status 404
+            Map<String, String> error = new HashMap<>();
+            error.put("error", "Payment details not found for employee ID: " + uniqueId);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+        }
+    }
+    @PostMapping("/updateEmployee")
+    public ResponseEntity<Map<String, String>> updateEmployee(@RequestBody Employee updateEmployee) {
+        String employeeDetailsUniqueId = updateEmployee.getUniqueId();
+
+
+        Employee employee = employeeService.foundEmployee(employeeDetailsUniqueId);
+
+
+        if (employee == null) {
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Employee not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        }
+
+
+        if (updateEmployee.getFirstName() != null) {
+            employee.setFirstName(updateEmployee.getFirstName());
+        }
+
+        if (updateEmployee.getLastName() != null) {
+            employee.setLastName(updateEmployee.getLastName());
+        }
+
+        if (updateEmployee.getEmail() != null) {
+            employee.setEmail(updateEmployee.getEmail());
+        }
+
+        if (updateEmployee.getPhone() != null) {
+            employee.setPhone(updateEmployee.getPhone());
+        }
+
+        if (updateEmployee.getAddress() != null) {
+            employee.setAddress(updateEmployee.getAddress());
+        }
+
+
+
+        employeeService.saveEmployee(employee);
+
+
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Employee updated successfully");
+
+        return ResponseEntity.ok(response);
+    }
+@PostMapping("updatePersonal")
+public  ResponseEntity<Map<String, Employee>> updateEmployee(@RequestParam String uniqueId, @RequestBody Employee updateEmployee){
+        Employee employee=employeeService.foundEmployee(uniqueId);
+        employee.setFirstName(updateEmployee.getFirstName());
+        employee.setLastName(updateEmployee.getLastName());
+        employee.setEmail(updateEmployee.getEmail());
+        employee.setPhone(updateEmployee.getPhone());
+    employee.setAddress(updateEmployee.getAddress());
+    employeeService.saveEmployee(employee);
+    Map<String,Employee> response=new HashMap<>();
+    response.put("Updated Employee",employee);
+    return  ResponseEntity.ok(response);
+}
+    @PostMapping("updateEmployment")
+    public ResponseEntity<Map<String, JobDetails>> updateEmployment(@RequestParam String uniqueId, @RequestBody JobDetails updateJob) {
+        Optional<JobDetails> existingJobDetails = employeeService.Employment(uniqueId);
+
+        if (existingJobDetails.isPresent()) {
+            JobDetails jobToUpdate = existingJobDetails.get();
+            jobToUpdate.setJobRole(updateJob.getJobRole());
+            jobToUpdate.setJobLevel(updateJob.getJobLevel());
+            jobToUpdate.setShiftStart(updateJob.getShiftStart());
+            jobToUpdate.setShiftEnd(updateJob.getShiftEnd());
+
+            employeeService.saveJobDetails(jobToUpdate);
+
+            Map<String, JobDetails> response = new HashMap<>();
+            response.put("Updated Employee", jobToUpdate);
+
+            return ResponseEntity.ok(response);
+        } else {
+
+            Map<String, String> error = new HashMap<>();
+            error.put("error", "Employee with ID " + uniqueId + " not found.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+@PostMapping("updatePayroll")
+    public ResponseEntity<Map<String,Compensation>> updatePayroll(@RequestParam String uniqueId, @RequestBody Compensation updatepay){
+        Optional<Compensation> foundpay=employeeService.Payroll(uniqueId);
+        if(foundpay.isPresent()){
+            Compensation pay=foundpay.get();
+            pay.setEmploymentType(updatepay.getEmploymentType());
+            pay.setSalaryType(updatepay.getSalaryType());
+            pay.setCompensationType(updatepay.getCompensationType());
+            pay.setPaymentRate(updatepay.getPaymentRate());
+            employeeService.saveCompensationDetails(pay);
+
+            Map<String, Compensation> response = new HashMap<>();
+            response.put("Updated Employee", pay);
+
+            return ResponseEntity.ok(response);
+        }
+        else {
+
+            Map<String, String> error = new HashMap<>();
+            error.put("error", "Employee with ID " + uniqueId + " not found.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+}
+    @PostMapping("updateTask")
+    public ResponseEntity<Map<String,String>> updateTask(@RequestParam long id, @RequestParam String taskTitle,
+                                                         @RequestParam String priority,
+                                                         @RequestParam String startDate,
+                                                         @RequestParam String taskDescription,
+                                                         @RequestParam(required = false) MultipartFile[] files) {
+        Tasks task = employeeService.findTask(id);
+        task.setTaskTitle(taskTitle);
+        task.setPriority(priority);
+        task.setStartDate(startDate);
+        task.setTaskDescription(taskDescription);
+
+        if (files != null && files.length > 0) {
+            try {
+                byte[] fileBytes = files[0].getBytes();
+                task.setProof(fileBytes);
+            } catch (IOException e) {
+                Map<String, String> errorResponse = new HashMap<>();
+                errorResponse.put("message", "Failed to process file upload");
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+            }
+        }
+
+        employeeService.saveTask(task);
+        Map<String, String> response = new HashMap<>();
+        response.put("success", "true");
+        response.put("message", "Task updated successfully");
+        return ResponseEntity.ok(response);
+    }
+    @PostMapping("ApproveTask")
+    public ResponseEntity<Map<String,String>> approveTask(@RequestParam Long id){
+
+        Tasks foundtask=employeeService.findTask(id);
+        foundtask.setStatus("Approved");
+        employeeService.saveTask(foundtask);
+        Map<String,String> response=new HashMap<>();
+        response.put("Task:","has been successfully approved");
+        return  ResponseEntity.ok(response);
+    }
+    @PostMapping("updateAnnouncement")
+    public  ResponseEntity<Map<String,String>>updateAnnouncement(@RequestParam long id,@RequestBody Announcement updateAnnouncement){
+        Map <String,String> response=new HashMap<>();
+      Optional<Announcement> findannouncment=  employeeService.findAnnouncement(id);
+      if(findannouncment.isPresent()) {
+          Announcement announcement = findannouncment.get();
+          announcement.setTitle(updateAnnouncement.getTitle());
+          announcement.setContentType(updateAnnouncement.getContentType());
+          announcement.setPriority(updateAnnouncement.getPriority());
+          announcement.setContent(updateAnnouncement.getContent());
+          employeeService.createAnnouncement(announcement);
+          response.put("Announcement","updated successfully");
+          return  ResponseEntity.ok(response);
+      }
+else{
+          response.put("Error","failed to update announcement");
+          return  ResponseEntity.ok(response);
+      }
+    }
+    @DeleteMapping("deleteAnnouncement")
+    public ResponseEntity<Map<String,String>> deleteAnnouncement(@RequestParam long id) {
+        Map<String, String> response = new HashMap<>();
+        Optional<Announcement> findannouncement = employeeService.findAnnouncement(id);
+        if (findannouncement.isPresent()) {
+            Announcement announcement = findannouncement.get();
+            employeeService.deleteAnnouncement(announcement.getId());
+            response.put("Announcement", "deleted successfully");
+            return ResponseEntity.ok(response);
+        } else {
+            response.put("Announcement", "failed to delete announcement");
+            return ResponseEntity.ok(response);
+        }
+    }
+    @PostMapping("/updateProfile")
+    public ResponseEntity<String> updateEmployeeProfile(@RequestParam String uniqueId, @RequestBody Employee employeeData) {
+        try {
+            Employee existingEmployee = employeeService.foundEmployee(uniqueId);
+
+            if (existingEmployee == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Employee not found");
+            }
+
+
+            existingEmployee.setFirstName(employeeData.getFirstName());
+            existingEmployee.setLastName(employeeData.getLastName());
+            existingEmployee.setPhone(employeeData.getPhone());
+            existingEmployee.setAddress(employeeData.getAddress());
+
+            employeeService.saveEmployee(existingEmployee);
+
+            return ResponseEntity.ok("Profile updated successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error updating profile: " + e.getMessage());
+        }
+    }
+    @GetMapping("latest")
+    public ResponseEntity<Map<String,Long>>getLatestAnnouncementCount(){
+       Long count=employeeService.getLatestAnnouncement();
+       Map<String,Long> response=new HashMap<>();
+       response.put("Latest:",count);
+       return ResponseEntity.ok(response);
+
+    }
+    @GetMapping("PendingTasks")
+    public ResponseEntity<Map<String,Long>>getPendingTasks(@RequestParam String status ,String uniqueId){
+        uniqueId=UniqueId;
+        Long count=employeeService.findTaskStatus(uniqueId,status);
+        Map<String,Long> response=new HashMap<>();
+        response.put("Task:",count);
+        return ResponseEntity.ok(response);
+
+    }
+
+    @GetMapping("ApprovedRequests")
+    public ResponseEntity<Map<String,Long>>getApprovedRequest(@RequestParam String status ,String uniqueId){
+        uniqueId=UniqueId;
+        status="Approved";
+        Long count=employeeService.findEmployeeApprovedRequest(uniqueId,status);
+        Map<String,Long> response=new HashMap<>();
+        response.put("Approved:",count);
+        return ResponseEntity.ok(response);
+
+    }
+    @GetMapping("employeeAttendance")
+    public ResponseEntity<Page<Attendance>>getEmployeeAttendances(@RequestParam (defaultValue = "0")
+                                                                  int page,@RequestParam (defaultValue = "4") int size){
+        Page <Attendance> attendances=employeeService.findEmployeeAttendance(UniqueId,page,size);
+        return ResponseEntity.ok(attendances);
+    }
+    @PostMapping("/checkout")
+    public String checkout() {
+        Attendance newAttendance=new Attendance();
+        newAttendance.setUniqueId(UniqueId);
+        newAttendance.setCheckOutTime(LocalTime.now());
+   Attendance attendance=employeeService.checkOutEmployee(newAttendance);
+   return "HR/EmployeeForm";
+
+
+    }
+@GetMapping("findTotalUnapprovedTasks")
+    public ResponseEntity<Map<String,Long>> findUnapprovedTasks(@RequestParam String status){
+        long count=employeeService.findApprovedTaskCount(status);
+        Map<String,Long> response=new HashMap<>();
+        response.put("Unapproved:",count);
+        return  ResponseEntity.ok(response);
+
+
+}
+@GetMapping("findTotalUnapprovedLeaveRequests")
+    public ResponseEntity<Map<String,Long>> findTotalUnapprovedLeaveRequests(@RequestParam String status){
+        Long count=employeeService.findUnapprovedLeaveRequests(status);
+        Map <String,Long> response=new HashMap<>();
+        response.put("Count",count);
+        return  ResponseEntity.ok(response);
+}
+@GetMapping("findTotalAttendances")
+    public ResponseEntity<Map<String,Long>> findTotalAttendances(){
+        LocalDate today=LocalDate.now();
+        Long count=employeeService.findTotalLogins(today);
+        Map <String,Long> response=new HashMap<>();
+        response.put("Count",count);
+        return  ResponseEntity.ok(response);
+}
+@GetMapping("myHelpRequests")
+    public ResponseEntity<Page<SupportRequest>> findMyHelpRequests(@RequestParam (defaultValue = "0") int page,@RequestParam  (defaultValue = "4")int size){
+        Page<SupportRequest> requests=employeeService.findMyRequest(UniqueId,page,size);
+        return ResponseEntity.ok(requests);
+}
+>>>>>>> origin/main
 }

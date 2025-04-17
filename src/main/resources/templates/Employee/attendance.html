@@ -18,7 +18,7 @@
 
 <body>
 <div class="container">
-    <div class="sidebar">
+    <div class="sidebar" style="width:240px;font-size:16px">
         <div class="heading">
             <h2>HR DIVE</h2>
 
@@ -28,17 +28,24 @@
             <i class="fa-solid fa-house fa-lg "></i> <a href="/dash">Dashboard</a>
         </div>
 
+
+
+
         <div class="icons">
-            <i class="fa-regular fa-square-check fa-lg "></i> <a href="/attendance">Attendances</a>
+            <i class="fas fa-calendar-check fa-lg"></i>  <a href="/attendance">Attendances</a>
+        </div>
+        <div class="icons">
+            <i class="fas fa-plane-departure fa-lg"></i> <a href="/leave">Leave Request</a>
+        </div>
+        <div class="icons">
+            <i class="fas fa-tasks fa-lg"></i> <a href="/etask">Tasks</a>
         </div>
 
         <div class="icons">
-            <i class="fa-solid fa-layer-group fa-lg "></i> <a href="/profile">Profile Management</a>
-        </div>
-        <div class="icons">
-            <i class="fa-solid fa-calendar fa-lg"></i><a href="/meetings">Meetings</a>
+            <i class="fas fa-bullhorn fa-lg"></i> <a href="/announcements">Announcements</a>
         </div>
 
+<<<<<<< HEAD
 
         <div class="icons">
             <i class="fa-solid fa-bullhorn fa-lg"></i><a href="/announcements">Announcements</a>
@@ -65,14 +72,27 @@
             </svg>
             <a class="hover:text-[#4682B4]    hover:cursor-pointer text-wrap" href="/etask">Tasks</a>
 
+=======
+        <div class="icons">
+            <i class="fas fa-headset fa-lg"></i> <a href="/help&support">Help & Support</a>
+>>>>>>> origin/main
         </div>
         <div class="icons">
             <i class="fa-solid fa-comments fa-lg"></i><a href="/help&support">Help & Support</a>
         </div>
         <div class="icons">
+            <i class="fa-solid fa-ticket"></i><a href="/mySupportRequests">Request History</a>
+        </div>
+        <div class="icons">
             <i class="fa-solid fa-gear fa-lg"></i> <a href="/security">Settings</a>
         </div>
-
+        <div class="icons">
+            <form action="/logout" method="POST" style="padding: 0;margin: 0;background: steelblue;box-shadow: none;position: relative;right:10px">
+                <button type="submit" class="logout-btn" style="background: transparent;">
+                    <i class="fa-solid fa-sign-out-alt"></i> Logout
+                </button>
+            </form>
+        </div>
     </div>
 
     <!-- Navbar -->
@@ -82,10 +102,10 @@
                 <div class="prof">
                     <h3>Welcome back,<span id="employee-name" style="color:steelblue">HR</span></h3>
                 </div>
-                <div class="links-buttons" style="position:relative;right: 60px;">
-                    <form action="/logout" method="POST" style="display: inline;background: transparent;border: none;box-shadow: none;position: relative;top: 14px;">
-                        <button type="submit" class="logout-btn">
-                            <i class="fa-solid fa-sign-out-alt"></i> Logout
+                <div class="links-buttons" style="display:flex;gap:15px;position:relative;right: 60px;">
+                    <form action="/checkout" method="POST" style="display: inline;background: transparent;border: none;box-shadow: none;position: relative;top: 14px;">
+                        <button type="submit" class="checkout-btn">
+                            <i class="fa-solid fa-clock"></i>Check Out
                         </button>
                     </form>
             </div>
@@ -102,12 +122,11 @@
                     <h2>Attendance History</h2>
                     <table class="history-table">
                         <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Time In</th>
-                            <th>TimeLiness</th>
-                            <th>Status</th>
-                        </tr>
+                        <th>Date</th>
+                        <th>Check In Time</th>
+                        <th>Check Out Time</th>
+                        <th>Timeliness</th>
+                        <th>Status</th>
                         </thead>
                         <tbody id="attendance">
 
@@ -116,14 +135,7 @@
                 </section>
 
                 <!-- Attendance Statistics Section -->
-                <section class="attendance-statistics">
-                    <h2>Attendance Statistics</h2>
-                    <ul>
-                        <li>Total Days Present (Month): 20</li>
-                        <li>Total Days Absent (Month): 5</li>
-                        <li>Total Late Entries (Month): 3</li>
-                    </ul>
-                </section>
+
             </main>
         </div>
 
@@ -149,6 +161,7 @@
         <tr>
             <td style="padding: 15px;">${attendances.date}</td>
              <td style="padding: 15px;">${attendances.checkInTime}</td>
+              <td style="padding: 15px;">${attendances.checkOutTime}</td>
             <td style="padding: 15px;">${attendances.timeliness}</td>
                 <td style="padding: 15px;">${attendances.status}</td>
 

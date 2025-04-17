@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!doctype html>
 <html lang="en">
 
@@ -305,3 +306,354 @@
 </script>
 </body>
 </html>
+=======
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+          integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&display=swap"
+            rel="stylesheet">
+    <title>Leave</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        .settings-body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height to ensure centering */
+            width: 100%;
+        }
+
+        .change-container {
+            background: white;
+            padding: 40px;
+            height: 560px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 600px;
+            text-align: center;
+            margin-right: auto;
+            margin-left: auto;
+            align-self: center;
+        }
+
+        .change-container h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .change-container p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #007bff;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .lab {
+            font-weight: 600;
+            text-align: left;
+            color: steelblue;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .profile-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: whitesmoke;
+            display: block;
+        }
+
+        .profile-top {
+            position: absolute;
+            top: 0;
+            height: 50px;
+            width: 90%;
+            display: flex;
+            align-items: center;
+            margin-left: 45px;
+            margin-right: 45px;
+            margin-bottom: 10px;
+            position: relative;
+            border-bottom: 1px solid lightgray;
+        }
+
+        .profile-info {
+            position: relative;
+            height: 420px;
+            border-bottom: 1px solid lightgray;
+            width: 90%;
+            margin-left: 45px;
+            margin-right: 45px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .profile-info label {
+            color: steelblue;
+        }
+
+        h4 {
+            margin: 0;
+        }
+
+        .sidebar {
+            width: 300px;
+        }
+
+        .navigation {
+            flex: 1;
+        }
+
+        .container {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="sidebar" style="width:240px;font-size:16px">
+        <div class="heading">
+            <h2>HR DIVE</h2>
+            <button id="chevron" onclick="toggleMenu()" style="background: transparent; border: none;"><i
+                    class="fa-solid fa-chevron-left"></i></button>
+        </div>
+        <h3>Menu</h3>
+        <div class="icons">
+            <i class="fa-solid fa-house fa-lg "></i> <a href="/dash">Dashboard</a>
+        </div>
+
+
+
+        <div class="icons">
+            <i class="fa-solid fa-user fa-lg"></i> <a href="/profile">Profile Management</a>
+        </div>
+        <div class="icons">
+            <i class="fas fa-calendar-check fa-lg"></i>  <a href="/attendance">Attendances</a>
+        </div>
+        <div class="icons">
+            <i class="fas fa-plane-departure fa-lg"></i> <a href="/leave">Leave Request</a>
+        </div>
+        <div class="icons">
+            <i class="fas fa-tasks fa-lg"></i> <a href="/etask">Tasks</a>
+        </div>
+
+        <div class="icons">
+            <i class="fas fa-bullhorn fa-lg"></i> <a href="/announcements">Announcements</a>
+        </div>
+
+        <div class="icons">
+            <i class="fas fa-headset fa-lg"></i> <a href="/help&support">Help & Support</a>
+        </div>
+
+        <div class="icons">
+            <i class="fa-solid fa-gear fa-lg"></i> <a href="/eSettings">Settings</a>
+        </div>
+
+    </div>
+
+    <!-- Navbar -->
+    <div class="navigation">
+        <div class="navbar">
+            <div class="links">
+                <div class="prof">
+                    <h3>Welcome back, <span id="employee-name" style="color:steelblue">HR</span></h3>
+                </div>
+                <div class="links-buttons" style="position:relative;right: 60px;">
+                    <form action="/logout" method="POST" style="display: inline;background: transparent;border: none;box-shadow: none;position: relative;top: 14px;">
+                        <button type="submit" class="logout-btn">
+                            <i class="fa-solid fa-sign-out-alt"></i> Logout
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="Settings" style="display:flex;">
+                <div class="Settings-bar">
+                    <div class="sidebar" style="width: 300px;background: white; box-shadow: 5px 5px 15px rgba(0,0,0,0.129);color: steelblue;">
+                        <h3 style="color: steelblue;">Settings</h3>
+                        <div class="icons">
+                            <i class="fa-solid fa-gear fa-lg"></i> <a href="/security" style="color:hsl(0, 0%, 40%);">Profile Management</a>
+                        </div>
+                        <div class="icons">
+                            <i class="fa-solid fa-lock fa-lg"></i> <a href="/security" style="color:hsl(0, 0%, 40%);">Password Management</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-container">
+                    <div class="profile-top">
+                        <h3 style="padding-left:20px">Personal Information</h3>
+                    </div>
+                    <div class="profile-info">
+                        <h4 style="color:steelblue">Profile</h4>
+                        <p style="color:hsl(0, 0%, 40%);">This information will be displayed carefully so be careful what you share.</p>
+                        <br>
+                        <div class="" style="display: flex;gap: 200px;">
+                            <div class="" style="display: flex;flex-direction: column;">
+                                <label>First Name (Can not edit)</label>
+                                <input type="text" id="firstName" style="padding: 8px;width: 180%;"  readonly>
+                            </div>
+                            <div class="" style="display: flex;flex-direction: column;">
+                                <label>Last Name (Can not edit)</label>
+                                <input type="text" id="lastName" style="padding: 8px;width: 180%;" readonly>
+                            </div>
+                        </div>
+                        <div class="" style="display: flex;gap: 200px;">
+                            <div class="" style="display: flex;flex-direction: column;">
+                                <label>Email (Can not edit)</label>
+                                <input type="text" id="email" style="padding: 8px;width: 180%;" readonly>
+                            </div>
+                            <div class="" style="display: flex;flex-direction: column;">
+                                <label>Contact</label>
+                                <input type="text" id="phone" style="padding: 8px;width: 180%;" required>
+                            </div>
+                        </div>
+                        <div class="" style="display: flex;flex-direction: column;">
+                            <label>Address</label>
+                            <input type="text" style="width:96%" id="address">
+                        </div>
+                        <div class="" style="display: flex;gap: 10px;position: absolute;right: 0;bottom:0;margin-bottom:15px;  margin-right: 60px;">
+                            <button style="width: 85px;height: 35px;display:flex;align-items: center;justify-content:center;background: whitesmoke;border:1px solid lightgrey;color: #333;">Cancel</button>
+                            <button style="width: 85px;height: 35px;display:flex;align-items: center;justify-content:center;background:steelblue;color: white;" id="saveBtn">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+
+
+        const name = localStorage.getItem('employeeFirstName');
+        const id = localStorage.getItem('employeeID');
+
+
+        document.getElementById('employee-name').textContent = name;
+
+
+        const firstNameField = document.getElementById("firstName");
+        const lastNameField = document.getElementById("lastName");
+        const emailField = document.getElementById("email");
+        const phoneField = document.getElementById("phone");
+        const addressField = document.getElementById("address");
+
+
+
+
+
+        fetch("/getEmployeeInfo")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+            .then(data => {
+
+                if (data) {
+                    firstNameField.value = data.firstName || sampleData.firstName;
+                    lastNameField.value = data.lastName || sampleData.lastName;
+                    emailField.value = data.email || sampleData.email;
+                    phoneField.value = data.phone || sampleData.phone;
+                    addressField.value = data.address || sampleData.address;
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching employee data:", error);
+
+            });
+
+        document.getElementById('saveBtn').addEventListener('click', function() {
+
+            const employeeData = {
+                firstName: firstNameField.value,
+                lastName: lastNameField.value,
+                phone: phoneField.value,
+                address: addressField.value
+            };
+
+
+            fetch(`/updateProfile?uniqueId=${id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(employeeData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert(data.message || "Profile updated successfully");
+            })
+            .catch(error => {
+                console.error("Error updating profile:", error);
+
+                alert("Profile updated successfully ");
+            });
+        });
+    });
+</script>
+</body>
+</html>
+>>>>>>> origin/main

@@ -24,4 +24,11 @@ public interface EmployeeAttendance  extends JpaRepository<Attendance, Long> {
     long countByDayOfWeek(DayOfWeek dayOfWeek);
     @Query("SELECT a FROM Attendance a WHERE a.timeliness = :timeliness")
     Page<Attendance> findfilteredRecords(@Param("timeliness") String timeliness, Pageable pageable);
+<<<<<<< HEAD
+=======
+    @Query("SELECT a FROM Attendance a WHERE a.uniqueId=:uniqueId")
+    Page<Attendance> findEmployeeAttendance(@Param("uniqueId")String uniqueId,Pageable pageable);
+    @Query("SELECT COUNT(a) FROM Attendance a WHERE a.date=:date")
+    Long totalLogin(@Param("date")LocalDate date);
+>>>>>>> origin/main
 }
