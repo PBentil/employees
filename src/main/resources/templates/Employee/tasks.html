@@ -6,188 +6,658 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="profile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+          integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&display=swap"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&display=swap"
+            rel="stylesheet">
+    <title>HR Assist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+       .attendance-container thead tr {
+    background-color: steelblue; /* Dark background color */
+    color: white; /* White text */
+}
+
+.attendance-container thead tr th {
+    padding: 12px;
+    text-align: center;
+    font-weight:450;
+}
+
+.attendance-container tbody tr td {
+    padding: 18px;
+    text-align: center;
+    border-bottom: 1px solid #ccc; /* Adds separation */
+}
 
 
-    <title>Employee</title>
+.attendance-container thead  th:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.attendance-container thead  th:last-child {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+      .attendance-container  button:hover {
+            background: #0056b3;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .attendance-container{
+            width: 80%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+height: 680px;
+background: white;
+margin-top: 40px;
+border-radius: 8px;
+box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.229);
+align-self: center;
+position:relative;
+        }
+        .page-btns{
+        position:absolute;
+        right:0;
+        bottom:0;
+        margin-bottom:20px;
+        }
+        .page-btns button{
+        padding:10px;
+       margin-right: 70px;
+        }
+
+        td:nth-child(6) {
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+       tbody tr:hover{
+        cursor:pointer;
+        background:whitesmoke !important;
+        }
+.popup{
+    width: 500px;
+    height:400px;
+    background: white;
+    border: 2px solid steelblue;
+    border-radius: 8px;
+    align-self: center;
+    margin: auto;
+    position: absolute;
+    padding:20px;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+
+}
+.fa-xmark{
+color:lightgrey;
+cursor: pointer;
+}
+.fa-xmark:hover{
+color: rgb(251, 75, 75);
+}
+.popup-top{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.request-info{
+    height:80%;
+    margin: auto;
+    background:hsl(0, 0,85%);
+    border: 1.2px solid lightgrey;
+    border-radius: 8px;
+    width: 100%;
+}
+.task-list{
+position:relative;
+margin-top:50px;
+    width: 100%;
+    min-height:800px;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+.task{
+    height:120px;
+    margin-bottom:20px;
+    padding-left:20px;
+    padding-top: 10px;
+    border-radius: 8px;
+    background:white;
+    border: 1px solid steelblue;
+}
+        .submenu{
+    display: flex;
+    flex-direction: column;
+width:10%;
+height:100%;
+background: red;
+}
+.overflow-menu{
+
+    display:none;
+    flex-direction: column;
+    background: plum;
+    width: 165px;
+    height:90px;
+    background:white;
+    box-shadow: 4px 4px 20px rgba(0,0,0,0.225);
+    position: absolute;
+    right: 0;
+}
+.overflow-menu a{
+    text-decoration: none;
+    padding: 14px;
+    color: black;
+
+}
+.overflow-menu a:hover{
+    background:whitesmoke;
+}
+.submitPopup{
+    display:none;
+    flex-direction: column;
+    gap:20px;
+    align-self: center;
+    padding: 20px;
+    width:900px;
+    height:670px;
+    background: white;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.229);
+   border-radius: 6px;
+   position: absolute;
+   z-index:1100;
+
+
+}
+.selected-files-list {
+
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    color: gray;
+}
+.selected-files-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+.selected-files-list li {
+    padding: 5px 0;
+}
+.fa-file-pdf {
+  color: red;
+}
+
+.fa-file-word{
+  color: blue;
+}
+
+.fa-file-image {
+  color: green;
+}
+
+.file-section{
+    display: flex;
+    flex-direction: column;
+    gap:14px;
+    padding: 10px;
+width: 50%;
+height: 100%;
+border-top-left-radius: 6px;
+box-shadow: 2px 2px 18px rgba(0, 0, 0, 0.129);
+}
+.file-section h3{
+    font-weight: 500;
+}
+.file-drop{
+    width:100%;
+    height:32%;
+    border-radius: 8px;
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    color: gray;
+}
+.fa-cloud-arrow-up{
+    color: steelblue;
+}
+.report-section{
+    padding: 10px;
+    width: 50%;
+height: 100%;
+background:whitesmoke;
+border-left: 1px solid lightgray;
+position: relative;
+border-top-right-radius: 6px;
+box-shadow: 0px 2px 2px 2px 18px rgba(0, 0, 0, 0.129);
+}
+.report-section span{
+    color: red;
+}
+.report-section input{
+    padding: 6px;
+    color: gray;
+    position: relative;
+    z-index: 1000;
+}
+.report-section label{
+    color: gray;
+    font-weight: 500;
+}
+
+.report-section textarea:focus{
+    outline:none;
+
+}
+
+.report-section input:focus{
+    outline: steelblue;
+    border:2px solid steelblue;
+}
+.submitReportForm{
+
+    display: flex;
+    padding: 0px;
+}
+              .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: none;
+}
+    </style>
 </head>
 
 <body>
-
-
-    <!-- Sidebar -->
-    <div class="sidebar">
+<div class="container">
+    <div class="sidebar" style="width:240px;font-size:16px">
         <div class="heading">
             <h2>HR DIVE</h2>
-
+            <button id="chevron" onclick="toggleMenu()" style="background: transparent; border: none;"><i
+                    class="fa-solid fa-chevron-left"></i></button>
         </div>
         <h3>Menu</h3>
         <div class="icons">
             <i class="fa-solid fa-house fa-lg "></i> <a href="/dash">Dashboard</a>
         </div>
 
+
+
+
         <div class="icons">
-            <i class="fa-regular fa-square-check fa-lg "></i> <a href="/attendance">Attendances</a>
+            <i class="fas fa-calendar-check fa-lg"></i>  <a href="/attendance">Attendances</a>
+        </div>
+        <div class="icons">
+            <i class="fas fa-plane-departure fa-lg"></i> <a href="/leave">Leave Request</a>
+        </div>
+        <div class="icons">
+            <i class="fas fa-tasks fa-lg"></i> <a href="/etask">Tasks</a>
         </div>
 
         <div class="icons">
-            <i class="fa-solid fa-layer-group fa-lg "></i> <a href="/profile">Profile Management</a>
-        </div>
-        <div class="icons">
-            <i class="fa-solid fa-money-bill fa-lg"></i><a href="/epayroll">Payroll</a>
-        </div>
-        <div class="icons">
-            <i class="fa-solid fa-calendar fa-lg"></i><a href="/meetings">Meetings</a>
+            <i class="fas fa-bullhorn fa-lg"></i> <a href="/announcements">Announcements</a>
         </div>
 
         <div class="icons">
-            <i class="fa-solid fa-comments fa-lg"></i><a href="/feedbacks">Feedbacks and Complaints</a>
+            <i class="fas fa-headset fa-lg"></i> <a href="/help&support">Help & Support</a>
+        </div>
+
+        <div class="icons">
+            <i class="fa-solid fa-ticket"></i><a href="/mySupportRequests">Request History</a>
         </div>
         <div class="icons">
-            <i class="fa-solid fa-bullhorn fa-lg"></i><a href="/announcements">Announcements</a>
+            <i class="fa-solid fa-gear fa-lg"></i> <a href="/security">Settings</a>
         </div>
         <div class="icons">
-            <i class="fa-solid fa-calendar-check fa-lg"></i><a href="/leave">Leave Request</a>
+            <form action="/logout" method="POST" style="padding: 0;margin: 0;background: steelblue;box-shadow: none;position: relative;right:10px">
+                <button type="submit" class="logout-btn" style="background: transparent;">
+                    <i class="fa-solid fa-sign-out-alt"></i> Logout
+                </button>
+            </form>
         </div>
-        <div class="icons">
-
-            <svg width="22px" height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                class="hover:text-[#4682B4] hover:cursor-pointer mr-2 pr-1">
-                <path
-                    d="M8.4 3H4.6C4.03995 3 3.75992 3 3.54601 3.10899C3.35785 3.20487 3.20487 3.35785 3.10899 3.54601C3 3.75992 3 4.03995 3 4.6V8.4C3 8.96005 3 9.24008 3.10899 9.45399C3.20487 9.64215 3.35785 9.79513 3.54601 9.89101C3.75992 10 4.03995 10 4.6 10H8.4C8.96005 10 9.24008 10 9.45399 9.89101C9.64215 9.79513 9.79513 9.64215 9.89101 9.45399C10 9.24008 10 8.96005 10 8.4V4.6C10 4.03995 10 3.75992 9.89101 3.54601C9.79513 3.35785 9.64215 3.20487 9.45399 3.10899C9.24008 3 8.96005 3 8.4 3Z"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path
-                    d="M19.4 3H15.6C15.0399 3 14.7599 3 14.546 3.10899C14.3578 3.20487 14.2049 3.35785 14.109 3.54601C14 3.75992 14 4.03995 14 4.6V8.4C14 8.96005 14 9.24008 14.109 9.45399C14.2049 9.64215 14.3578 9.79513 14.546 9.89101C14.7599 10 15.0399 10 15.6 10H19.4C19.9601 10 20.2401 10 20.454 9.89101C20.6422 9.79513 20.7951 9.64215 20.891 9.45399C21 9.24008 21 8.96005 21 8.4V4.6C21 4.03995 21 3.75992 20.891 3.54601C20.7951 3.35785 20.6422 3.20487 20.454 3.10899C20.2401 3 19.9601 3 19.4 3Z"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path
-                    d="M19.4 14H15.6C15.0399 14 14.7599 14 14.546 14.109C14.3578 14.2049 14.2049 14.3578 14.109 14.546C14 14.7599 14 15.0399 14 15.6V19.4C14 19.9601 14 20.2401 14.109 20.454C14.2049 20.6422 14.3578 20.7951 14.546 20.891C14.7599 21 15.0399 21 15.6 21H19.4C19.9601 21 20.2401 21 20.454 20.891C20.6422 20.7951 20.7951 20.6422 20.891 20.454C21 20.2401 21 19.9601 21 19.4V15.6C21 15.0399 21 14.7599 20.891 14.546C20.7951 14.3578 20.6422 14.2049 20.454 14.109C20.2401 14 19.9601 14 19.4 14Z"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path
-                    d="M8.4 14H4.6C4.03995 14 3.75992 14 3.54601 14.109C3.35785 14.2049 3.20487 14.3578 3.10899 14.546C3 14.7599 3 15.0399 3 15.6V19.4C3 19.9601 3 20.2401 3.10899 20.454C3.20487 20.6422 3.35785 20.7951 3.54601 20.891C3.75992 21 4.03995 21 4.6 21H8.4C8.96005 21 9.24008 21 9.45399 20.891C9.64215 20.7951 9.79513 20.6422 9.89101 20.454C10 20.2401 10 19.9601 10 19.4V15.6C10 15.0399 10 14.7599 9.89101 14.546C9.79513 14.3578 9.64215 14.2049 9.45399 14.109C9.24008 14 8.96005 14 8.4 14Z"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-            <a class="hover:text-[#4682B4]    hover:cursor-pointer text-wrap" href="/eTask">Task</a>
-
-        </div>
-
-
     </div>
     <!-- Navbar -->
-    <div class="navigation">
-        <div class="navbar">
+    <div class="navigation" >
+        <div class="navbar" style="background:whitesmoke" >
             <div class="links">
-                <button class="menu-toggle">☰</button>
                 <div class="prof">
-                    <h3>Welcome back,<span id="employee-name" style="color:steelblue"></span></h3>
 
+                    <h3>Welcome back,<span id="employee-name" style="color:steelblue">HR</span></h3>
                 </div>
-
                 <div class="links-buttons" style="position:relative;right: 60px;">
-                    <form action="/logout" method="POST"
-                        style="display: inline;background: transparent;border: none;box-shadow: none;position: relative;top: 14px;">
-                        <button type="submit" class="logout-btn">
-                            <i class="fa-solid fa-sign-out-alt"></i> Logout
+                    <form action="/checkout" method="POST" style="display: inline;background: transparent;border: none;box-shadow: none;position: relative;top: 14px;">
+                        <button type="submit" class="checkout-btn">
+                            <i class="fa-solid fa-clock"></i>Check Out
                         </button>
                     </form>
+
+                </div>
+            </div>
+            <div class="task-list" >
+                <div class="submitPopup" id="submitPopup">
+                    <div style="display: flex;justify-content: space-between;">
+                        <h2>Submit Task</h2>
+                        <i class="fa-solid fa-xmark fa-lg" style="color: #0056b3;" id="close-btn"></i>
+                    </div>
+                    <form style="width: 100%;height:100%;background: whitesmoke;" class="submitReportForm">
+                        <div class="file-section">
+                            <h3>Upload from your device</h3>
+                            <div class="file-drop">
+
+                                <input type="file"  id="fileSelect" style="display: none;" multiple>
+                                <div style="margin-top: 20px;">
+                                    <i class="fa-solid fa-cloud-arrow-up fa-3x" style="margin-bottom: 20px;" id="cloud"></i>
+                                    <p style="color: gray;"><span style="color: steelblue;">Click to Upload</span> or drag and drop</p>
+                                    PNG,JPG or pdf
+                                </div>
+                            </div>
+                            Attachments
+                            <div class="selected-files-list" id="selectedFiles"></div>
+
+                        </div>
+                        <div class="report-section">
+                            <label>Title<span>*</span></label>
+                            <input type="text" id="Task-title" readonly>
+                            <input type="number" style="display:none;" id="ID">
+                            <label>Priority<span>*</span></label>
+                            <input type="text" id="Task-Priority" readonly>
+                            <div style="display: flex;gap: 20px;">
+                                <div style="display: flex;flex-direction: column;width: 48%;">
+                                    <label>Start Date<span>*</span></label>
+                                    <input type="text" id="Task-createdAt" readonly>
+                                </div>
+                                <div style="display: flex;flex-direction: column;width: 48%;">
+                                    <label>Due Date<span>*</span></label>
+                                    <input type="text" id="Task-dueDate" readonly>
+                                </div>
+
+                            </div>
+                            <label>Report Summary<span>*</span></label>
+                            <textarea style="width: 100%;height:48%;position: relative;border-radius: 6px;padding-left: 10px;padding-top: 5px;" required></textarea>
+                            <button style="width: 90px;height: 35px;text-align:center;margin-top: 4px;" id="sendReport">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <h2 style="text-align:center;">Employee Tasks</h2>
+                <div  id="tasks-list" >
+                </div>
+
+                <div class="page-btns" style="margin-bottom:90px;">
+                    <button id="prev-btn" style="width: 90px;height:40px;background: steelblue;color: white;border:none;border-radius: 6px;">Previous</button>
+                    <button id="next-btn" style="width: 90px;height:40px;background: steelblue;color: white;border:none;border-radius: 6px;">Next</button>
                 </div>
             </div>
 
-            <div class="task-content">
-                <h1>Task</h1>
-
-                <!-- Task List Section -->
-                <section class="task-list">
-                    <h2>Task List</h2>
-                    <table class="task-table">
-                        <thead>
-                            <tr>
-                                <th>Task</th>
-                                <th>Deadline</th>
-                                <th>Priority</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="Task">
-
-                        </tbody>
-                    </table>
-                </section>
-
-                <!-- Task Details Section -->
-                <section class="task-details">
-                    <h2>Task Details</h2>
-                    <div id="task-info">
-                        <p><strong>Task Name:</strong> Select a task to view details.</p>
-                    </div>
-                    <div id="progress-tracking" style="display: none;">
-                        <p><strong>Description:</strong> Complete the financial analysis for Q4.</p>
-                        <p><strong>Progress:</strong></p>
-                        <progress value="50" max="100"></progress> 50%
-                        <p><strong>Upload Deliverable:</strong></p>
-                        <form action="#" method="POST" enctype="multipart/form-data">
-                            <input type="file" name="deliverable" required>
-                            <button type="submit">Upload</button>
-                        </form>
-                    </div>
-                </section>
-            </div>
         </div>
     </div>
-
-    <script>
-
-
-        document.addEventListener('DOMContentLoaded', function () {
-
-            const name = localStorage.getItem('employeeFirstName');
-            console.log(name);
-
-            document.getElementById("employee-name").innerText = name;
-            const Task = document.getElementById("Task");
-
-            fetch('/taskData')
-                .then((response) => response.json())
-                .then((data) => {
-
-                    Task.innerHTML = data.map(task => {
-                        return `
-        <tr>
-            <td style="padding: 15px;">${task.taskTitle}</td>
-            <td style="padding: 15px;">${task.dueDate}</td>
-                <td style="padding: 15px;">${task.priority}</td>
-            <td style="padding: 15px;">${task.status}</td>
-            <td style="padding: 15px;">
-                <button onclick="viewTask('${task.id}')">View</button>
-            </td>
-        </tr>
-    `;
-                    }).join('');
-                })
-                .catch(error => console.error('Error fetching task data:', error));
-        });
-
-    </script>
-      <script>
-        const toggleButton = document.querySelector(".menu-toggle");
-        const sidebar = document.querySelector(".sidebar");
-
-        toggleButton.addEventListener("click", function () {
-            if (window.innerWidth <= 768) {
-                sidebar.classList.toggle("active"); // Mobile toggle
-            } else {
-                sidebar.classList.toggle("collapsed"); // Desktop collapse
-            }
-        });
-
-    </script>
-
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const name = localStorage.getItem('employeeFirstName');
+       if (name) {
+           document.getElementById('employee-name').textContent = name;
+       }
+    const submitPopup = document.getElementById("submitPopup");
+    const closeBtn = document.getElementById("close-btn");
+     const overlay = document.createElement("div");
+     overlay.classList.add("overlay");
+     document.body.appendChild(overlay);
+    closeBtn.addEventListener('click', function(){
+        submitPopup.style.display = "none";
+        overlay.style.display="none";
+    });
+
+    document.getElementById("cloud").addEventListener("click", function() {
+        document.getElementById("fileSelect").click();
+    });
+
+    document.getElementById("fileSelect").addEventListener("change", function (event) {
+        const fileInput = event.target;
+        const selectedFilesContainer = document.getElementById("selectedFiles");
+
+        selectedFilesContainer.innerHTML = '';
+
+        if (fileInput.files.length > 0) {
+            const ul = document.createElement("ul");
+
+            Array.from(fileInput.files).forEach(file => {
+                const getFileIconClass = (file) => {
+                    if (file.type === 'application/pdf') return 'fa-solid fa-file-pdf';
+                    if (file.type === 'application/msword' || file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') return 'fa-solid fa-file-word';
+                    if (file.type === 'application/vnd.ms-excel' || file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') return 'fa-solid fa-file-excel';
+                    if (file.type === 'application/vnd.ms-powerpoint' || file.type === 'application/vnd.openxmlformats-officedocument.presentationml.presentation') return 'fa-solid fa-file-powerpoint';
+                    if (file.type.startsWith('image/')) return 'fa-solid fa-file-image';
+                    return 'fa-solid fa-file';
+                };
+
+                const fileTypeIcon = getFileIconClass(file);
+                const fileDiv = document.createElement("div");
+                fileDiv.classList.add("file-container");
+                fileDiv.innerHTML = `
+                    <div style="display:flex;align-items:center;gap:8px;">
+                        <i class="${fileTypeIcon}"></i>
+                        <p>${file.name}</p>
+                    </div>
+                `;
+                selectedFilesContainer.appendChild(fileDiv);
+            });
+        }
+    });
+
+    let currentPage = 0;
+    const pageSize = 4;
+
+    const fetchData = (currentPage) => {
+        fetch(`/taskData?page=${currentPage}&size=${pageSize}`)
+            .then((response) => response.json())
+            .then((data) => {
+
+                const container = document.getElementById("tasks-list");
+                container.innerHTML = "";
+
+                if (data.content.length === 0) {
+                    container.innerHTML = `<p style="text-align: center; color: gray;">No tasks found</p>`;
+                    document.getElementById("next-btn").disabled = true;
+                    return;
+                }
+
+                document.getElementById("next-btn").disabled = false;
+
+                container.innerHTML = data.content.map((task) => `
+                        <div class="task">
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <h2 style="color: steelblue; margin-bottom: 10px;">${task.taskTitle}</h2>
+                                  <input type="text" style="display:none;" id="Title" value=${task.taskTitle}>
+                                     <input type="text" style="display:none;" id="taskid" value=${task.id}>
+                                    <input type="text" style="display:none" id="assignedAt" value=${task.assignedAt}>
+                                <div class="submenu">
+                                    <button class="overflow-btn" style="background:white;border: none;cursor: pointer;">
+                                        <i class="fa-solid fa-ellipsis-vertical fa-lg" style="margin-right: 20px;color:gray;"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 50px;">
+                                <div style="display: flex; flex-direction: column; gap: 6px;">
+                                    <p style="color: gray;">Assigned By</p>
+                                    <p>HR</p>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 10px;">
+                                    <p style="color: gray;">Due Date</p>
+                                    <p>${task.dueDate}</p>
+                                      <input type="text" style="display:none" id="dueDate" value=${task.dueDate}>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 10px;">
+                                    <p style="color: gray;">Priority</p>
+                                    <p>${task.priority}</p>
+                                    <input type="text" style="display:none" id="priority" value=${task.priority}>
+                                </div>
+                                <div class="overflow-menu" style="display:none;">
+                                    <a href="/taskDescription" data-task-id="${task.id}" class="taskDescription">Task Information</a>
+                                    <a href="#" class="submitTaskReport">Submit Task</a>
+                                </div>
+                            </div>
+                            <p style="color: steelblue;">${task.status}</p>
+                        </div>
+                    `)
+                    .join("");
+
+
+
+            })
+            .catch((error) => console.error("Error fetching data:", error));
+    };
+
+    document.getElementById("tasks-list").addEventListener('click', function(event) {
+        if (event.target && event.target.classList.contains('overflow-btn')) {
+            const taskDiv = event.target.closest('.task');
+            const menu = taskDiv.querySelector('.overflow-menu');
+            if (menu) {
+                menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+            }
+        }
+
+        if (event.target && event.target.classList.contains('submitTaskReport')) {
+            submitPopup.style.display = "flex";
+
+
+            const taskDiv = event.target.closest('.task');
+
+
+            const taskTitle = taskDiv.querySelector('#Title').value;
+            const assignedAt = taskDiv.querySelector('#assignedAt').value;
+            const dueDate = taskDiv.querySelector('#dueDate').value;
+            const priority = taskDiv.querySelector('#priority').value;
+            const id= taskDiv.querySelector('#taskid').value;
+
+
+            document.getElementById('Task-title').value = taskTitle;
+            document.getElementById('Task-Priority').value = priority;
+            document.getElementById('Task-createdAt').value = assignedAt;
+            document.getElementById('Task-dueDate').value = dueDate;
+            document.getElementById('ID').value =id;
+
+            overlay.style.display = "block";
+        }
+
+
+
+const sendReportButton = document.getElementById("sendReport");
+
+
+sendReportButton.addEventListener('click', function(event) {
+    event.preventDefault();
+
+
+    const taskId = document.getElementById("ID").value;
+
+
+    const fileInput = document.getElementById("fileSelect");
+    const files = fileInput.files;
+
+
+    const reportSummary = document.querySelector(".report-section textarea").value;
+
+
+    const formData = new FormData();
+
+
+    formData.append("taskId", taskId);
+
+
+    formData.append("reportSummary", reportSummary);
+
+
+    for (let i = 0; i < files.length; i++) {
+        formData.append("files", files[i]);
+    }
+
+
+    fetch('/submitTaskReport', {
+        method: 'POST',
+        body: formData,
+
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Success:', data);
+
+        document.getElementById("submitPopup").style.display = "none";
+        document.querySelector(".overlay").style.display = "none";
+
+
+        alert('Task report submitted successfully!');
+
+
+        fetchData(currentPage);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to submit task report. Please try again.');
+    });
+});
+        if (event.target && event.target.classList.contains('taskDescription')) {
+            const taskId = event.target.getAttribute('data-task-id');
+
+            console.log(taskId);
+            localStorage.setItem("taskId", taskId);
+        }
+    });
+
+    document.getElementById("prev-btn").addEventListener("click", function () {
+        if (currentPage > 0) {
+            currentPage--;
+            fetchData(currentPage);
+        }
+    });
+
+    document.getElementById("next-btn").addEventListener("click", function () {
+        currentPage++;
+        fetchData(currentPage);
+    });
+
+    fetchData(currentPage);
+});
+
+</script>
+
+
+
+
 
 </html>

@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+          integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&display=swap"
+            rel="stylesheet">
+    <title>HR Assist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+       .attendance-container thead tr {
+    background-color: steelblue; /* Dark background color */
+    color: white; /* White text */
+}
+
+.attendance-container thead tr th {
+    padding: 12px;
+    text-align: center;
+    font-weight:450;
+}
+
+.attendance-container tbody tr td {
+    padding: 18px;
+    text-align: center;
+    border-bottom: 1px solid #ccc; /* Adds separation */
+}
+
+
+.attendance-container thead  th:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.attendance-container thead  th:last-child {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+      .attendance-container  button:hover {
+            background: #0056b3;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .attendance-container{
+            width: 80%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+height: 680px;
+background: white;
+margin-top: 40px;
+border-radius: 8px;
+box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.229);
+align-self: center;
+position:relative;
+        }
+        .page-btns{
+        position:absolute;
+        right:0;
+        bottom:0;
+        margin-bottom:20px;
+        }
+        .page-btns button{
+        padding:10px;
+       margin-right: 70px;
+        }
+
+        td:nth-child(6) {
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+       tbody tr:hover{
+        cursor:pointer;
+        background:whitesmoke !important;
+        }
+.popup{
+    width: 500px;
+    height:400px;
+    background: white;
+    border: 2px solid steelblue;
+    border-radius: 8px;
+    align-self: center;
+    margin: auto;
+    position: absolute;
+    padding:20px;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+
+}
+.fa-xmark{
+color:lightgrey;
+cursor: pointer;
+}
+.fa-xmark:hover{
+color: rgb(251, 75, 75);
+}
+.popup-top{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.request-info{
+    height:80%;
+    margin: auto;
+    background:hsl(0, 0,85%);
+    border: 1.2px solid lightgrey;
+    border-radius: 8px;
+    width: 100%;
+}
+.task-list{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    height:800px;
+    padding:20px;
+    background-color:whitesmoke;
+}
+.task{
+    height:120px;
+    padding-left:20px;
+    padding-top: 10px;
+    border-radius: 8px;
+    background:white;
+    border: 1px solid steelblue;
+    position: relative;
+}
+.submenu{
+    display: flex;
+    flex-direction: column;
+width:10%;
+height:100%;
+background: red;
+}
+.overflow-menu{
+
+    display:none;
+    flex-direction: column;
+    background: plum;
+    width: 165px;
+    height:90px;
+    background:white;
+    box-shadow: 4px 4px 20px rgba(0,0,0,0.225);
+    position: absolute;
+    right: 0;
+}
+.overflow-menu a{
+    text-decoration: none;
+    padding: 14px;
+    color: black;
+
+}
+.overflow-menu a:hover{
+    background:whitesmoke;
+}
+
+.popup{
+    width: 600px;
+    height:550px;
+    background: white;
+    border: 2px solid steelblue;
+    border-radius: 8px;
+    align-self: center;
+       z-index: 1100;
+    margin: auto;
+    position: absolute;
+    padding:20px;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    display: none;
+}
+.popup-top{
+
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+.request-info{
+min-height:82%;
+padding:10px;
+margin: auto;
+background:hsl(0, 0,85%);
+border: 1.2px solid lightgrey;
+border-radius: 8px;
+width: 100%;
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: none;
+}
+.task-description{
+    width: 100%;
+    display: flex;
+    gap:20px;
+    min-height:600px;
+    max-height: 800px;
+    border-radius: 8px;
+
+}
+.task-1{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+            width:50%;
+            height: 100%;
+
+        }
+        .task-2{
+        padding:20px;
+  display: flex;
+    flex-direction: column;
+    gap:10px;
+            width:50%;
+            height: 100%;
+            border-radius: 8px;
+
+        }
+        .details{
+
+            display: flex;
+              flex-direction: column;
+             gap: 14px;
+            height:26%;
+             border:1px solid steelblue;
+            border-radius: 8px;
+            background:white;
+
+        }
+        .additional-details{
+              display: flex;
+              flex-direction: column;
+              gap:14px;
+            height:50%;
+            background:white;
+            border-radius: 8px;
+               border:1px solid steelblue;
+        }
+        .additional-details label{
+            color: grey;
+        }
+        .details label{
+            color: grey;
+        }
+        .attachments{
+            border:1px solid steelblue;
+            height:25%;
+            background: white;
+            border-radius: 8px;
+            padding-bottom: 10px;
+        }
+.proof{
+    border:1px solid steelblue;
+            height:25%;
+            background: white;
+            border-radius: 8px;
+            padding-bottom: 10px;
+}
+.proof-item{
+      display: flex;
+            align-items: center;
+            margin-top: 10px;
+            padding: 8px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+}
+        .attachment-item {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            padding: 8px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+
+        .upload-attachment-form {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="sidebar" style="width:240px !important;font-size:16px;">
+        <div class="heading">
+            <h2>HR DIVE</h2>
+            <button id="chevron" onclick="toggleMenu()" style="background: transparent; border: none;"><i
+                    class="fa-solid fa-chevron-left"></i></button>
+        </div>
+        <h3>Menu</h3>
+        <div class="icons">
+            <i class="fa-solid fa-house fa-lg "></i> <a href="/dashboard">Dashboard</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-people-group fa-lg"></i><a href="/employees">Employees</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-plus fa-lg"></i> <a href="/contract">New Hire</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-clipboard-list"></i> <a href="/assignedTasks">Tasks</a>
+        </div>
+
+        <div class="icons">
+            <i class="fa-regular fa-square-check fa-lg "></i> <a href="/Attendances">Attendances</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-arrow-right-from-bracket fa-lg "></i> <a href="/Leaves">Leaves</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-layer-group fa-lg "></i> <a href="/payroll">Payroll</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-bullhorn"></i> <a href="/HRannouncements">Announcements</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-headset fa-lg"></i> <a href="/support">Support Requests</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-gear fa-lg"></i> <a href="/security">Settings</a>
+        </div>
+
+    </div>
+    <!-- Navbar -->
+    <div class="navigation" >
+        <div class="navbar" style="background:whitesmoke" >
+            <div class="links">
+                <div class="prof">
+
+                    <h3>Welcome back,<span id="employee-name" style="color:steelblue">HR</span></h3>
+                </div>
+                <div class="links-buttons" style="position:relative;right: 60px;">
+                    <form action="/logout" method="POST" style="display: inline;background: transparent;border: none;box-shadow: none;position: relative;top: 14px;">
+                        <button type="submit" class="logout-btn">
+                            <i class="fa-solid fa-sign-out-alt"></i> Logout
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+            <div class="task-list" >
+
+                <div class="task">
+                    <div style="display: flex;align-items: center;justify-content: space-between;">
+                        <h2 style="color:steelblue;margin-bottom:10px;" id="taskTitle"></h2>
+
+                    </div>
+                    <div style="display: flex;gap:50px;">
+                        <div style="display: flex;flex-direction: column;gap:6px;">
+                            <p style="color:gray;">Assigned By</p>
+                            <p>HR</p>
+                        </div>
+                        <div style="display: flex;flex-direction: column;gap:6px;">
+                            <p style="color:gray;">Assigned To</p>
+                            <p id="assignedTo"></p>
+                        </div>
+                        <div style="display: flex;flex-direction: column;gap:10px;">
+                            Start Date
+                            <p style="color:gray;" id="startDate"></p>
+
+                        </div>
+                        <div style="display: flex;flex-direction: column;gap:10px;">
+                            Due Date
+                            <p style="color:gray;" id="dueDate"></p>
+
+                        </div>
+                        <div style="display: flex;flex-direction: column;gap:10px;">
+                            Priority
+                            <p style="color:gray;" id="priority"></p>
+
+                        </div>
+                        <div style="display: flex;flex-direction: column;gap:10px;">
+                            Status
+                            <p style="color: steelblue;" id="progress"></p>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="task-description" style="border:none;" id="taskDescription" >
+
+                </div>
+                <div class="approveBtn" id="approveTask" style="position:absolute;right:0;bottom:0;margin-right:40px;margin-bottom:70px;">
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const taskDescription = document.querySelector(".task-description");
+    const taskId = localStorage.getItem('taskId');
+    console.log('Task ID:', taskId);
+
+    fetch(`getTaskData?id=${taskId}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            const task = data;
+            console.log(task);
+            document.getElementById("taskTitle").innerText = task.taskTitle;
+                document.getElementById("startDate").innerText = task.startDate;
+            document.getElementById("dueDate").innerText = task.dueDate;
+            document.getElementById("priority").innerText = task.priority;
+            document.getElementById("progress").innerText = task.status;
+            document.getElementById("assignedTo").innerText=task.uniqueId;
+
+
+            taskDescription.innerHTML = `
+            <div class="task-1">
+                <div class="details">
+                    <p style="background:white; height: 36%; border-bottom: 1px solid lightgrey; padding: 10px; border-top-left-radius: 8px; border-top-right-radius: 8px; font-weight: 600;">Details</p>
+                    <div style="padding-left: 10px; display: flex; flex-direction: column; gap: 10px;">
+                        <div style="display:flex"><label>Title:</label><p style="padding-left:10px;">${task.taskTitle}</p></div>
+                        <div style="display:flex"><label>Priority:</label><p style="padding-left:10px;">${task.priority}</p></div>
+                    </div>
+                </div>
+
+                <div class="additional-details">
+                    <p style="background:white; height: 20%; border-bottom: 1px solid lightgrey; padding: 10px; border-top-left-radius: 8px; border-top-right-radius: 8px; font-weight: 600;">Additional Details</p>
+                    <div style="padding-left: 10px; display: flex; flex-direction: column; gap: 10px;">
+                        <div style="display:flex"><label>Created On:</label><p style="padding-left:10px;">${task.assignedAt}</p></div>
+                        <div style="display:flex"><label>Start Date:</label><p style="padding-left:10px;">${task.startDate}</p></div>
+                        <div style="display:flex"><label>Due Date:</label><p style="padding-left:10px;">${task.dueDate}</p></div>
+                        <div style="display:flex"><label>Status:</label><p style="padding-left:10px;">${task.status}</p></div>
+                        <div style="display:flex"><label>Assigned By: HR</label></div>
+                    </div>
+                </div>
+
+                <div class="attachments">
+                    <p style="background:white; height: 35%; border-bottom: 1px solid lightgrey; padding: 10px; border-top-left-radius: 8px; border-top-right-radius: 8px; font-weight: 600;">Attachments</p>
+                    <div style="padding: 10px;" id="attachments-container">
+                        <!-- This will be updated below -->
+                    </div>
+                </div>
+            </div>
+            <div class="task-2">
+                <div class="description" style="display:flex; gap:20px; height:76%; background:white; flex-direction:column; border-radius: 8px; border:1px solid steelblue;">
+                    <p style="background:white; height: 10%; border-bottom: 1px solid lightgrey; padding: 10px; border-top-left-radius: 8px; border-top-right-radius: 8px; font-weight: 600;">Description</p>
+                    <p style="padding-left:14px;">${task.report ? '-' + task.report : 'Report not submitted'}</p>
+                </div>
+                <div class="proof">
+                    <p style="background:white; height: 35%; border-bottom: 1px solid lightgrey; padding: 10px; border-top-left-radius: 8px; border-top-right-radius: 8px; font-weight: 600;">Proof of Completion(Optional)</p>
+                    <div style="padding: 10px;" id="proof-container">
+                        ${task.report ? '' : '<p style="color: gray; font-style: italic; padding: 10px;">Report not submitted</p>'}
+                    </div>
+                </div>
+            </div>
+            `;
+
+            const attachmentsContainer = document.getElementById('attachments-container');
+
+            if (task.attachment && task.attachment.length > 0) {
+
+                let byteArray;
+
+                if (Array.isArray(task.attachment)) {
+
+                    byteArray = new Uint8Array(task.attachment);
+                } else if (typeof task.attachment=== 'string') {
+
+                    const binaryString = atob(task.attachment);
+                    byteArray = new Uint8Array(binaryString.length);
+                    for (let i = 0; i < binaryString.length; i++) {
+                        byteArray[i] = binaryString.charCodeAt(i);
+                    }
+                } else {
+
+                    byteArray = new Uint8Array(Object.values(task.attachment));
+                }
+
+
+                const blob = new Blob([byteArray], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+
+                attachmentsContainer.innerHTML = `
+                    <div class="attachment-item">
+                        <i class="fa-solid fa-file-pdf" style="color: steelblue; margin-right: 8px;"></i>
+                        <a href="${url}" download="attachment_${task.id}.pdf" style="text-decoration: none; color: steelblue;">
+                            attachment_${task.id}.pdf
+                        </a>
+                    </div>
+                `;
+            } else {
+                attachmentsContainer.innerHTML = '<p style="color: gray; font-style: italic; padding: 10px;">No attachments available</p>';
+            }
+
+            const proofContainer = document.getElementById('proof-container');
+            if (task.report && task.report.length > 0) {
+              const approveBtn = document.getElementById('approveTask');
+
+
+              if (task.status === "Approved") {
+                  approveBtn.innerHTML = `<button style="width:90px;height:35px;color:white;border:none;border-radius:4px;background:#88a8c2;cursor:not-allowed;" disabled>Approved</button>`;
+              } else {
+                  approveBtn.innerHTML = `<button style="width:90px;height:35px;color:white;border:none;border-radius:4px;background:steelblue;cursor:pointer;">Approve</button>`;
+
+                  approveBtn.addEventListener('click', function() {
+                      fetch(`ApproveTask?id=${taskId}`, {
+                          method: 'POST',
+                          headers: {
+                              'Content-Type': 'application/json'
+                          }
+                      })
+                      .then(response => response.json())
+                      .then(data => {
+                          alert(data);
+                          document.getElementById("progress").innerText = "Approved";
+                          approveBtn.innerHTML = `<button style="width:90px;height:35px;color:white;border:none;border-radius:4px;background:#88a8c2;cursor:not-allowed;" disabled>Approved</button>`;
+                      })
+                      .catch(error => {
+                          console.error('Error approving task:', error);
+                          alert("Error approving task. Please try again.");
+                      });
+                  });
+              }
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching task data:', error);
+            taskDescription.innerHTML = `<p style="color: red; padding: 20px;">Error loading task data: ${error.message}</p>`;
+        });
+
+    window.toggleMenu = function() {
+        const sidebar = document.querySelector('.sidebar');
+        sidebar.classList.toggle('collapsed');
+    };
+  });
+</script>
+</body>
+</html>
