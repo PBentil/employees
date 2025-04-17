@@ -13,14 +13,87 @@
     <link
             href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&display=swap"
             rel="stylesheet">
+    <title>Leave</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
 
-    <title>Announcements</title>
+
+
+
+        .page-btns {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            margin-bottom: 20px;
+        }
+
+        .page-btns button {
+            padding: 10px;
+            margin-right: 70px;
+        }
+        .announcement p{
+          font-size:18px;
+              display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    max-height: 4.5em;
+          }
+        .announcements-container{
+        font-size:18px;
+            width: 1100px;
+            height: 850px;
+            margin-top:50px;
+            align-self: center;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position:relative;
+        }
+        .announcements-container h3{
+margin: 0;
+        }
+        .announcement-info {
+    width: 100%;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp:3;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    padding-left: 15px;
+
+}
+.date{
+width: 12%;
+    border-right: 1px solid lightgray;
+}
+.announcement{
+    display: flex;
+    padding: 15px;
+    height: 115px;
+    background: white;
+    margin: 0;
+    border-radius: 0;
+
+
+}
+.announcement h3{
+        color:steelblue;
+        margin-bottom:8px;
+        }
+    </style>
 </head>
 
 <body>
 <div class="container">
-    <!-- Sidebar -->
     <div class="sidebar">
         <div class="heading">
             <h2>HR DIVE</h2>
@@ -29,29 +102,24 @@
         </div>
         <h3>Menu</h3>
         <div class="icons">
-            <i class="fa-solid fa-house fa-lg "></i> <a href="/dash">Dashboard</a>
+            <i class="fa-solid fa-house fa-lg "></i> <a href="/dashboard">Dashboard</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-people-group fa-lg"></i><a href="/employees">Employees</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-plus fa-lg"></i> <a href="/contract">Contract</a>
+        </div>
+        <div class="icons">
+            <i class="fa-regular fa-square-check fa-lg "></i> <a href="/Attendances">Attendances</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-arrow-right-from-bracket fa-lg "></i> <a href="/Leaves">Leaves</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-layer-group fa-lg "></i> <a href="/payroll">Payroll</a>
         </div>
 
-        <div class="icons">
-            <i class="fa-regular fa-square-check fa-lg "></i> <a href="/attendance">Attendances</a>
-        </div>
-
-        <div class="icons">
-            <i class="fa-solid fa-layer-group fa-lg "></i> <a href="/profile">Profile Management</a>
-        </div>
-        <div class="icons">
-            <i class="fa-solid fa-calendar fa-lg"></i><a href="/meetings">Meetings</a>
-        </div>
-
-        <div class="icons">
-            <i class="fa-solid fa-comments fa-lg"></i><a href="/feedbacks">Feedbacks and Complaints</a>
-        </div>
-        <div class="icons">
-            <i class="fa-solid fa-bullhorn fa-lg"></i><a href="/announcements">Announcements</a>
-        </div>
-        <div class="icons">
-            <i class="fa-solid fa-calendar-check fa-lg"></i><a href="/leave">Leave Request</a>
-        </div>
         <div class="icons">
 
             <svg width="22px" height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -69,75 +137,68 @@
                         d="M8.4 14H4.6C4.03995 14 3.75992 14 3.54601 14.109C3.35785 14.2049 3.20487 14.3578 3.10899 14.546C3 14.7599 3 15.0399 3 15.6V19.4C3 19.9601 3 20.2401 3.10899 20.454C3.20487 20.6422 3.35785 20.7951 3.54601 20.891C3.75992 21 4.03995 21 4.6 21H8.4C8.96005 21 9.24008 21 9.45399 20.891C9.64215 20.7951 9.79513 20.6422 9.89101 20.454C10 20.2401 10 19.9601 10 19.4V15.6C10 15.0399 10 14.7599 9.89101 14.546C9.79513 14.3578 9.64215 14.2049 9.45399 14.109C9.24008 14 8.96005 14 8.4 14Z"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-            <a class="hover:text-[#4682B4]    hover:cursor-pointer text-wrap" href="etask">Tasks</a>
+            <p class="hover:text-[#4682B4]    hover:cursor-pointer text-wrap">Meetings </p>
 
         </div>
         <div class="icons">
             <i class="fa-solid fa-gear fa-lg"></i> <a href="/security">Settings</a>
-
         </div>
-
+        <div class="icons">
+            <i class="fa-solid fa-gear fa-lg"></i> <a href="/reset-password">Password</a>
+        </div>
     </div>
-
-
     <!-- Navbar -->
     <div class="navigation">
-        <div class="navbar">
+        <div class="navbar" style="background:whitesmoke">
             <div class="links">
                 <div class="prof">
-                    <h3>Welcome back,<span id="employee-name" style="color:steelblue">HR</span></h3>
 
+                    <h3>Welcome back,<span id="employee-name" style="color:steelblue">HR</span></h3>
                 </div>
                 <div class="links-buttons" style="position:relative;right: 60px;">
-                    <form action="/logout" method="POST" style="display: inline;background: transparent;border: none;box-shadow: none;position: relative;top: 14px;">
+                    <form action="/logout" method="POST"
+                          style="display: inline;background: transparent;border: none;box-shadow: none;position: relative;top: 14px;">
                         <button type="submit" class="logout-btn">
                             <i class="fa-solid fa-sign-out-alt"></i> Logout
                         </button>
                     </form>
+
                 </div>
-
             </div>
-            <div class="content">
-                <h1>Announcements & Notices</h1>
+            <h1 style="color:steelblue;text-align:center;">Announcements</h1>
+            <div class="announcements-container" id="announcements-container">
 
-                <!-- Notice Board Section -->
-                <section class="notice-board">
-                    <h2>Notice Board</h2>
-                    <div class="announcement">
-                        <h3>Company Retreat 2024</h3>
-                        <p>Join us for our annual company retreat on January 15th, 2024. Check your email for
-                            details.</p>
-                        <button class="mark-read" onclick="markAsRead(this)">Mark as Read</button>
-                    </div>
 
-                    <div class="announcement">
-                        <h3>Policy Update: Remote Work</h3>
-                        <p>Updated remote work policy effective from February 1st, 2024. Review the policy document
-                            for
-                            details.</p>
-                        <button class="mark-read" onclick="markAsRead(this)">Mark as Read</button>
-                    </div>
 
-                    <div class="announcement">
-                        <h3>Holiday Schedule</h3>
-                        <p>The office will remain closed on December 25th and January 1st for the holidays. Happy
-                            Holidays!</p>
-                        <button class="mark-read" onclick="markAsRead(this)">Mark as Read</button>
-                    </div>
-                </section>
+
+
+                <button style="position:absolute;bottom:0;right:0;width:90px;height:50px;margin-bottom:30px;background:steelblue;">Next</button>
             </div>
+
         </div>
-    </div>
-</div>
-<script src="script.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const name = localStorage.getItem('employeeFirstName');
-        if (name) {
-            document.getElementById('employee-name').textContent = name;
-        }
-    });
-</script>
 </body>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const container = document.getElementById("announcements-container");
+
+        fetch(`/eAnnouncements`)
+            .then(response => response.json())
+            .then(data => {
+                container.innerHTML = data.content.map((announcement) => `
+                    <div class="announcement">
+                        <div class="date">
+                            ${announcement.date}
+                        </div>
+                        <div class="announcement-info">
+                            <h3>${announcement.title}</h3>
+                            <p>${announcement.content}</p>
+                        </div>
+                    </div>
+                `).join('');
+            })
+            .catch(error => console.error('Error fetching announcements:', error));
+    });
+
+</script>
 </html>

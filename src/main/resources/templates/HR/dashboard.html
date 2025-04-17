@@ -14,21 +14,27 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Dashboard</title>
 </head>
+<style>
+    canvas#attendanceChart {
+    width: 100% !important;
+    height: 300px !important; /* Adjust as needed */
+    display: block;
+}
 
+</style>
 <body>
 <!-- Sidebar -->
 <div class="sidebar">
     <div class="heading">
         <h2>HR DIVE</h2>
-        <button id="chevron" onclick="toggleMenu()" style="background: transparent; border: none;"><i
-                class="fa-solid fa-chevron-left"></i></button>
+
     </div>
     <h3>Menu</h3>
     <div class="icons">
         <i class="fa-solid fa-house fa-lg "></i> <a href="/dashboard">Dashboard</a>
     </div>
     <div class="icons">
-        <i class="fa-regular fa-user fa-lg"></i><a href="/employees">Employees</a>
+        <i class="fa-solid fa-people-group fa-lg"></i><a href="/employees">Employees</a>
     </div>
     <div class="icons">
         <i class="fa-solid fa-plus fa-lg"></i> <a href="/contract">Contract</a>
@@ -60,11 +66,11 @@
                     d="M8.4 14H4.6C4.03995 14 3.75992 14 3.54601 14.109C3.35785 14.2049 3.20487 14.3578 3.10899 14.546C3 14.7599 3 15.0399 3 15.6V19.4C3 19.9601 3 20.2401 3.10899 20.454C3.20487 20.6422 3.35785 20.7951 3.54601 20.891C3.75992 21 4.03995 21 4.6 21H8.4C8.96005 21 9.24008 21 9.45399 20.891C9.64215 20.7951 9.79513 20.6422 9.89101 20.454C10 20.2401 10 19.9601 10 19.4V15.6C10 15.0399 10 14.7599 9.89101 14.546C9.79513 14.3578 9.64215 14.2049 9.45399 14.109C9.24008 14 8.96005 14 8.4 14Z"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
-        <p class="hover:text-[#4682B4]    hover:cursor-pointer text-wrap">Apps & Integration</p>
+        <p class="hover:text-[#4682B4]    hover:cursor-pointer text-wrap">Meeting</p>
 
     </div>
     <div class="icons">
-        <i class="fa-solid fa-gear fa-lg"></i> <a href="/securit">Settings</a>
+        <i class="fa-solid fa-gear fa-lg"></i> <a href="/security">Settings</a>
     </div>
 
 </div>
@@ -75,11 +81,21 @@
 <div class="navigation">
     <div class="navbar">
         <div class="links">
+            <button class="menu-toggle">☰</button>
             <div class="prof">
                 <h3>Welcome back,<span>HR</span></h3>
 
             </div>
-
+            <div class="links-buttons">
+                <i class="fa-solid fa-magnifying-glass fa-lg relative right-5"
+                   style="color: gray;padding-right: 8px;"></i>
+                <i class="fa-regular fa-bell  fa-lg" style="color: gray;"></i>
+                <button class="button1"><i class="fa-regular fa-calendar"
+                                           style="color: gray;padding-right:8px;"></i>Attendance</button>
+                <button class="button2"><i class="fa-solid fa-plus" style="color:white;padding-right:8px;"></i><a
+                        href="/contract">Add
+                    Employee</a></button>
+            </div>
         </div>
         <!---Put Your Code for the body HERE-->
         <div class="main-content">
@@ -104,7 +120,7 @@
                 <div>
                     <i class="fa-solid fa-file"></i>
                     <p>200</p>
-                    <p>New Applications</p>
+                    <p>Leave Applications</p>
                 </div>
             </div><br> <br>
             <div class="bar">
@@ -112,48 +128,70 @@
                 <canvas id="attendanceChart" width="400" height="100"></canvas>
 
                 <script>
-                    const ctx = document.getElementById('attendanceChart').getContext('2d');
-                    const attendanceChart = new Chart(ctx, {
-                        type: 'bar', // Bar chart type
-                        data: {
-                            labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], // Days of the week
-                            datasets: [{
-                                label: 'Number of Attendees',
-                                data: [45, 50, 38, 55, 60,], // Example attendance data
-                                backgroundColor: [
-                                    'rgba(75, 192, 192, 0.2)', // Colors for the bars
-                                    'rgba(153, 102, 255, 0.2)',
-                                    'rgba(255, 159, 64, 0.2)',
-                                    'rgba(255, 99, 132, 0.2)',
-                                    'rgba(54, 162, 235, 0.2)',
-                                    'rgba(255, 206, 86, 0.2)',
-                                    'rgba(99, 255, 132, 0.2)'
-                                ],
-                                borderColor: [
-                                    'rgba(75, 192, 192, 1)',
-                                    'rgba(153, 102, 255, 1)',
-                                    'rgba(255, 159, 64, 1)',
-                                    'rgba(255, 99, 132, 1)',
-                                    'rgba(54, 162, 235, 1)',
-                                    'rgba(255, 206, 86, 1)',
-                                    'rgba(99, 255, 132, 1)'
-                                ],
-                                borderWidth: 1 // Thickness of bar borders
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true // Start Y-axis at 0
-                                }
-                            },
-                            plugins: {
-                                legend: {
-                                    display: true // Show legend
-                                }
-                            }
-                        }
-                    });
+                    document.addEventListener("DOMContentLoaded", async () => {
+    try {
+        const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+        const urls = days.map(day => `/count/${day.toUpperCase()}`);
+
+
+        const responses = await Promise.all(urls.map(url => fetch(url)));
+
+
+        const data = await Promise.all(responses.map(res => res.json()));
+
+        console.log("API Data:", data);
+
+
+        const attendanceMap = {};
+        data.forEach(entry => {
+            if (entry && entry.day && entry.count !== undefined) {
+                attendanceMap[entry.day.toUpperCase()] = entry.count;
+            }
+        });
+
+        console.log("Mapped Attendance Data:", attendanceMap);
+
+
+        const attendanceCounts = days.map(day => attendanceMap[day.toUpperCase()] || 0);
+        console.log("Final Attendance Counts:", attendanceCounts);
+
+
+        const ctx = document.getElementById("attendanceChart").getContext("2d");
+        new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: days,
+                datasets: [{
+                    label: "Number of Attendees",
+                    data: attendanceCounts,
+                    backgroundColor: [
+                        "rgba(75, 192, 192, 0.2)",
+                        "rgba(153, 102, 255, 0.2)",
+                        "rgba(255, 159, 64, 0.2)",
+                        "rgba(255, 99, 132, 0.2)",
+                        "rgba(54, 162, 235, 0.2)"
+                    ],
+                    borderColor: [
+                        "rgba(75, 192, 192, 1)",
+                        "rgba(153, 102, 255, 1)",
+                        "rgba(255, 159, 64, 1)",
+                        "rgba(255, 99, 132, 1)",
+                        "rgba(54, 162, 235, 1)"
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+             maintainAspectRatio: false,
+                scales: { y: { beginAtZero: true } },
+                plugins: { legend: { display: true } }
+            }
+        });
+    } catch (error) {
+        console.error("Error fetching attendance data:", error);
+    }
+});
+
                 </script>
             </div><br><br>
             <div class="dashboard-flex">
@@ -180,7 +218,7 @@
 
 </body>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         fetch('getEmployeeCount')
             .then((response) => {
                 return response.json();
@@ -194,4 +232,19 @@
     });
 
 </script>
+
+<script>
+    const toggleButton = document.querySelector(".menu-toggle");
+    const sidebar = document.querySelector(".sidebar");
+
+    toggleButton.addEventListener("click", function () {
+        if (window.innerWidth <= 768) {
+            sidebar.classList.toggle("active"); // Mobile toggle
+        } else {
+            sidebar.classList.toggle("collapsed");
+        }
+    });
+
+</script>
+
 </html>

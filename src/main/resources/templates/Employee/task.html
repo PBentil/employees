@@ -24,8 +24,7 @@
     <div class="sidebar">
         <div class="heading">
             <h2>HR DIVE</h2>
-            <button id="chevron" onclick="toggleMenu()" style="background: transparent; border: none;"><i
-                    class="fa-solid fa-chevron-left"></i></button>
+
         </div>
         <h3>Menu</h3>
         <div class="icons">
@@ -44,14 +43,15 @@
             <i class="fa-solid fa-calendar fa-lg"></i><a href="/meetings">Meetings</a>
         </div>
 
-        <div class="icons">
-            <i class="fa-solid fa-comments fa-lg"></i><a href="/feedbacks">Feedbacks and Complaints</a>
-        </div>
+
         <div class="icons">
             <i class="fa-solid fa-bullhorn fa-lg"></i><a href="/announcement">Announcements</a>
         </div>
         <div class="icons">
             <i class="fa-solid fa-calendar-check fa-lg"></i><a href="/leave">Leave Request</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-clock-check fa-lg"></i><a href="/leaveHistory">Leave History</a>
         </div>
         <div class="icons">
 
@@ -73,14 +73,14 @@
             <a class="hover:text-[#4682B4]    hover:cursor-pointer text-wrap" href="/etask">Tasks</a>
 
         </div>
-
+        <div class="icons">
+            <i class="fa-solid fa-comments fa-lg"></i><a href="/help&support">Help & Support</a>
+        </div>
         <div class="icons">
             <i class="fa-solid fa-gear fa-lg"></i> <a href="/security">Settings</a>
 
         </div>
-        <div class="icons">
-            <i class="fa-solid fa-headphones fa-lg"></i><a href="/">Help & Support</a>
-        </div>
+
     </div>
 
 
@@ -91,7 +91,7 @@
                 <div class="prof">
                     <h3 th:if="${employee != null}">Welcome back,<span id="employee-name" th:text="${employee.firstName}" style="color:steelblue"></span></h3>
                     <h3 th:if="${employee == null}">Welcome back,<span id="employee-name">Employee</span></h3>
-
+                    <h3 style="display:none" th:if="${employee != null}">Welcome back,<span id="employee-id" th:text="${employee.uniqueId}" style="display:none"></span></h3>
                 </div>
 
                 <div class="links-buttons" style="position:relative;right: 60px;">
@@ -151,11 +151,16 @@
 
     document.addEventListener('DOMContentLoaded', function() {
     var employeeName = document.getElementById('employee-name').innerText;
+        var employeeID = document.getElementById('employee-id').innerText;
 
 
     if (employeeName) {
         localStorage.setItem('employeeFirstName', employeeName);
         console.log("Stored employee name in localStorage:", employeeName);
+    }
+      if (employeeID) {
+        localStorage.setItem('employeeID', employeeID);
+        console.log("Stored employee name in localStorage:", employeeID);
     }
  const name = localStorage.getItem('employeeFirstName');
     console.log(name);

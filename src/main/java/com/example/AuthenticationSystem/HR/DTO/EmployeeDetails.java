@@ -3,6 +3,8 @@ package com.example.AuthenticationSystem.HR.DTO;
 import com.example.AuthenticationSystem.HR.model.Compensation;
 import com.example.AuthenticationSystem.HR.model.Employee;
 import com.example.AuthenticationSystem.HR.model.JobDetails;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 
 public class EmployeeDetails {
     private Employee employee;
@@ -52,4 +54,5 @@ public class EmployeeDetails {
         job.setShiftEnd(this.jobDetails.getShiftEnd());
         return job;
     }
+
 }

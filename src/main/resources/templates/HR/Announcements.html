@@ -13,7 +13,7 @@
     <link
             href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&display=swap"
             rel="stylesheet">
-    <title>Payroll</title>
+    <title>Leave</title>
     <style>
         * {
             margin: 0;
@@ -22,69 +22,113 @@
             font-family: Arial, sans-serif;
         }
 
-       .attendance-container thead tr {
-    background-color: steelblue; /* Dark background color */
-    color: white; /* White text */
-}
-
-.attendance-container thead tr th {
-    padding: 12px;
-    text-align: center;
-    font-weight:450;
-}
-
-.attendance-container tbody tr td {
-    padding: 18px;
-    text-align: center;
-    border-bottom: 1px solid #ccc; /* Adds separation */
-}
 
 
-.attendance-container thead  th:first-child {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-}
 
-.attendance-container thead  th:last-child {
-    border-top-right-radius: 12px;
-    border-bottom-right-radius: 12px;
-}
 
-      .attendance-container  button:hover {
-            background: #0056b3;
+        .page-btns {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            margin-bottom: 20px;
         }
 
-        .back-link {
-            display: block;
-            margin-top: 15px;
-            font-size: 14px;
-            color: #007bff;
-            text-decoration: none;
+        .page-btns button {
+            padding: 10px;
+            margin-right: 70px;
         }
-
-        .attendance-container{
-            width: 80%;
+        .announcement p{
+          font-size:18px;
+              display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    max-height: 4.5em;
+          }
+          .create-announcement
+          {
+            font-size:18px;
+            width: 1100px;
+            height: 250px;
             padding: 20px;
+          border:1px solid lightgrey;
+          align-self:center;
+          background:white;
+          border-radius: 8px;
+          margin-top: 20px;
+            gap: 0;
+            position:relative;
+          }
+        .announcements-container{
+        font-size:18px;
+            width: 1100px;
+            height: 850px;
+            margin-top:50px;
+            align-self: center;
             display: flex;
             flex-direction: column;
+            gap: 0;
+            position:relative;
+        }
+        .announcements-container h3{
+margin: 0;
+        }
+        .announcement-info {
+    width: 100%;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp:3;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    padding-left: 15px;
+
+}
+.date{
+width: 12%;
+    border-right: 1px solid lightgray;
+}
+.announcement{
+    display: flex;
+    padding: 15px;
+    height: 115px;
+    background: white;
+    margin: 0;
+    border-radius: 0;
+
+
+}
+.announcement h3{
+        color:steelblue;
+        margin-bottom:8px;
+        }
+        .search-filter{
+            font-size:18px;
+            width: 1100px;
+            height: 60px;
+           display: flex;
+          justify-content: space-between;
+          align-self:center;
+            margin-top:28px;
+        }
+        .searchbox{
+            width: 250px;
+            background:white;
+            border: 1px solid lightgrey;
+            border-radius: 6px;
+            padding-left: 10px;
+            display: flex;
             align-items: center;
-height: 680px;
-background: white;
-margin-top: 40px;
-border-radius: 8px;
-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.229);
-align-self: center;
-position:relative;
+            gap:6px;
         }
-        .page-btns{
-        position:absolute;
-        right:0;
-        bottom:0;
-        margin-bottom:20px;
+        .search-input{
+
+            border: none;
         }
-        .page-btns button{
-        padding:10px;
-       margin-right: 70px;
+        .search-input:focus{
+            border: none;
+            outline: none;
         }
     </style>
 </head>
@@ -140,18 +184,21 @@ position:relative;
         <div class="icons">
             <i class="fa-solid fa-gear fa-lg"></i> <a href="/security">Settings</a>
         </div>
-
+        <div class="icons">
+            <i class="fa-solid fa-gear fa-lg"></i> <a href="/reset-password">Password</a>
+        </div>
     </div>
     <!-- Navbar -->
-    <div class="navigation" >
-        <div class="navbar" style="background:whitesmoke" >
+    <div class="navigation">
+        <div class="navbar" style="background:whitesmoke">
             <div class="links">
                 <div class="prof">
 
                     <h3>Welcome back,<span id="employee-name" style="color:steelblue">HR</span></h3>
                 </div>
                 <div class="links-buttons" style="position:relative;right: 60px;">
-                    <form action="/logout" method="POST" style="display: inline;background: transparent;border: none;box-shadow: none;position: relative;top: 14px;">
+                    <form action="/logout" method="POST"
+                          style="display: inline;background: transparent;border: none;box-shadow: none;position: relative;top: 14px;">
                         <button type="submit" class="logout-btn">
                             <i class="fa-solid fa-sign-out-alt"></i> Logout
                         </button>
@@ -159,87 +206,59 @@ position:relative;
 
                 </div>
             </div>
-            <div class="attendance-container">
-                <h2>Employee Payroll</h2>
-                <table style="width: 90%; border-collapse: collapse;align-self: center;margin-top: 30px;">
-                    <thead>
-                    <tr>
 
-                        <th>Employee ID</th>
-                        <th>Employment Type</th>
-                        <th>Salary Type</th>
-                        <th>Payment Rate</th>
-                        <th>Compensation Type</th>
-
-                    </tr>
-                    </thead>
-                    <tbody id="table">
-
-                    </tbody>
-                </table>
-                <div class="page-btns">
-                    <button id="prev-btn" style="width: 90px;height:40px;background: steelblue;color: white;border:none;border-radius: 6px;">Previous</button>
-                    <button id="next-btn" style="width: 90px;height:40px;background: steelblue;color: white;border:none;border-radius: 6px;">Next</button>
+            <div class="create-announcement">
+                <h2 style="color:steelblue;text-align:left;margin-bottom: 10px;">Announcements</h2>
+                <p>Use this section to share important updates and information with employees. HR can post announcements regarding company policies, events, deadlines, and other essential notifications to keep everyone informed.</p>
+                <button style="margin-top: 25px;width: 80px;height: 30px;background: steelblue;color: white;border: none;border-radius: 4px;">Create</button>
+            </div>
+            <div class="search-filter">
+                <div class="searchbox">
+                    <i class="fa-solid fa-magnifying-glass fa-ms" style="color: grey;"></i>
+                    <input type="text" placeholder="Search title" class="search-input">
+                </div>
+                <div class="filter">
+                    <label style="color: steelblue;">Filter By:</label>
+                    <select style="padding: 10px;border-radius:4px;border:1px solid lightgrey;">
+                        <option>All</option>
+                        <option>Priority</option>
+                        <option>Date</option>
+                    </select>
                 </div>
             </div>
+            <div class="announcements-container" id="announcements-container">
+
+
+
+
+
+                <button style="position:absolute;bottom:0;right:0;width:90px;height:50px;margin-bottom:30px;background:steelblue;">Next</button>
+            </div>
+
         </div>
-    </div>
-</div>
-</div>
+</body>
+
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-       let currentPage = 0;
-       const pageSize = 8;
+    document.addEventListener("DOMContentLoaded", function () {
+        const container = document.getElementById("announcements-container");
 
-       const fetchData = (currentPage) => {
-        fetch(`/PayrollData?page=${currentPage}&size=${pageSize}`)
-               .then((response) => response.json())
-               .then((data) => {
-                   const container = document.getElementById('table');
-                   container.innerHTML = ''; // Clear previous content
-
-                   if (data.content.length === 0) {
-                       container.innerHTML = `<tr><td colspan="6" style="text-align: center; padding: 15px; color: gray;">No employee payroll found</td></tr>`;
-                       return;
-                   }
-
-                   container.innerHTML = data.content.map((payroll) => `
-                        <tr>
-                    <td style="padding: 15px;">${payroll.uniqueId}</td>
-                    <td>${payroll.employmentType}</td>
-
-                    <td>${payroll.salaryType}</td>
-
-                    <td>${payroll.paymentRate}</td>
-
-                       <td>${payroll.compensationType}</td>
-
-
-
-                </tr>
-                   `).join('');
-               })
-               .catch((error) => console.error('Error fetching data:', error));
-       };
-
-       // Pagination buttons
-       document.getElementById('prev-btn').addEventListener('click', function () {
-           if (currentPage > 0) {
-               currentPage--;
-               fetchData(currentPage);
-           }
-       });
-
-       document.getElementById('next-btn').addEventListener('click', function () {
-           currentPage++;
-           fetchData(currentPage);
-       });
-
-       fetchData(currentPage);
-   });
-
-
+        fetch(`/eAnnouncements`)
+            .then(response => response.json())
+            .then(data => {
+                container.innerHTML = data.content.map((announcement) => `
+                    <div class="announcement">
+                        <div class="date">
+                            ${announcement.date}
+                        </div>
+                        <div class="announcement-info">
+                            <h3>${announcement.title}</h3>
+                            <p>${announcement.content}</p>
+                        </div>
+                    </div>
+                `).join('');
+            })
+            .catch(error => console.error('Error fetching announcements:', error));
+    });
 
 </script>
-</body>
 </html>

@@ -13,14 +13,179 @@
     <link
             href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&display=swap"
             rel="stylesheet">
+    <title>HR Assist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+       .attendance-container thead tr {
+    background-color: steelblue; /* Dark background color */
+    color: white; /* White text */
+}
+
+.attendance-container thead tr th {
+    padding: 12px;
+    text-align: center;
+    font-weight:450;
+}
+
+.attendance-container tbody tr td {
+    padding: 18px;
+    text-align: center;
+    border-bottom: 1px solid #ccc; /* Adds separation */
+}
 
 
-    <title>Employee Tasks</title>
+.attendance-container thead  th:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.attendance-container thead  th:last-child {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+      .attendance-container  button:hover {
+            background: #0056b3;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .attendance-container{
+            width: 80%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+height: 680px;
+background: white;
+margin-top: 40px;
+border-radius: 8px;
+box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.229);
+align-self: center;
+position:relative;
+        }
+        .page-btns{
+        position:absolute;
+        right:0;
+        bottom:0;
+        margin-bottom:20px;
+        }
+        .page-btns button{
+        padding:10px;
+       margin-right: 70px;
+        }
+
+        td:nth-child(6) {
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+       tbody tr:hover{
+        cursor:pointer;
+        background:whitesmoke !important;
+        }
+.popup{
+    width: 500px;
+    height:400px;
+    background: white;
+    border: 2px solid steelblue;
+    border-radius: 8px;
+    align-self: center;
+    margin: auto;
+    position: absolute;
+    padding:20px;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+
+}
+.fa-xmark{
+color:lightgrey;
+cursor: pointer;
+}
+.fa-xmark:hover{
+color: rgb(251, 75, 75);
+}
+.popup-top{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.request-info{
+    height:80%;
+    margin: auto;
+    background:hsl(0, 0,85%);
+    border: 1.2px solid lightgrey;
+    border-radius: 8px;
+    width: 100%;
+}
+.task-list{
+position:relative;
+margin-top:50px;
+    width: 100%;
+    min-height:800px;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+.task{
+    height:23%;
+    margin-bottom:20px;
+    padding-left:20px;
+    padding-top: 10px;
+    border-radius: 8px;
+    background:white;
+    border: 1px solid steelblue;
+}
+        .submenu{
+    display: flex;
+    flex-direction: column;
+width:10%;
+height:100%;
+background: red;
+}
+.overflow-menu{
+
+    display:none;
+    flex-direction: column;
+    background: plum;
+    width: 165px;
+    height:90px;
+    background:white;
+    box-shadow: 4px 4px 20px rgba(0,0,0,0.225);
+    position: absolute;
+    right: 0;
+}
+.overflow-menu a{
+    text-decoration: none;
+    padding: 14px;
+    color: black;
+
+}
+.overflow-menu a:hover{
+    background:whitesmoke;
+}
+
+    </style>
 </head>
 
 <body>
 <div class="container">
-    <!-- Sidebar -->
     <div class="sidebar">
         <div class="heading">
             <h2>HR DIVE</h2>
@@ -29,30 +194,24 @@
         </div>
         <h3>Menu</h3>
         <div class="icons">
-            <i class="fa-solid fa-house fa-lg "></i> <a href="/dash">Dashboard</a>
+            <i class="fa-solid fa-house fa-lg "></i> <a href="/dashboard">Dashboard</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-people-group fa-lg"></i><a href="/employees">Employees</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-plus fa-lg"></i> <a href="/contract">Contract</a>
+        </div>
+        <div class="icons">
+            <i class="fa-regular fa-square-check fa-lg "></i> <a href="/Attendances">Attendances</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-arrow-right-from-bracket fa-lg "></i> <a href="/Leaves">Leaves</a>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-layer-group fa-lg "></i> <a href="/payroll">Payroll</a>
         </div>
 
-        <div class="icons">
-            <i class="fa-regular fa-square-check fa-lg "></i> <a href="/attendance">Attendances</a>
-        </div>
-
-        <div class="icons">
-            <i class="fa-solid fa-layer-group fa-lg "></i> <a href="/profile">Profile Management</a>
-        </div>
-
-        <div class="icons">
-            <i class="fa-solid fa-calendar fa-lg"></i><a href="/meetings">Meetings</a>
-        </div>
-
-        <div class="icons">
-            <i class="fa-solid fa-comments fa-lg"></i><a href="/feedbacks">Feedbacks and Complaints</a>
-        </div>
-        <div class="icons">
-            <i class="fa-solid fa-bullhorn fa-lg"></i><a href="/announcement">Announcements</a>
-        </div>
-        <div class="icons">
-            <i class="fa-solid fa-calendar-check fa-lg"></i><a href="/leave">Leave Request</a>
-        </div>
         <div class="icons">
 
             <svg width="22px" height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -70,115 +229,129 @@
                         d="M8.4 14H4.6C4.03995 14 3.75992 14 3.54601 14.109C3.35785 14.2049 3.20487 14.3578 3.10899 14.546C3 14.7599 3 15.0399 3 15.6V19.4C3 19.9601 3 20.2401 3.10899 20.454C3.20487 20.6422 3.35785 20.7951 3.54601 20.891C3.75992 21 4.03995 21 4.6 21H8.4C8.96005 21 9.24008 21 9.45399 20.891C9.64215 20.7951 9.79513 20.6422 9.89101 20.454C10 20.2401 10 19.9601 10 19.4V15.6C10 15.0399 10 14.7599 9.89101 14.546C9.79513 14.3578 9.64215 14.2049 9.45399 14.109C9.24008 14 8.96005 14 8.4 14Z"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-            <a class="hover:text-[#4682B4]    hover:cursor-pointer text-wrap" href="/etask">Tasks</a>
+            <p class="hover:text-[#4682B4]    hover:cursor-pointer text-wrap">Meetings </p>
 
         </div>
-
         <div class="icons">
             <i class="fa-solid fa-gear fa-lg"></i> <a href="/security">Settings</a>
+        </div>
 
-        </div>
-        <div class="icons">
-            <i class="fa-solid fa-headphones fa-lg"></i><a href="/">Help & Support</a>
-        </div>
     </div>
-
-
     <!-- Navbar -->
-    <div class="navigation">
-        <div class="navbar">
+    <div class="navigation" >
+        <div class="navbar" style="background:whitesmoke" >
             <div class="links">
                 <div class="prof">
-                    <h3>Welcome back,<span id="employee-name" style="color:steelblue" ></span></h3>
 
+                    <h3>Welcome back,<span id="employee-name" style="color:steelblue">HR</span></h3>
                 </div>
-
                 <div class="links-buttons" style="position:relative;right: 60px;">
                     <form action="/logout" method="POST" style="display: inline;background: transparent;border: none;box-shadow: none;position: relative;top: 14px;">
                         <button type="submit" class="logout-btn">
                             <i class="fa-solid fa-sign-out-alt"></i> Logout
                         </button>
                     </form>
+
+                </div>
+            </div>
+            <div class="task-list" >
+                <h2 style="text-align:center;">Employee Tasks</h2>
+                <div  id="tasks-list" >
+                </div>
+
+                <div class="page-btns" style="margin-bottom:90px;">
+                    <button id="prev-btn" style="width: 90px;height:40px;background: steelblue;color: white;border:none;border-radius: 6px;">Previous</button>
+                    <button id="next-btn" style="width: 90px;height:40px;background: steelblue;color: white;border:none;border-radius: 6px;">Next</button>
                 </div>
             </div>
 
-            <div class="task-content">
-                <h1>Tasks</h1>
-
-                <!-- Task List Section -->
-                <section class="task-list">
-                    <h2>Task List</h2>
-                    <table class="task-table">
-                        <thead>
-                        <tr>
-                            <th>Task</th>
-                            <th>Deadline</th>
-                            <th>Priority</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                        </thead>
-                        <tbody id="tasks">
-
-                        </tbody>
-                    </table>
-                </section>
-
-                <!-- Task Details Section -->
-                <section class="task-details">
-                    <h2>Task Details</h2>
-                    <div id="task-info">
-                        <p><strong>Task Name:</strong> Select a task to view details.</p>
-                    </div>
-                    <div id="progress-tracking" style="display: none;">
-                        <p><strong>Description:</strong> Complete the financial analysis for Q4.</p>
-                        <p><strong>Progress:</strong></p>
-                        <progress value="50" max="100"></progress> 50%
-                        <p><strong>Upload Deliverable:</strong></p>
-                        <form action="#" method="POST" enctype="multipart/form-data">
-                            <input type="file" name="deliverable" required>
-                            <button type="submit">Upload</button>
-                        </form>
-                    </div>
-                </section>
-            </div>
         </div>
     </div>
-</div>
+</body>
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let currentPage = 0;
+        const pageSize = 4;
+
+        const fetchData = (currentPage) => {
+            fetch(`/taskData?page=${currentPage}&size=${pageSize}`)
+                .then((response) => response.json())
+                .then((data) => {
+                    const container = document.getElementById("tasks-list");
+                    container.innerHTML = "";
+
+                    if (data.content.length === 0) {
+                        container.innerHTML = `<p style="text-align: center; color: gray;">No tasks found</p>`;
+                        return;
+                    }
+
+                    container.innerHTML = data.content
+                        .map(
+                            (task) => `
+                        <div class="task">
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <h2 style="color: steelblue; margin-bottom: 10px;">${task.taskTitle}</h2>
+                               <div class="submenu">
+                                    <button class="overflow-btn" style="background:white;border: none;cursor: pointer;">
+                                        <i class="fa-solid fa-ellipsis-vertical fa-lg" style="margin-right: 20px;color:gray;"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 50px;">
+                                <div style="display: flex; flex-direction: column; gap: 6px;">
+                                    <p style="color: gray;">Assigned By</p>
+                                    <p>HR</p>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 10px;">
+                                    <p style="color: gray;">Due Date</p>
+                                    <p>${task.dueDate}</p>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 10px;">
+                                    <p style="color: gray;">Priority</p>
+                                    <p>${task.priority}</p>
+                                </div>
+                                <div class="overflow-menu" style="display:none;">
+                                    <a href="#">Task Information</a>
+                                    <a href="#">Submit Task</a>
+                                </div>
+                            </div>
+                            <p style="color: steelblue;">${task.status}</p>
+                        </div>`
+                        )
+                        .join("");
+                })
+                .catch((error) => console.error("Error fetching data:", error));
+        };
 
 
-    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById("tasks-list").addEventListener('click', function(event) {
+            if (event.target && event.target.classList.contains('overflow-btn')) {
+                const taskDiv = event.target.closest('.task'); // Find the closest task div
+                const menu = taskDiv.querySelector('.overflow-menu');
+                if (menu) {
+                    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+                }
+            }
+        });
 
- const name = localStorage.getItem('employeeFirstName');
-    console.log(name);
+        document.getElementById("prev-btn").addEventListener("click", function () {
+            if (currentPage > 0) {
+                currentPage--;
+                fetchData(currentPage);
+            }
+        });
 
-    document.getElementById("employee-name").innerText=name;
-    const tasks = document.getElementById("tasks");
+        document.getElementById("next-btn").addEventListener("click", function () {
+            currentPage++;
+            fetchData(currentPage);
+        });
 
-    fetch('/taskData')
-        .then((response) => response.json())
-        .then((data) => {
-
-           tasks.innerHTML = data.map(task => {
-    return `
-        <tr>
-            <td style="padding: 15px;">${task.taskTitle}</td>
-            <td style="padding: 15px;">${task.dueDate}</td>
-                <td style="padding: 15px;">${task.priority}</td>
-            <td style="padding: 15px;">${task.status}</td>
-            <td style="padding: 15px;">
-                <button onclick="viewTask('${task.id}')">View</button>
-            </td>
-        </tr>
-    `;
-}).join('');
-        })
-        .catch(error => console.error('Error fetching task data:', error));
-});
-
+        fetchData(currentPage);
+    });
 </script>
 
-</body>
+
+
+
 
 </html>

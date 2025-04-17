@@ -34,9 +34,9 @@
 }
 
 .attendance-container tbody tr td {
-    padding: 10px;
+    padding: 18px;
     text-align: center;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ccc; /* Adds separation */
 }
 
 
@@ -76,9 +76,6 @@ box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.229);
 align-self: center;
 position:relative;
         }
-            .attendance-container tbody tr:nth-child(odd) {
-    background-color:transparent; /* Light gray for odd rows */
-}
         .page-btns{
         position:absolute;
         right:0;
@@ -89,10 +86,7 @@ position:relative;
         padding:10px;
        margin-right: 70px;
         }
-span{
-        color:steelblue;
 
-        }
     </style>
 </head>
 
@@ -168,23 +162,23 @@ span{
             </div>
             <div class="attendance-container">
                 <div class="" style="flex">
-                    <h2>Leave Requests</h2>
+                    <h2>Leave History</h2>
 
                 </div>
                 <div style="display:flex;gap:8px;position:absolute;right:0;margin-right:80px;align-items:center;margin-top:20px;margin-bottom:30px;">
-                <label style="font-size:18px;color:steelblue;">Filter By:</label><select id="Filter" style="padding:6px;"><option>Pending</option><option>Approved</option><option>All</option><option>Denied</option></select>
-                    </div>
+                    <label style="font-size:18px;color:steelblue;">Filter By:</label><select id="Filter" style="padding:6px;"><option>All</option><option>Approved</option><option>Pending</option><option>Denied</option></select>
+                </div>
                 <table style="width: 95%; border-collapse: collapse;align-self: center;margin-top: 30px;">
                     <thead>
                     <tr>
 
-                        <th>Employee ID</th>
+                        <th style="padding: 15px;">Employee ID</th>
                         <th>Leave Type</th>
                         <th>Start Date</th>
                         <th>End Date</th>
                         <th>Reason</th>
                         <th>Status</th>
-                        <th>Approval</th>
+
 
 
                     </tr>
@@ -205,20 +199,20 @@ span{
 <script>
     document.addEventListener('DOMContentLoaded', function () {
        let currentPage = 0;
-       const pageSize = 8;
+       const pageSize = 7;
        let leaves=[];
        let SelectFilter=document.getElementById("Filter");
 
-     let filters="Pending";
+     let filters="All";
        const fetchData = (currentPage,filters) => {
-           fetch(`/filteredLeaveRecords?filter=${filters}&page=${currentPage}&size=${pageSize}`)
+           fetch(`/filteredEmployeeLeaveRecords?filter=${filters}&page=${currentPage}&size=${pageSize}`)
                .then((response) => response.json())
                .then((data) => {
                    const container = document.getElementById('table');
-                   container.innerHTML = '';
+                   container.innerHTML = ''; // Clear previous content
                     leaves=data.content;
                    if (data.content.length === 0) {
-                       container.innerHTML = `<tr><td colspan="6" style="text-align: center;border:none; padding: 15px; color: gray;">No leave requests found</td></tr>`;
+                       container.innerHTML = `<tr><td colspan="6" style="text-align: center; padding: 15px; color: gray;">No leave requests found</td></tr>`;
                        return;
                    }
 
@@ -230,17 +224,6 @@ span{
                            <td>${leave.endDate}</td>
                            <td>${leave.reason}</td>
                            <td>${leave.status}</td>
- <td>
-   ${leave.status !== "Approved" && leave.status !== "Denied"
-       ? `<div style="display:flex;gap:8px;">
-            <button style="width: 90px; border: none; border-radius: 6px; color: steelblue; padding: 10px; background: whitesmoke; margin-right: 10px"
-                onclick="approveRequest('${leave.id}')">Approve</button>
-            <button style="width: 90px; border: none; border-radius: 6px; color: white; padding: 10px; background: gray"
-                onclick="RejectRequest('${leave.id}')">Reject</button>
-          </div>`
-       : `<span>${leave.status === "Approved" ? "Already Approved" : "Already Denied"}</span>`}
-</td>
-
 
                        </tr>
                    `).join('');
@@ -275,36 +258,7 @@ SelectFilter.addEventListener('change', function () {
        fetchData(currentPage,filters);
    });
 
-   function approveRequest(leaveId) {
-       fetch(`http://localhost:8080/approveLeave/${leaveId}`, {
-           method: "POST",
-           headers: {
-               "Content-Type": "application/json"
-           },
-           body: JSON.stringify({ status: "denied" })
-       })
-       .then(response => response.json())
-       .then(data => {
-           alert("Leave approved successfully");
-           fetchData(currentPage,filters);
-       })
-       .catch(error => console.error("Error:", error));
-   }
-     function RejectRequest(leaveId) {
-       fetch(`http://localhost:8080/rejectLeave/${leaveId}`, {
-           method: "POST",
-           headers: {
-               "Content-Type": "application/json"
-           },
-           body: JSON.stringify({ status: "approved" })
-       })
-       .then(response => response.json())
-       .then(data => {
-           alert("Leave rejected successfully");
-           fetchData(currentPage,filters); // Refresh data after approval
-       })
-       .catch(error => console.error("Error:", error));
-   }
+
 
 </script>
 </body>
